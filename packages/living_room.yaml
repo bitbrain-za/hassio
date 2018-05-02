@@ -122,7 +122,7 @@ input_select:
 
   living_room_colour:
     name: living room colour
-    initial: Snow
+    initial: Ivory
     options:
       - Navajo White
       - Ivory
@@ -295,117 +295,9 @@ automation:
           # RIGHT #
           #########
 
-  # - id: B6A47CE9-FCE1-4D1B-8789-34485BF85180
-  #   alias: Right Click while going_up
-  #   initial_state: 'on'
-  #   trigger:
-  #     - platform: event
-  #       event_type: click
-  #       event_data:
-  #         entity_id: binary_sensor.wall_switch_right_158d0001f3f4a8
-  #         click_type: single
-  #   condition:
-  #     condition: and
-  #     conditions:
-  #     - condition: state
-  #       entity_id: light.lounge
-  #       state: 'on'
-  #     - condition: state
-  #       entity_id: input_select.livingroom_switch_right_status
-  #       state: 'going_up'
-  #   action:
-  #     - service: input_select.select_option
-  #       data:
-  #         entity_id: input_select.livingroom_switch_right_status
-  #         option: 'stopped_up'
-  #     - service: script.turn_off
-  #       entity_id: script.living_room_light_bright
-  #     - service: script.turn_off
-  #       entity_id: script.living_room_light_bright_pause
+# Moved to kitchen for now
 
-  # - id: 6449F748-BD55-4A43-AC55-45C37151D1C5
-  #   alias: Right Click while stopped_up
-  #   initial_state: 'on'
-  #   trigger:
-  #     - platform: event
-  #       event_type: click
-  #       event_data:
-  #         entity_id: binary_sensor.wall_switch_right_158d0001f3f4a8
-  #         click_type: single
-  #   condition:
-  #     condition: and
-  #     conditions:
-  #     - condition: state
-  #       entity_id: light.lounge
-  #       state: 'on'
-  #     - condition: state
-  #       entity_id: input_select.livingroom_switch_right_status
-  #       state: 'stopped_up'
-  #   action:
-  #     - service: input_select.select_option
-  #       data:
-  #         entity_id: input_select.livingroom_switch_right_status
-  #         option: 'going_down'
-  #     - service: script.turn_on
-  #       entity_id: script.living_room_light_dim
-
-  # - id: 5327DED1-3497-4B4C-993C-F6C40D176A43
-  #   alias: Right Click while going_down
-  #   initial_state: 'on'
-  #   trigger:
-  #     - platform: event
-  #       event_type: click
-  #       event_data:
-  #         entity_id: binary_sensor.wall_switch_right_158d0001f3f4a8
-  #         click_type: single
-  #   condition:
-  #     condition: and
-  #     conditions:
-  #     - condition: state
-  #       entity_id: light.lounge
-  #       state: 'on'
-  #     - condition: state
-  #       entity_id: input_select.livingroom_switch_right_status
-  #       state: 'going_down'
-  #   action:
-  #     - service: input_select.select_option
-  #       data:
-  #         entity_id: input_select.livingroom_switch_right_status
-  #         option: 'stopped_down'
-  #     - service: script.turn_off
-  #       entity_id: script.living_room_light_dim
-  #     - service: script.turn_off
-  #       entity_id: script.living_room_light_dim_pause
-
-  # - id: A1A2B1AC-477D-4CAB-8098-96C0977660DC
-  #   alias: Right Click while stopped_down
-  #   initial_state: 'on'
-  #   trigger:
-  #     - platform: event
-  #       event_type: click
-  #       event_data:
-  #         entity_id: binary_sensor.wall_switch_right_158d0001f3f4a8
-  #         click_type: single
-  #   condition:
-  #     condition: and
-  #     conditions:
-  #     - condition: state
-  #       entity_id: light.lounge
-  #       state: 'on'
-  #     - condition: state
-  #       entity_id: input_select.livingroom_switch_right_status
-  #       state: 'stopped_down'
-  #   action:
-  #     - service: input_select.select_option
-  #       data:
-  #         entity_id: input_select.livingroom_switch_right_status
-  #         option: 'going_up'
-  #     - service: script.turn_on
-  #       entity_id: script.living_room_light_bright
-
-#####################################################################################        
-
-          ########
+          #######
           # BOTH #
           ########
 
