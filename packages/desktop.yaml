@@ -1,0 +1,125 @@
+switch:
+  - platform: wake_on_lan
+    mac_address: !secret mac_desktop
+
+  - platform: template
+    switches:
+      pc_volume:
+        value_template: '{{ states.input_boolean.mute_pc.state }}'
+        friendly_name: 'PC Volume'
+        turn_on:
+          service: script.turn_on_pc_sound
+        turn_off:
+          service: script.turn_off_pc_sound
+        icon_template: >-
+          {% if states.input_boolean.mute_pc.state == 'on' %}
+            mdi:volume-high
+          {% else %}
+            mdi:volume-off
+          {% endif %}
+
+  - platform: template
+    switches:
+      pc_power_switch:
+        value_template: '{{ states.input_boolean.power_pc.state }}'
+        friendly_name: 'PC'
+        turn_on:
+          service: script.turn_on_pc
+        turn_off:
+          service: script.turn_off_pc
+        icon_template: >-
+          mdi:desktop-classic
+
+input_boolean:
+  mute_pc:
+    initial: on
+
+  power_pc:
+    name: PC Power
+    initial: off
+
+script:
+  turn_off_pc:
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "home-assistant/desktop"
+          payload: !secret desktop_turn_off_word
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.power_pc
+
+  turn_on_pc:
+    sequence:
+      - service: switch.turn_on
+        data:
+          entity_id: switch.wake_on_lan
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.power_pc
+
+  turn_off_pc_sound:
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "home-assistant/desktop"
+          payload: "mute"
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.mute_pc
+
+  turn_on_pc_sound:
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "home-assistant/desktop"
+          payload: "unmute"
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.mute_pc
+
+automation:
+  - id: D3D114A2-97BC-448D-A4B8-2860FA99D761
+    alias: PC Comes on
+    initial_state: 'on'
+    trigger:
+    - platform: state
+      entity_id: device_tracker.bc5ff42036a8
+      from: 'not_home'
+      to: 'home'
+    action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.power_pc
+
+  - id: EFEA5330-273F-42AB-B8B4-DE29BC6CDB70
+    alias: PC Dropped Off
+    initial_state: 'on'
+    trigger:
+    - platform: state
+      entity_id: device_tracker.bc5ff42036a8
+      from: 'home'
+      to: 'not_home'
+    action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.power_pc
+
+  - id: 60EC208C-48DF-4F0D-8F57-E512E651A892
+    alias: set_desktop_state_on_boot
+    initial_state: 'on'
+    trigger:
+    - platform: homeassistant
+      event: start
+    condition:
+    - condition: state
+      entity_id: device_tracker.bc5ff42036a8
+      state: 'home'
+    action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.power_pc
+
+group:
+  desktop:
+    name: Desktop
+    entities:
+      - switch.pc_power_switch
+      - switch.pc_volume

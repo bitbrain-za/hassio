@@ -1,0 +1,23 @@
+media_player:
+  - platform: samsungtv
+    host: 192.168.1.25
+    port: 8001
+    mac: !secret mac_samsung
+
+switch:
+  - platform: template
+    switches:
+      tv_power_switch:
+        value_template: "{{ is_state('media_player.samsung_tv_remote', 'on') }}"
+        # value_template: '{{ states.media_player.samsung_tv_remote.state }}'
+        friendly_name: 'TV'
+        turn_on:
+          service: media_player.turn_on
+          data:
+            entity_id: media_player.samsung_tv_remote
+        turn_off:
+          service: media_player.turn_off
+          data:
+            entity_id: media_player.samsung_tv_remote
+        icon_template: >-
+          mdi:television-classic

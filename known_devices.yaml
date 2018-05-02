@@ -1,0 +1,240 @@
+
+huawei_p9_lite:
+  hide_if_away: false
+  icon:
+  mac: B0:89:00:25:3B:BD
+  name: HUAWEI P9 lite
+  picture:
+  track: true
+
+yeelinklightcolor1_miio80924702:
+  hide_if_away: false
+  icon:
+  mac: 78:11:DC:E1:22:9D
+  name: yeelink-light-color1 miio80924702
+  picture:
+  track: true
+
+bc5ff42036a8:
+  hide_if_away: false
+  icon:
+  mac: BC:5F:F4:20:36:A8
+  name: bc5ff42036a8
+  picture:
+  track: true
+
+rmmini58c78d:
+  hide_if_away: false
+  icon:
+  mac: 34:EA:34:58:C7:8D
+  name: RMMINI-58-c7-8d
+  picture:
+  track: true
+
+philipslightbulb_miio60467652:
+  hide_if_away: false
+  icon:
+  mac: 34:CE:00:98:35:9F
+  name: philips-light-bulb miio60467652
+  picture:
+  track: true
+
+yeelinklightcolor1_miio80650509:
+  hide_if_away: false
+  icon:
+  mac: 78:11:DC:DC:F3:8C
+  name: yeelink-light-color1 miio80650509
+  picture:
+  track: true
+
+philipslightbulb_miio61919760:
+  hide_if_away: false
+  icon:
+  mac: 34:CE:00:C7:8B:28
+  name: philips-light-bulb miio61919760
+  picture:
+  track: true
+
+philipslightbulb_miio60465289:
+  hide_if_away: false
+  icon:
+  mac: 34:CE:00:98:2C:64
+  name: philips-light-bulb miio60465289
+  picture:
+  track: true
+
+002314451368:
+  hide_if_away: false
+  icon:
+  mac: 00:23:14:45:13:68
+  name: 002314451368
+  picture:
+  track: true
+
+lumigatewayv3_miio78454437:
+  hide_if_away: false
+  icon:
+  mac: 78:11:DC:B2:4A:4B
+  name: lumi-gateway-v3 miio78454437
+  picture:
+  track: true
+
+yeelinklightcolor1_miio80926696:
+  hide_if_away: false
+  icon:
+  mac: 78:11:DC:E1:2A:67
+  name: yeelink-light-color1 miio80926696
+  picture:
+  track: true
+
+philipslightbulb_miio61670824:
+  hide_if_away: false
+  icon:
+  mac: 34:CE:00:C3:BE:C0
+  name: philips-light-bulb miio61670824
+  picture:
+  track: true
+
+p_phone:
+  hide_if_away: false
+  icon:
+  mac:
+  name: p phone
+  picture:
+  track: true
+
+mum_zanz:
+  hide_if_away: false
+  icon:
+  mac:
+  name: mum zanz
+  picture:
+  track: true
+
+philipslightbulb_miio60611009:
+  hide_if_away: false
+  icon:
+  mac: 34:CE:00:9A:65:9C
+  name: philips-light-bulb miio60611009
+  picture:
+  track: true
+
+yeelinklightcolor1_miio80403249:
+  hide_if_away: false
+  icon:
+  mac: 78:11:DC:D9:2D:B0
+  name: yeelink-light-color1 miio80403249
+  picture:
+  track: true
+
+samsung:
+  hide_if_away: false
+  icon:
+  mac: 84:C0:EF:D3:11:62
+  name: Samsung
+  picture:
+  track: true
+
+84f3eb48bb7f:
+  hide_if_away: false
+  icon:
+  mac: 84:F3:EB:48:BB:7F
+  name: 84f3eb48bb7f
+  picture:
+  track: true
+
+00bb3afc1bc8:
+  hide_if_away: false
+  icon:
+  mac: 00:BB:3A:FC:1B:C8
+  name: 00bb3afc1bc8
+  picture:
+  track: true
+
+84f3eb488f91:
+  hide_if_away: false
+  icon:
+  mac: 84:F3:EB:48:8F:91
+  name: 84f3eb488f91
+  picture:
+  track: true
+
+68c63aa32861:
+  hide_if_away: false
+  icon:
+  mac: 68:C6:3A:A3:28:61
+  name: 68c63aa32861
+  picture:
+  track: true
+
+android37337b5b251b8919:
+  hide_if_away: false
+  icon:
+  mac: C0:BD:D1:92:D0:DD
+  name: android-37337b5b251b8919
+  picture:
+  track: true
+
+galaxya72017:
+  hide_if_away: false
+  icon:
+  mac: FC:42:03:1D:71:D9
+  name: Galaxy-A7-2017
+  picture:
+  track: true
+
+android5193037bdc6b05c7:
+  hide_if_away: false
+  icon:
+  mac: 30:A8:DB:95:55:D4
+  name: android-5193037bdc6b05c7
+  picture:
+  track: true
+
+jukebox:
+  hide_if_away: false
+  icon:
+  mac: 8C:89:A5:2B:7A:A3
+  name: jukebox
+  picture:
+  track: true
+
+jukebox_2:
+  hide_if_away: false
+  icon:
+  mac: B8:27:EB:F2:E0:45
+  name: jukebox
+  picture:
+  track: true
+
+desktopn8gkdpd:
+  hide_if_away: false
+  icon:
+  mac: C4:8E:8F:F4:F0:11
+  name: DESKTOP-N8GKDPD
+  picture:
+  track: true
+
+android2c8f736503d49800:
+  hide_if_away: false
+  icon:
+  mac: 64:DB:43:A4:EA:9C
+  name: android-2c8f736503d49800
+  picture:
+  track: true
+
+desktopc8ac5qm:
+  hide_if_away: false
+  icon:
+  mac: F8:59:71:E8:27:4F
+  name: DESKTOP-C8AC5QM
+  picture:
+  track: true
+
+jukebox_3:
+  hide_if_away: false
+  icon:
+  mac: 40:9B:CD:06:26:B1
+  name: jukebox
+  picture:
+  track: true

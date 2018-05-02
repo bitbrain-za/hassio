@@ -1,0 +1,95 @@
+                #######################################
+                #      __    _       __    __         #
+                #     / /   (_)___ _/ /_  / /______   #
+                #    / /   / / __ `/ __ \/ __/ ___/   #
+                #   / /___/ / /_/ / / / / /_(__  )    #
+                #  /_____/_/\__, /_/ /_/\__/____/     #
+                #          /____/                     #
+                #######################################
+
+#########################    LIGHTS    #########################
+
+light:
+  - platform: template
+    lights:
+      spare_room:
+        friendly_name: Spare Room
+        turn_on: null
+        turn_off: null
+
+  - platform: template
+    lights:
+      passage:
+        friendly_name: Passage
+        turn_on: null
+        turn_off: null
+
+  - platform: xiaomi_miio
+    name: Study
+    host: 192.168.1.35
+    token: !secret light_study_token
+    model: philips.light.bulb
+
+  - platform: mqtt
+    name: entrance
+    command_topic: "cmnd/sonoff_entrance/power"
+    state_topic: "stat/sonoff_entrance/POWER"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+
+  - platform: yeelight
+    devices:
+      192.168.1.36:
+        name: bedroom
+        save_on_change: false
+
+  - platform: xiaomi_miio
+    name: Lab
+    host: 192.168.1.37
+    token: !secret light_lab_token
+    model: philips.light.bulb
+
+  - platform: template
+    lights:
+      store:
+        friendly_name: Store
+        turn_on: null
+        turn_off: null
+
+#########################    GROUP    #########################
+
+group:
+  all_lights:
+    name: all lights
+    view: yes
+    icon: mdi:lightbulb
+    entities:
+      - light.spare_room
+      - light.passage
+      - light.kitchen
+      - light.entrance
+      - light.store
+      - light.lounge1
+      - light.lounge2
+      - light.bedroom
+      - light.bathroom
+      - light.back
+      - light.front
+      - light.lab
+
+  inside_lights:
+    name: inside lights
+    view: no
+    icon: mdi:lightbulb
+    entities:
+      - light.spare_room
+      - light.passage
+      - light.kitchen
+      - light.entrance
+      - light.store
+      - light.lounge1
+      - light.lounge2
+      - light.bedroom
+      - light.bathroom
+      - light.lab

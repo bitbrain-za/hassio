@@ -1,0 +1,67 @@
+#Philip Devices
+device_tracker.bc5ff42036a8:
+  friendly_name: Philip Desktop
+device_tracker.huawei_p9_lite:
+  friendly_name: Philip
+  entity_picture: /local/turtle.jpg 
+device_tracker.p_phone:
+  friendly_name: Philip
+  entity_picture: /local/turtle.jpg 
+sensor.philip_battery:
+  friendly_name: Battery
+  icon: mdi:battery
+
+device_tracker.mum_zanz:
+  friendly_name: Mum
+  entity_picture: /local/people/mum.png 
+
+sensor.owm_cloud_coverage:
+  friendly_name: Clouds
+  icon: mdi:weather-partlycloudy
+sensor.owm_condition: 
+  friendly_name: Condition
+sensor.owm_humidity: 
+  friendly_name: Humidity
+  icon: mdi:water-percent
+sensor.owm_rain:
+  friendly_name: Rain
+  icon: mdi:weather-rainy
+sensor.owm_temperature:
+  friendly_name: Temperature
+
+
+sensor.temperature_158d00022cc5d7:
+  friendly_name: Lounge Temperature
+sensor.humidity_158d00022cc5d7:
+  friendly_name: Lounge Humidity
+sensor.pressure_158d00022cc5d7:
+  friendly_name: Lounge Pressure
+
+binary_sensor.switch_158d0001e5c0de:
+  friendly_name: switch mes
+
+binary_sensor.wall_switch_158d00017101b2:
+  friendly_name: wall switch 1  
+
+binary_sensor.wall_switch_158d0001710295:
+  friendly_name: wall switch 2
+  
+binary_sensor.wall_switch_both_158d0001f3f4a8:
+  friendly_name: double switch both
+binary_sensor.wall_switch_left_158d0001f3f4a8:
+  friendly_name: double switch left
+binary_sensor.wall_switch_right_158d0001f3f4a8:
+  friendly_name: double switch right
+
+binary_sensor.door_window_sensor_158d0001f9e18e:
+  friendly_name: front_door
+binary_sensor.door_window_sensor_158d0001fa8d27:
+  friendly_name: back_door
+
+input_boolean.mute_pc:
+  icon_template: >-
+    {% if is_state('binary_sensor.door_window_sensor_158d0001ab56bd', 'on') %}
+      mdi:volume-high
+    {% else %}
+      mdi:volume-off
+    {% endif %}

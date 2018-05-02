@@ -1,0 +1,79 @@
+#########################################################
+#      ____        __  __                               #
+#     / __ )____ _/ /_/ /_  _________  ____  ____ ___   #
+#    / __  / __ `/ __/ __ \/ ___/ __ \/ __ \/ __ `__ \  #
+#   / /_/ / /_/ / /_/ / / / /  / /_/ / /_/ / / / / / /  #
+#  /_____/\__,_/\__/_/ /_/_/   \____/\____/_/ /_/ /_/   #
+#                                                       #
+#########################################################
+
+#########################    OBJECTS    #########################
+
+# binary_sensor.wall_switch_158d0001710295:
+#   name:
+#   platform: xiaomi_aqara
+#   unique_id: channel_0158d0001710295
+
+light:
+  - platform: yeelight
+    devices:
+      192.168.1.38:
+        name: bathroom
+        save_on_change: false
+        transition: 1000
+
+#########################    AUTOMATIONS    #########################
+
+automation:
+
+  # Toggle light on switch
+  - id: 36AACA50-6B0A-46B9-890F-B4A68C21EAD9
+    alias: toggle_bathroom_light
+    initial_state: 'on'
+    trigger:
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.wall_switch_158d0001710295
+        click_type: single
+    action:
+    - service: light.toggle
+      entity_id: light.bathroom
+
+  # If it's after bedtime, turn the brightness down
+  - id: A58FAD7E-C53E-4983-BD5E-526F55D54D05
+    alias: bathroom on after bedtime
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: light.bathroom
+        from: 'off'
+        to: 'on'
+    condition:
+      - condition: time
+        after: '21:00'
+        before: '06:00'
+    action:
+      - service: light.turn_on
+        data_template:
+          entity_id: light.bathroom
+          brightness_pct: 30
+
+  # If it's before bedtime, turn the brightness up
+  - id: 661DC8AC-B8CA-4050-A156-F70D68AF6F9D
+    alias: bathroom on not bedtime
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: light.bathroom
+        from: 'off'
+        to: 'on'
+    condition:
+      - condition: time
+        after: '06:00'
+        before: '21:00'
+    action:
+      - service: light.turn_on
+        data_template:
+          entity_id: light.bathroom
+          brightness_pct: 100

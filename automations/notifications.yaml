@@ -1,0 +1,90 @@
+- id: F49BB5E9-0F39-4585-9D47-011A76A6AFAE
+  alias: 'Telegram bot to notify on boot'
+  initial_state: 'on'
+  trigger:
+  - event: start
+    platform: homeassistant
+  condition: []
+  action:
+  - service: notify.p_phone_telegram
+    data:
+      message: Home Assistant booted
+
+- id: CB8A5B89-79CD-4FF3-AF2F-AF5AE9FECDD6
+  alias: 'Telegram bot to notify nobody home and electronics on'
+  initial_state: 'on'
+  trigger:
+  - entity_id: group.everyone
+    from: home
+    platform: state
+    to: not_home
+  condition:
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: group.inside_lights 
+      state: 'on'
+    - condition: state
+      entity_id: device_tracker.bc5ff42036a8
+      state: 'home'
+    - condition: state
+      entity_id: media_player.samsung_tv_remote 
+      state: 'on'
+    - condition: template
+      value_template: "{% if not is_state('climate.carrier', 'off') %}true{% endif %}"
+  action:
+  - service: notify.p_phone_telegram
+    data:
+      message: Nobody home, but device(s) have been left on.
+
+- id: B2D45FE3-77AE-4357-A2A3-39C8C065BA00
+  initial_state: 'on'
+  alias: "Notify Open Front Door"
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.door_window_sensor_158d0001f9e18e
+    from: 'off'
+    to: 'on'
+  action:
+  - service: notify.p_phone_telegram
+    data:
+      message: "Front Door Opened"
+
+- id: EF536FB3-EE7E-43E4-91EB-56E918082E10
+  alias: "Notify Close Front Door"
+  initial_state: 'on'
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.door_window_sensor_158d0001f9e18e
+    from: 'on'
+    to: 'off'
+  action:
+  - service: notify.p_phone_telegram
+    data:
+      message: "Front Door Closed"
+
+- id: CC8F167E-A008-4E56-9CF1-A8CA024AB9A6
+  alias: "Notify Open Back Door"
+  initial_state: 'on'
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.door_window_sensor_158d0001fa8d27
+    from: 'off'
+    to: 'on'
+  action:
+  - service: notify.p_phone_telegram
+    data:
+      message: "Back Door Opened"
+
+- id: CA19B669-CC08-4CE2-8F75-7036BDA8C74E
+  alias: "Notify Close Back Door"
+  initial_state: 'on'
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.door_window_sensor_158d0001fa8d27
+    from: 'on'
+    to: 'off'
+  action:
+  - service: notify.p_phone_telegram
+    data:
+      message: "Back Door Closed"

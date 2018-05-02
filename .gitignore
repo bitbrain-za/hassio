@@ -1,0 +1,24 @@
+# Packages
+*.apk
+
+# Tokens
+*.token
+
+# Individual Files
+Notes
+plex.conf
+.uuid
+.spotify-token-chache
+.HA_VERSION
+secrets.yaml
+production_auth.json
+
+# Databases
+*.db
+
+# Logs
+*.log
+
+# Directories
+.cloud/
+tts/

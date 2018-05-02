@@ -1,0 +1,152 @@
+                ###############################
+                #      ____  __    _ ___      #
+                #     / __ \/ /_  (_) (_)___  #
+                #    / /_/ / __ \/ / / / __ \ # 
+                #   / ____/ / / / / / / /_/ / #
+                #  /_/   /_/ /_/_/_/_/ .___/  #
+                #                  /_/        #
+                ###############################
+
+
+#########################    OBJECTS    #########################
+
+sensor:
+  - platform: mqtt
+    name: "Philip Battery"
+    state_topic: "zanzito/philip_phone/battery_level"
+    qos: 0
+    unit_of_measuremetn: "%"
+
+  - platform: google_travel_time
+    name: Home to Work
+    icon: mdi:car-side
+    api_key: !secret google_distance_matrix_api
+    origin: zone.home
+    destination: zone.work
+
+  - platform: google_travel_time
+    name: Philip to Home
+    icon: mdi:car
+    api_key: !secret google_distance_matrix_api
+    origin: device_tracker.p_phone
+    destination: zone.home
+
+  - platform: mqtt
+    name: "Tablet Battery"
+    state_topic: "zanzito/philip_tab/battery_level"
+    qos: 0
+    unit_of_measuremetn: "%"
+
+device_tracker:
+  - platform: mqtt_json
+    devices:
+      P_Phone: zanzito/philip_phone/location
+
+camera:
+  - platform: generic
+    name: Philip
+    still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.p_phone.attributes.latitude }},{{ states.device_tracker.p_phone.attributes.longitude }}&zoom=13&size=500x500&maptype=roadmap&markers=color:blue%7Clabel:P%7C{{ states.device_tracker.p_phone.attributes.latitude }},{{ states.device_tracker.p_phone.attributes.longitude }}
+    limit_refetch_to_url_change: true
+
+input_boolean:
+  recently_home:
+    name: philip got home in the last couple of minutes
+    initial: 'off'
+
+#########################    GROUPS    #########################
+
+group:
+  phil_not_home:
+    name: Philip
+    entities: 
+      - sensor.philip_to_home
+      - sensor.philip_to_home
+      - device_tracker.p_phone
+  phil_home:
+    name: Philip
+    entities:
+      - device_tracker.huawei_p9_lite
+      - sensor.philip_battery
+      - sensor.home_to_work
+
+  phil_devices:
+    name: phil_devices
+    entities:
+      - device_tracker.p_phone
+      - device_tracker.huawei_p9_lite
+
+#################   AUTOMATIONS    #################
+
+automation:
+  
+  - id: A23048E9-F1CC-4A5E-9904-24556C57CB32
+    alias: Phil leaves home
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: group.phil_devices
+        from: 'home'
+        to: 'not_home'
+    action:
+      - service: group.set_visibility
+        entity_id: group.phil_not_home
+        data:
+          visible: True
+      - service: group.set_visibility
+        entity_id: group.phil_home
+        data:
+          visible: False
+
+  - id: AB97B0D9-E4A2-4F2F-BA6C-C9569C333722
+    alias: Phil comes home
+    initial_state: 'on'
+    trigger:
+    - platform: state
+      entity_id: group.phil_devices
+      from: 'not_home'
+      to: 'home'
+    - platform: homeassistant
+      event: start
+    action:
+    - service: group.set_visibility
+      entity_id: group.phil_not_home
+      data:
+        visible: False
+    - service: group.set_visibility
+      entity_id: group.phil_home
+      data:
+        visible: True
+
+  - id: 45421C92-ECD0-40D3-8D98-25D481674076
+    alias: semphore philip got home
+    initial_state: 'on'
+    trigger:
+    - platform: state
+      entity_id: group.phil_devices
+      from: 'not_home'
+      to: 'home'
+    action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.recently_home
+    - delay: '00:03:00'
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.recently_home
+
+  - id: BD2A5DD1-50D2-4E5F-B6FD-F5CF4C114C7D
+    alias: greet philip
+    trigger:
+      platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001f9e18e
+      from: 'off'
+      to: 'on'
+    condition:
+      condition: state
+      entity_id: input_boolean.recently_home
+      state: 'on'
+    action:
+    - service: tts.google_say
+      entity_id: media_player.jukebox_mpd
+      data:
+        message: 'Welcome home Philip'
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.recently_home

@@ -1,0 +1,611 @@
+#################################################################
+#     __    _       _                ____                       #
+#    / /   (_)   __(_)___  ____ _   / __ \____  ____  ____ ___  #
+#   / /   / / | / / / __ \/ __ `/  / /_/ / __ \/ __ \/ __ `__ \ #
+#  / /___/ /| |/ / / / / / /_/ /  / _, _/ /_/ / /_/ / / / / / / #
+# /_____/_/ |___/_/_/ /_/\__, /  /_/ |_|\____/\____/_/ /_/ /_/  #
+#                       /____/                                  #
+#################################################################
+
+#########################    OBJECTS    #########################
+
+light:
+  - platform: yeelight
+    devices:
+      192.168.1.33:
+        name: lounge1
+        transition: 1000
+        save_on_change: false
+      192.168.1.34:
+        name: lounge2
+        transition: 1000
+        save_on_change: false
+
+  - platform: group
+    name: lounge
+    entities:
+      - light.lounge1
+      - light.lounge2
+
+climate:
+  - platform: broadlink
+    name: Carrier
+    host: 192.168.1.50
+    mac: !secret braodlink_rm_mini_mac 
+    ircodes_ini: 'broadlink_climate_codes/carrier.ini'
+    min_temp: 17
+    max_temp: 30
+    target_temp: 23
+    temp_sensor: sensor.temperature_158d00022cc5d7
+    default_operation: 'off'
+    default_fan_mode: low
+    customize:
+      operations:
+        - 'off'
+        # - idle
+        - cool
+        - heat
+        - dry
+        - auto
+      fan_modes:
+        - low
+        - medium
+        - high
+        - auto
+
+media_player:
+  - platform: mpd
+    name: jukebox_mpd
+    host: 192.168.1.17
+  - platform: spotify
+    client_id: !secret spotify_client_id_ha
+    client_secret: !secret spotify_client_secret_ha
+
+#########################    STATE VARIABLES    #########################
+
+input_number:
+  livingroom_switch_right_number:
+    name: living room birghtness
+    initial: 5
+    min: 0
+    max: 130
+
+  living_room_light_step:
+    name: 'Step the lights this much'
+    initial: 20
+    min: 1
+    max: 64
+    step: 1
+
+  living_room_light_minimum:
+    name: 'No dimmer than this'
+    initial: 5
+    min: 1
+    max: 255
+    step: 1
+    
+  living_room_light_maximum:
+    name: 'No brighter than this'
+    initial: 255
+    min: 50
+    max: 255
+    step: 1
+
+input_select:
+  livingroom_switch_left_status:
+    name: Living Room Switch State for the left button
+    options:
+    - 'off'
+    - single
+    - double
+    - triple
+    initial: single
+    icon: mdi:lightbulb
+
+  livingroom_switch_right_status:
+    name: Living Room Switch State for the right button
+    options:
+    - going_up
+    - stopped_up
+    - going_down
+    - stopped_down
+    initial: stopped_down
+    icon: mdi:lightbulb
+
+  living_room_both_state:
+    name: Living Room Both State
+    options:
+    - 'off'
+    - single
+    - double
+    initial: 'off'
+
+  living_room_colour:
+    name: living room colour
+    initial: Snow
+    options:
+      - Navajo White
+      - Ivory
+      - Blue
+      - Purple
+      - Magenta
+      - Deep Pink
+      - Salmon
+      - Red
+      - Gold
+      - Yellow
+      - Lime
+      - Teal
+      - Cyan
+      - Turquoise
+
+#########################    BOOLEANS    #########################
+
+input_boolean:
+  
+  living_room_dim:
+    name: Direction of light brightness control for the living room
+    initial: 'off'
+
+  sauce:
+    name: Quality time
+    initial: 'off'
+ 
+#################   SCRIPTS    #################
+
+script:
+  living_room_light_bright:
+    sequence:
+    - service: light.turn_on
+      data_template:
+        entity_id: light.lounge
+        brightness: >-
+          {% set current = states.light.lounge.attributes.brightness|default(0)|int %}
+          {% set step = states('input_number.living_room_light_step')|int %}
+          {% set next = current + step %}
+          {% if next > states('input_number.living_room_light_maximum')|int %}
+            {% set next = states('input_number.living_room_light_maximum')|int %}
+          {% endif %}
+          {{ next }}
+    - service_template: >
+        {% if states.light.lounge.attributes.brightness|default(0)|int < states('input_number.living_room_light_maximum')|int %}
+          script.turn_on
+        {% else %}
+          script.turn_off
+        {% endif %}
+      data:
+        entity_id: script.living_room_light_bright_pause
+    - service: input_select.select_option
+      data_template: 
+        entity_id: input_select.livingroom_switch_right_status
+        option: >
+          {% if states.light.lounge.attributes.brightness|default(0)|int < states('input_number.living_room_light_maximum')|int %}
+            going_up
+          {% else %}
+            stopped_up
+          {% endif %}
+
+  living_room_light_bright_pause:
+    sequence:
+    - delay:
+        milliseconds: 1000
+    - service: script.turn_on
+      data:
+        entity_id: script.living_room_light_bright
+
+  living_room_light_dim:
+    sequence:
+    - service: light.turn_on
+      data_template:
+        entity_id: light.lounge
+        brightness: >-
+          {% set current = states.light.lounge.attributes.brightness|default(0)|int %}
+          {% set step = states('input_number.living_room_light_step')|int %}
+          {% set next = current - step %}
+          {% if next < states('input_number.living_room_light_minimum')|int %}
+            {% set next = states('input_number.living_room_light_minimum')|int %}
+          {% endif %}
+          {{ next }}
+    - service_template: >
+        {% if states.light.lounge.attributes.brightness|default(0)|int > states('input_number.living_room_light_minimum')|int %}
+          script.turn_on
+        {% else %}
+          script.turn_off
+        {% endif %}
+      data:
+        entity_id: script.living_room_light_dim_pause
+    - service: input_select.select_option
+      data_template: 
+        entity_id: input_select.livingroom_switch_right_status
+        option: >
+          {% if states.light.lounge.attributes.brightness|default(0)|int > states('input_number.living_room_light_maximum')|int %}
+            going_down
+          {% else %}
+            stopped_down
+          {% endif %}
+
+  living_room_light_dim_pause:
+    sequence:
+    - delay:
+        milliseconds: 1000
+    - service: script.turn_on
+      data:
+        entity_id: script.living_room_light_dim
+
+  spotify_music:
+    alias: Sauce
+    sequence:
+      -  service: media_player.select_source
+         data: 
+           entity_id: media_player.spotify
+           source: jukebox
+      - service: light.turn_off
+        entity_id: light.kitchen
+      - service: light.turn_off
+        entity_id: light.entrance
+      - service: light.turn_on
+        data:
+          entity_id: light.lounge
+          brightness_pct: 30
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.living_room_colour
+          option: "Red"
+      # - service: media_player.volume_set
+      #   data:
+      #     entity_id: media_player.spotify
+      #     volume_level: '0.8'
+      -  service: media_player.play_media
+         data:
+           entity_id: media_player.spotify
+           media_content_type: playlist
+           media_content_id: spotify:user:ci5uaf6f7eb3incloais4h4zn:playlist:4MR4x8G3XvcKcF4cnLPhgd
+      # - delay: '00:00:05'
+      # - service: media_player.media_play
+      #   entity_id: media_player.spotify
+
+#################   AUTOMATIONS    #################
+
+automation:
+
+# * Left - On/off
+# * Right - brightness 
+# * Both - Colour - double tap for full
+
+          ########
+          # LEFT #
+          ########
+
+# Light - On/off
+  - id: 1EE15AC8-0BEE-4B66-B1FD-6A705CA8DDE5
+    alias: Living room left switch
+    initial_state: 'on'
+    trigger:
+      - platform: event
+        event_type: click
+        event_data:
+          entity_id: binary_sensor.wall_switch_left_158d0001f3f4a8
+          click_type: single
+    action:
+      - service: light.toggle
+        data_template:
+          entity_id: light.lounge
+          
+          #########
+          # RIGHT #
+          #########
+
+  # - id: B6A47CE9-FCE1-4D1B-8789-34485BF85180
+  #   alias: Right Click while going_up
+  #   initial_state: 'on'
+  #   trigger:
+  #     - platform: event
+  #       event_type: click
+  #       event_data:
+  #         entity_id: binary_sensor.wall_switch_right_158d0001f3f4a8
+  #         click_type: single
+  #   condition:
+  #     condition: and
+  #     conditions:
+  #     - condition: state
+  #       entity_id: light.lounge
+  #       state: 'on'
+  #     - condition: state
+  #       entity_id: input_select.livingroom_switch_right_status
+  #       state: 'going_up'
+  #   action:
+  #     - service: input_select.select_option
+  #       data:
+  #         entity_id: input_select.livingroom_switch_right_status
+  #         option: 'stopped_up'
+  #     - service: script.turn_off
+  #       entity_id: script.living_room_light_bright
+  #     - service: script.turn_off
+  #       entity_id: script.living_room_light_bright_pause
+
+  # - id: 6449F748-BD55-4A43-AC55-45C37151D1C5
+  #   alias: Right Click while stopped_up
+  #   initial_state: 'on'
+  #   trigger:
+  #     - platform: event
+  #       event_type: click
+  #       event_data:
+  #         entity_id: binary_sensor.wall_switch_right_158d0001f3f4a8
+  #         click_type: single
+  #   condition:
+  #     condition: and
+  #     conditions:
+  #     - condition: state
+  #       entity_id: light.lounge
+  #       state: 'on'
+  #     - condition: state
+  #       entity_id: input_select.livingroom_switch_right_status
+  #       state: 'stopped_up'
+  #   action:
+  #     - service: input_select.select_option
+  #       data:
+  #         entity_id: input_select.livingroom_switch_right_status
+  #         option: 'going_down'
+  #     - service: script.turn_on
+  #       entity_id: script.living_room_light_dim
+
+  # - id: 5327DED1-3497-4B4C-993C-F6C40D176A43
+  #   alias: Right Click while going_down
+  #   initial_state: 'on'
+  #   trigger:
+  #     - platform: event
+  #       event_type: click
+  #       event_data:
+  #         entity_id: binary_sensor.wall_switch_right_158d0001f3f4a8
+  #         click_type: single
+  #   condition:
+  #     condition: and
+  #     conditions:
+  #     - condition: state
+  #       entity_id: light.lounge
+  #       state: 'on'
+  #     - condition: state
+  #       entity_id: input_select.livingroom_switch_right_status
+  #       state: 'going_down'
+  #   action:
+  #     - service: input_select.select_option
+  #       data:
+  #         entity_id: input_select.livingroom_switch_right_status
+  #         option: 'stopped_down'
+  #     - service: script.turn_off
+  #       entity_id: script.living_room_light_dim
+  #     - service: script.turn_off
+  #       entity_id: script.living_room_light_dim_pause
+
+  # - id: A1A2B1AC-477D-4CAB-8098-96C0977660DC
+  #   alias: Right Click while stopped_down
+  #   initial_state: 'on'
+  #   trigger:
+  #     - platform: event
+  #       event_type: click
+  #       event_data:
+  #         entity_id: binary_sensor.wall_switch_right_158d0001f3f4a8
+  #         click_type: single
+  #   condition:
+  #     condition: and
+  #     conditions:
+  #     - condition: state
+  #       entity_id: light.lounge
+  #       state: 'on'
+  #     - condition: state
+  #       entity_id: input_select.livingroom_switch_right_status
+  #       state: 'stopped_down'
+  #   action:
+  #     - service: input_select.select_option
+  #       data:
+  #         entity_id: input_select.livingroom_switch_right_status
+  #         option: 'going_up'
+  #     - service: script.turn_on
+  #       entity_id: script.living_room_light_bright
+
+#####################################################################################        
+
+          ########
+          # BOTH #
+          ########
+
+    ##### STATES #####
+
+# Off to Single
+  - id: 8C22ED6A-29CE-41B3-A503-8897A5E28548
+    alias: Livingroom switch both OFF to SINGLE
+    initial_state: 'on'
+    trigger:
+      - platform: event
+        event_type: click
+        event_data:
+          entity_id: binary_sensor.wall_switch_both_158d0001f3f4a8
+          click_type: both
+    condition:
+      - condition: state
+        entity_id: input_select.living_room_both_state
+        state: 'off'
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.living_room_both_state
+          option: 'single'
+
+# Single to Double
+  - id: 3434480B-E3FA-4F7F-BE07-516825D2A4BD
+    alias: Livingroom switch both SINGLE to DOUBLE
+    initial_state: 'on'
+    trigger:
+      - platform: event
+        event_type: click
+        event_data:
+          entity_id: binary_sensor.wall_switch_both_158d0001f3f4a8
+          click_type: both
+    condition: 
+      - condition: state
+        entity_id: input_select.living_room_both_state
+        state: 'single'
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.living_room_both_state
+          option: 'double'
+
+# No press, revert to off
+  - id: 7D2B849B-3B24-4A98-8A32-16AC39D7190A
+    alias: Livingroom switch both EITHER to OFF
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: input_select.living_room_both_state
+        to: 'single'
+        for:
+          seconds: 2
+      - platform: state
+        entity_id: input_select.living_room_both_state
+        to: 'double'
+        for:
+          seconds: 2
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.living_room_both_state
+          option: 'off'
+
+
+    ##### ACTIONS #####
+
+  - id: 8935FC97-757E-4110-8CD0-8F34A3A11B49
+    alias: Livingroom switch both button double click 
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: input_select.living_room_both_state
+        to: 'double'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.lounge
+          brightness_pct: 100
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.living_room_colour
+          option: "Ivory"
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.living_room_both_state
+          option: 'off'
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.livingroom_switch_right_status
+          option: 'stopped_up'
+
+  # I want to increase the light if single press is done. Max is 100. Starting at 5 and going up 17 per time, we get these numbers:
+  # 5, 22, 39, 56, 73, 90, 107
+  # 5 is pretty perfect for low light like watching tv, and 90 is too bright already.
+  # 110 is the maximum number for the input_number so I needed something that maxed out over 100 but below 110.
+  # Also sets the status to off so it can be used again without waiting for the reset timer
+  - id: 11566C72-812D-472C-8C3F-EE6D7A6517FB
+    alias: Livingroom switch both button single press change colour
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: input_select.living_room_both_state
+        to: 'single'
+        for:
+          seconds: 1.2
+    action:
+      - service: input_select.select_next
+        entity_id: input_select.living_room_colour
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.living_room_both_state
+          option: 'off'
+
+  - id: D5473041-9297-4375-AE5A-968E57F30F28
+    alias: Set livingroom ceiling colour based on input_select
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: input_select.living_room_colour
+    action:
+      - service: light.turn_on
+        data_template:
+          entity_id: light.lounge
+          color_name: '{{ states.input_select.living_room_colour.state }}'
+
+
+  # When someone comes home, turn on the front for 15 minutes
+  - id: BA8A23FA-99DE-4880-A1DE-B11903E219A4
+    alias: come home aircon
+    initial_state: 'on'
+    trigger:
+    - platform: state
+      entity_id: group.phil_devices
+      from: 'not_home'
+      to: 'home'
+    condition:
+    - condition: numeric_state
+      entity_id: sensor.temperature_158d00022cc5d7
+      above: '24'
+    action:
+    - service: climate.set_operation_mode
+      data_template:
+        entity_id: climate.carrier
+        operation_mode: 'cool'
+
+  # When someone comes home, turn on the front for 15 minutes
+  - id: BA8A23FA-99DE-4880-A1DE-B11903E219A4
+    alias: door open aircon
+    initial_state: 'on'
+    trigger:
+    - platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001fa8d27
+      from: 'off'
+      to: 'on'
+      for: '00:03:00'
+    action:
+    - service: climate.set_operation_mode
+      data_template:
+        entity_id: climate.carrier
+        operation_mode: 'off'
+
+
+  - id: 1D68F9EE-5536-4107-AB7E-A3ACBAF229F5
+    alias: Sauce
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: input_boolean.sauce
+        from: 'off'
+        to: 'on'
+    action:
+      -  service: media_player.select_source
+         data: 
+           entity_id: media_player.spotify
+           source: MusicBox
+      -  service: media_player.play_media
+         data:
+           entity_id: media_player.spotify
+           media_content_type: playlist
+           media_content_id: spotify:user:ci5uaf6f7eb3incloais4h4zn:playlist:4MR4x8G3XvcKcF4cnLPhgd
+      - delay: '00:00:04'
+      - service: light.turn_off
+        entity_id: light.kitchen
+      - service: light.turn_off
+        entity_id: light.entrance
+      - service: light.turn_on
+        data:
+          entity_id: light.lounge
+          brightness_pct: 30
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.living_room_colour
+          option: "Red"
+      # - service: media_player.volume_set
+      #   data:
+      #     entity_id: media_player.spotify
+      #     volume_level: '0.8'
+      # - delay: '00:00:05'
+      # - service: media_player.media_play
+      #   entity_id: media_player.spotify

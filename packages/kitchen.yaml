@@ -1,0 +1,36 @@
+      #########################################
+      #     __ __ _ __       __               #
+      #    / //_/(_) /______/ /_  ___  ____   #
+      #   / ,<  / / __/ ___/ __ \/ _ \/ __ \  #
+      #  / /| |/ / /_/ /__/ / / /  __/ / / /  #
+      # /_/ |_/_/\__/\___/_/ /_/\___/_/ /_/   #
+      #                                       #
+      #########################################
+
+#########################    OBJECTS    #########################
+
+light:
+  - platform: mqtt
+    name: kitchen
+    command_topic: "cmnd/sonoff_kitchen/power"
+    state_topic: "stat/sonoff_kitchen/POWER"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+
+#########################    AUTOMATIONS    #########################
+
+automation:
+  - id: 55D54AF9-83B3-4433-990C-EDD0E33930A9
+    alias: kitchen switch
+    initial_state: 'on'
+    trigger:
+      - platform: event
+        event_type: click
+        event_data:
+          entity_id: binary_sensor.wall_switch_right_158d0001f3f4a8
+          click_type: single
+    action:
+      - service: light.toggle
+        data_template:
+          entity_id: light.kitchen

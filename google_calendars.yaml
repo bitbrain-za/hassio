@@ -1,0 +1,41 @@
+- cal_id: !secret calendar_family
+  entities:
+  - device_id: family
+    name: Family
+    track: true
+
+- cal_id: !secret calendar_dancing
+  entities:
+  - device_id: dancing
+    name: Dancing
+    track: true
+
+- cal_id: !secret calendar_d2di
+  entities:
+  - device_id: d2di
+    name: D2Di
+    track: true
+
+- cal_id: !secret calendar_silvertonguepbgmailcom
+  entities:
+  - device_id: silvertonguepbgmailcom
+    name: silvertongue.pb@gmail.com
+    track: true
+
+- cal_id: !secret calendar_contacts
+  entities:
+  - device_id: contacts
+    name: Contacts
+    track: true
+
+- cal_id: !secret calendar_holidays_in_south_africa
+  entities:
+  - device_id: holidays_in_south_africa
+    name: Holidays in South Africa
+    track: true
+
+- cal_id: !secret calendar_friends_birthdays
+  entities:
+  - device_id: friends_birthdays
+    name: Friends' birthdays
+    track: true

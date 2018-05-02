@@ -1,0 +1,202 @@
+  ###########################################################################################################
+  #                ____        __       _     __        __    _       __    ___                             #
+  #               / __ \__  __/ /______(_)___/ /__     / /   (_)___ _/ /_  / /______                        #
+  #              / / / / / / / __/ ___/ / __  / _ \   / /   / / __ `/ __ \/ __/ ___/                        #
+  #             / /_/ / /_/ / /_(__  ) / /_/ /  __/  / /___/ / /_/ / / / / /_(__  )                         #
+  #             \____/\__,_/\__/____/_/\__,_/\___/  /_____/_/\__, /_/ /_/\__/____/                          #
+  #                                                         /____/                                          #
+  #                                                                                                         #
+  #    Behaviour:                                                                                           #
+  #       - After sunset turn outside lights to 30%                                                         #
+  #       - When someone comes home, turn the front light on for 15 minutes, then back to 30%               #
+  #       - When front door is opened, turn the front light to 100% for 5 minutes (if it isn't already on)  #
+  #       - When the back door is opened turn the back light to 100% for 30 minutes                         #
+  ###########################################################################################################
+
+#########################    OBJECTS    #########################
+
+light:
+
+  - platform: xiaomi_miio
+    name: back
+    host: 192.168.1.45
+    token: !secret light_back_token
+    model: philips.light.bulb
+
+  - platform: xiaomi_miio
+    name: front
+    host: 192.168.1.44
+    token: !secret light_front_token
+    model: philips.light.bulb      
+
+#########################    AUTOMATIONS    #########################
+
+automation:
+
+  # At sunset turn on the outside lights to 30% brightness
+  - id: 14C4D1D2-574E-4C77-A708-3C5236BB81F2
+    alias: sunset_lights
+    initial_state: 'on'
+    trigger:
+    - platform: sun
+      event: sunset
+      offset: '-01:00:00'
+    action:
+    - service: light.turn_on
+      data_template:
+        entity_id: light.front
+        brightness_pct: 30
+    - service: light.turn_on
+      data_template:
+        entity_id: light.back
+        brightness_pct: 30
+
+  # At sunrise turn off the outside lights
+  - id: C38B71A9-4AB0-41AB-9EBA-A43DD4565400
+    alias: sunrise_lights
+    initial_state: 'on'
+    trigger:
+    - platform: sun
+      event: sunrise
+    action:
+    - service: light.turn_off
+      data_template:
+        entity_id: light.front
+    - service: light.turn_off
+      data_template:
+        entity_id: light.back
+
+  # When someone comes home, turn on the front for 15 minutes
+  - id: B57E8573-8506-42AA-83DE-D4B259483FF2
+    alias: come home outside
+    initial_state: 'on'
+    trigger:
+    - platform: state
+      entity_id: group.phil_devices
+      from: 'not_home'
+      to: 'home'
+    # - platform: state
+    #   entity_id: group.chris_devices
+    #   from: 'not_home'
+    #   to: 'home'
+    condition:
+    - condition: sun
+      after: sunset
+    action:
+    - service: light.turn_on
+      data_template:
+        entity_id: light.front
+        brightness_pct: 100
+    - delay: '00:15:00'
+    - service: light.turn_on
+      data_template:
+        entity_id: light.front
+        brightness_pct: 30
+
+  # When the front door is opened, turn on the front light
+  - id: 14C4D1D2-574E-4C77-A708-3C5236BB81F2
+    alias: turn on front when door opens
+    initial_state: 'on'
+    trigger:
+    - platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001f9e18e
+      from: 'off'
+      to: 'on'
+    condition:
+    - condition: sun
+      after: sunset
+    action:
+    - service: light.turn_on
+      data_template:
+        entity_id: light.front
+        brightness_pct: 100  
+
+  # When the front door has been closed for 3 minutes, turn the front back to 30%
+  - id: 65736365-31C4-4431-A208-3BB809C81EAA
+    alias: turn off front when door is closed for 3 minutes
+    initial_state: 'on'
+    trigger:
+    - platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001f9e18e
+      from: 'on'
+      to: 'off'
+      for: '00:03:00'
+    condition:
+    - condition: sun
+      after: sunset
+    action:    
+    - service: light.turn_on
+      data_template:
+        entity_id: light.front
+        brightness_pct: 30
+
+  # On the off chance the door is closed less than 30 minutes before sunrise
+  - id: 0BFB06D4-3683-45FF-9A6F-A6C75D7A5D9C
+    alias: turn off front when door is closed for 3 minutes in an odd time
+    initial_state: 'on'
+    trigger:
+    - platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001f9e18e
+      from: 'on'
+      to: 'off'
+      for: '00:30:00'
+    condition:
+    - condition: sun
+      before: sunset
+    action:
+    - service: light.turn_off
+      entity_id: light.front
+
+  # When the back door is opened, turn on the back light
+  - id: 1B764172-4BE2-4276-843A-9DAD4F46EA11
+    alias: turn on back when door opens
+    initial_state: 'on'
+    trigger:
+    - platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001fa8d27
+      from: 'off'
+      to: 'on'
+    condition:
+    - condition: sun
+      after: sunset
+    action:
+    - service: light.turn_on
+      data_template:
+        entity_id: light.back
+        brightness_pct: 100  
+
+  # When the back door has been closed for 30 minutes, turn the back back to 30%
+  - id: A36A859B-080E-4E03-B901-E7F8049078EE
+    alias: turn off back when door is closed for 3 minutes
+    initial_state: 'on'
+    trigger:
+    - platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001fa8d27
+      from: 'on'
+      to: 'off'
+      for: '00:30:00'
+    condition:
+    - condition: sun
+      after: sunset
+    action:
+    - service: light.turn_on
+      data_template:
+        entity_id: light.back
+        brightness_pct: 30
+
+  # On the off chance the door is closed less than 30 minutes before sunrise
+  - id: 175B9DA9-3ADE-4682-A39B-8370EC0FE201
+    alias: turn off back when door is closed for 3 minutes in an odd time
+    initial_state: 'on'
+    trigger:
+    - platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001fa8d27
+      from: 'on'
+      to: 'off'
+      for: '00:30:00'
+    condition:
+    - condition: sun
+      before: sunset
+    action:
+    - service: light.turn_off
+      entity_id: light.back

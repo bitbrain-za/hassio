@@ -1,0 +1,40 @@
+sensor:
+  - platform: mqtt
+    name: "Mum Battery"
+    state_topic: "zanzito/mum/battery_level"
+    qos: 0
+    unit_of_measuremetn: "%"
+
+  - platform: google_travel_time
+    name: Mum to Me
+    icon: mdi:car
+    api_key: !secret google_distance_matrix_api
+    origin: device_tracker.mum_zanz
+    destination: device_tracker.p_phone
+
+device_tracker:
+  - platform: mqtt_json
+    devices:
+      mum_zanz: zanzito/mum/location
+
+group:
+  mum_devices:
+    name: mum
+    entities:
+      - device_tracker.mum_zanz
+      - sensor.mum_battery
+      - sensor.mum_to_me
+
+  mum:
+    name: Mum
+    view: true
+    icon: mdi:human-female
+    entities:
+      - camera.mum
+      - group.mum_devices
+
+camera:
+  - platform: generic
+    name: mum
+    still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.mum_zanz.attributes.latitude }},{{ states.device_tracker.mum_zanz.attributes.longitude }}&zoom=13&size=500x500&maptype=roadmap&markers=color:green%7Clabel:M%7C{{ states.device_tracker.mum_zanz.attributes.latitude }},{{ states.device_tracker.mum_zanz.attributes.longitude }}
+    limit_refetch_to_url_change: true

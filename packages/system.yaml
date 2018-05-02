@@ -1,0 +1,74 @@
+###########################################################################################################
+#     _   __     __                      __                      __   _____            __                 #
+#    / | / /__  / /__      ______  _____/ /__   ____ _____  ____/ /  / ___/__  _______/ /____  ____ ___   #
+#   /  |/ / _ \/ __/ | /| / / __ \/ ___/ //_/  / __ `/ __ \/ __  /   \__ \/ / / / ___/ __/ _ \/ __ `__ \  #
+#  / /|  /  __/ /_ | |/ |/ / /_/ / /  / ,<    / /_/ / / / / /_/ /   ___/ / /_/ (__  ) /_/  __/ / / / / /  #
+# /_/ |_/\___/\__/ |__/|__/\____/_/  /_/|_|   \__,_/_/ /_/\__,_/   /____/\__, /____/\__/\___/_/ /_/ /_/   #
+#                                                                       /____/                            #
+###########################################################################################################
+
+#########################    OBJECTS    #########################
+
+sensor:
+  - platform: systemmonitor
+    resources:
+      - type: disk_use_percent
+        arg: /home
+      - type: memory_free
+      - type: processor_use
+      - type: since_last_boot
+
+  - platform: speedtest
+    monitored_conditions:
+      - ping
+      - download
+      - upload
+    manual: true
+
+xiaomi_aqara:
+  gateways:
+    - host: 192.168.1.51
+      mac: !secret xiaomi_gateway_mac
+      key: !secret xiaomi_gateway_password
+      # discovery_retry: 10
+
+group:
+  sys_status:
+    name: System Status
+    icon: mdi:pi-box
+    entities:
+      - sensor.memory_free
+      - sensor.disk_use_percent_home
+      - sensor.processor_use
+      - sensor.since_last_boot
+
+  network:
+    name: Network
+    icon: mdi:earth
+    entities:
+      - sensor.speedtest_ping
+      - sensor.speedtest_download
+      - sensor.speedtest_upload
+
+
+#########################    AUTOMATIONS    #########################
+
+automation:
+
+  - id: 6BFB2009-CE8C-452F-9984-128342F8FD56
+    alias: Run Speedtest when PC and computer are both off
+    trigger:
+      platform: time
+      minutes: '/60'
+      seconds: 0
+    condition:
+      condition: and
+      conditions:
+      - condition: state
+        entity_id: input_boolean.power_pc
+        state: 'off'
+      - condition: state
+        entity_id: media_player.samsung_tv_remote
+        state: 'off'
+    action:
+      - service: sensor.update_speedtest
