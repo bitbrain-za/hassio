@@ -1,0 +1,117 @@
+          #################################################
+          #     ______      __                            #
+          #    / ____/___  / /__________ _____  ________  #
+          #   / __/ / __ \/ __/ ___/ __ `/ __ \/ ___/ _ \ #
+          #  / /___/ / / / /_/ /  / /_/ / / / / /__/  __/ #
+          # /_____/_/ /_/\__/_/   \__,_/_/ /_/\___/\___/  #
+          #                                               #
+          #################################################
+
+
+#########################    OBJECTS    #########################
+
+light:
+
+  - platform: mqtt
+    name: entrance
+    command_topic: "cmnd/sonoff_entrance/power"
+    state_topic: "stat/sonoff_entrance/POWER"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+
+
+#########################    VARIABLES    #########################
+
+input_boolean:
+  
+  come_home_timer_active:
+    initial: off
+  door_open_timer_active:
+    initial: off
+
+#########################    AUTOMATIONS    #########################
+
+automation:
+
+  - id: 8DFBDF1D-CE6A-42C4-A196-4566B650D134
+    alias: turn off entrance light when home timer expires
+    initial_state: 'on'
+    trigger:
+    - platform: state
+      entity_id: input_boolean.come_home_timer_active
+      from: 'off'
+      to: 'on'
+      for: '00:30:00'
+    # condition:
+    # - condition: state
+    #   entity_id: light.entrance
+    #   state: 'on'
+    action:
+    - service: light.turn_off
+      entity_id: light.entrance
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.come_home_timer_active
+
+  - id: 94716BA0-6A37-44ED-A0E4-40DF61EF6EB9
+    alias: turn off entrance light when door timer expires
+    initial_state: 'on'
+    trigger:
+    - platform: state
+      entity_id: input_boolean.door_open_timer_active
+      from: 'off'
+      to: 'on'
+      for: '00:05:00'
+    # condition:
+    # - condition: state
+    #   entity_id: input_boolean.come_home_timer_active
+    #   state: 'off'
+    action:
+    - service: light.turn_off
+      entity_id: light.entrance
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.door_open_timer_active
+  
+  - id: C9FC5CEF-C6D4-4C15-9E86-06D1DD94A9D6
+    alias: come home inside
+    initial_state: 'on'
+    trigger:
+    - platform: state
+      entity_id: group.phil_devices
+      from: 'not_home'
+      to: 'home'
+    condition:
+    - condition: sun
+      after: sunset
+    action:
+    - service: light.turn_on
+      entity_id: light.entrance
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.come_home_timer_active
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.come_home_timer_active
+    # - delay: '00:15:00'
+    # - service: light.turn_off
+    #   entity_id: light.entrance
+
+  - id: 14C4D1D2-574E-4C77-A708-3C5236BB81F2
+    alias: turn on entrance when door opens
+    initial_state: 'on'
+    trigger:
+    - platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001f9e18e
+      from: 'off'
+      to: 'on'
+    condition:
+    - condition: sun
+      after: sunset
+    action:
+    - service: light.turn_on
+      entity_id: light.entrance 
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.door_open_timer_active
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.door_open_timer_active
+    # - delay: '00:05:00'
+    # - service: light.turn_off
+    #   entity_id: light.entrance 

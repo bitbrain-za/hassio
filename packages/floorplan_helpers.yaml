@@ -1,0 +1,73 @@
+light:
+  # - platform: group
+  #   name: fp_bedside
+  #   entities:
+  #     - light.bedside
+
+  - platform: group
+    name: fp_bedroom
+    entities:
+      - light.bedroom
+
+  - platform: group
+    name: fp_mes
+    entities:
+      - light.mes
+
+  # - platform: group
+  #   name: fp_spare_room
+  #   entities:
+  #     - light.spare_room
+
+  - platform: group
+    name: fp_bathroom
+    entities:
+      - light.bathroom
+
+  - platform: group
+    name: fp_passage
+    entities:
+      - light.passage
+
+  - platform: group
+    name: fp_office
+    entities:
+      - light.office
+
+  - platform: group
+    name: fp_living_room
+    entities:
+      - light.lounge1
+      - light.lounge2
+
+  - platform: group
+    name: fp_kitchen
+    entities:
+      - light.kitchen
+
+  - platform: group
+    name: fp_entrance
+    entities:
+      - light.entrance
+
+  - platform: group
+    name: fp_front
+    entities:
+      - light.front
+
+  - platform: group
+    name: fp_lab
+    entities:
+      - light.lab
+
+  # - platform: group
+  #   name: fp_store
+  #   entities:
+  #     - light.store
+
+group:
+  fp_mes_extractor:
+    name: fp_mes_extractor
+    view: no
+    entities:
+      switch.mes_extractor
