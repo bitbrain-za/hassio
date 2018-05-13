@@ -1,11 +1,11 @@
-#################################################################
-#     __    _       _                ____                       #
-#    / /   (_)   __(_)___  ____ _   / __ \____  ____  ____ ___  #
-#   / /   / / | / / / __ \/ __ `/  / /_/ / __ \/ __ \/ __ `__ \ #
-#  / /___/ /| |/ / / / / / /_/ /  / _, _/ /_/ / /_/ / / / / / / #
-# /_____/_/ |___/_/_/ /_/\__, /  /_/ |_|\____/\____/_/ /_/ /_/  #
-#                       /____/                                  #
-#################################################################
+          #################################################################
+          #     __    _       _                ____                       #
+          #    / /   (_)   __(_)___  ____ _   / __ \____  ____  ____ ___  #
+          #   / /   / / | / / / __ \/ __ `/  / /_/ / __ \/ __ \/ __ `__ \ #
+          #  / /___/ /| |/ / / / / / /_/ /  / _, _/ /_/ / /_/ / / / / / / #
+          # /_____/_/ |___/_/_/ /_/\__, /  /_/ |_|\____/\____/_/ /_/ /_/  #
+          #                       /____/                                  #
+          #################################################################
 
 #########################    OBJECTS    #########################
 
@@ -56,7 +56,7 @@ climate:
 media_player:
   - platform: mpd
     name: jukebox_mpd
-    host: 192.168.1.17
+    host: 192.168.1.16
   - platform: spotify
     client_id: !secret spotify_client_id_ha
     client_secret: !secret spotify_client_secret_ha
@@ -266,6 +266,15 @@ script:
 
 #################   AUTOMATIONS    #################
 
+#######################################################################################################
+#     __    _       __    __                          __   _____         _ __       __                #
+#    / /   (_)___ _/ /_  / /______   ____ _____  ____/ /  / ___/      __(_) /______/ /_  ___  _____   #
+#   / /   / / __ `/ __ \/ __/ ___/  / __ `/ __ \/ __  /   \__ \ | /| / / / __/ ___/ __ \/ _ \/ ___/   #
+#  / /___/ / /_/ / / / / /_(__  )  / /_/ / / / / /_/ /   ___/ / |/ |/ / / /_/ /__/ / / /  __(__  )    #
+# /_____/_/\__, /_/ /_/\__/____/   \__,_/_/ /_/\__,_/   /____/|__/|__/_/\__/\___/_/ /_/\___/____/     #
+#         /____/                                                                                      #
+#######################################################################################################
+
 automation:
 
 # * Left - On/off
@@ -392,11 +401,6 @@ automation:
           entity_id: input_select.livingroom_switch_right_status
           option: 'stopped_up'
 
-  # I want to increase the light if single press is done. Max is 100. Starting at 5 and going up 17 per time, we get these numbers:
-  # 5, 22, 39, 56, 73, 90, 107
-  # 5 is pretty perfect for low light like watching tv, and 90 is too bright already.
-  # 110 is the maximum number for the input_number so I needed something that maxed out over 100 but below 110.
-  # Also sets the status to off so it can be used again without waiting for the reset timer
   - id: 11566C72-812D-472C-8C3F-EE6D7A6517FB
     alias: Livingroom switch both button single press change colour
     initial_state: 'on'
@@ -426,8 +430,15 @@ automation:
           entity_id: light.lounge
           color_name: '{{ states.input_select.living_room_colour.state }}'
 
+#########################################
+#    _________                 __       #
+#   / ____/ (_)___ ___  ____ _/ /_____  #
+#  / /   / / / __ `__ \/ __ `/ __/ _ \  #
+# / /___/ / / / / / / / /_/ / /_/  __/  #
+# \____/_/_/_/ /_/ /_/\__,_/\__/\___/   #
+#                                       #
+#########################################
 
-  # When someone comes home, turn on the front for 15 minutes
   - id: BA8A23FA-99DE-4880-A1DE-B11903E219A4
     alias: come home aircon
     initial_state: 'on'
@@ -446,7 +457,7 @@ automation:
         entity_id: climate.carrier
         operation_mode: 'cool'
 
-  # When someone comes home, turn on the front for 15 minutes
+# If the back door is left open for 3 minutes, turn off the aircon
   - id: BA8A23FA-99DE-4880-A1DE-B11903E219A4
     alias: door open aircon
     initial_state: 'on'
@@ -462,6 +473,14 @@ automation:
         entity_id: climate.carrier
         operation_mode: 'off'
 
+#######################################
+#    _____                            #
+#   / ___/________  ____  ___  _____  #
+#   \__ \/ ___/ _ \/ __ \/ _ \/ ___/  #
+#  ___/ / /__/  __/ / / /  __(__  )   #
+# /____/\___/\___/_/ /_/\___/____/    #
+#                                     #
+#######################################
 
   - id: 1D68F9EE-5536-4107-AB7E-A3ACBAF229F5
     alias: Sauce

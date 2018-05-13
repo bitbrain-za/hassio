@@ -25,18 +25,10 @@ light:
         turn_off: null
 
   - platform: xiaomi_miio
-    name: Study
+    name: office
     host: 192.168.1.35
     token: !secret light_study_token
     model: philips.light.bulb
-
-  - platform: mqtt
-    name: entrance
-    command_topic: "cmnd/sonoff_entrance/power"
-    state_topic: "stat/sonoff_entrance/POWER"
-    qos: 1
-    payload_on: "ON"
-    payload_off: "OFF"
 
   - platform: yeelight
     devices:
@@ -70,10 +62,10 @@ group:
       - light.kitchen
       - light.entrance
       - light.store
-      - light.lounge1
-      - light.lounge2
+      - light.lounge
       - light.bedroom
       - light.bathroom
+      - light.mes
       - light.back
       - light.front
       - light.lab
@@ -88,8 +80,8 @@ group:
       - light.kitchen
       - light.entrance
       - light.store
-      - light.lounge1
-      - light.lounge2
+      - light.lounge
       - light.bedroom
+      - light.mes
       - light.bathroom
       - light.lab

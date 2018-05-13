@@ -1,0 +1,21 @@
+- id: hass_theme
+  alias: hass_theme
+  initial_state: 'on'
+  trigger:
+    - platform: state 
+      entity_id: input_select.hass_theme
+  action:
+    - service: frontend.set_theme
+      data_template:
+        name: "{{ states.input_select.hass_theme.state }}"
+
+- id: hass_theme_boot
+  alias: hass_theme_boot
+  initial_state: 'on'
+  trigger:
+    - platform: homeassistant 
+      event: start
+  action:
+    - service: frontend.set_theme
+      data_template:
+        name: solarized

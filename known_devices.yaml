@@ -238,3 +238,43 @@ jukebox_3:
   name: jukebox
   picture:
   track: true
+
+raspberrypi:
+  hide_if_away: false
+  icon:
+  mac: B8:27:EB:A3:CF:26
+  name: raspberrypi
+  picture:
+  track: true
+
+samsung_2:
+  hide_if_away: false
+  icon:
+  mac: 7C:64:56:7C:FE:98
+  name: Samsung
+  picture:
+  track: true
+
+androidb7f57344bfe3567e:
+  hide_if_away: false
+  icon:
+  mac: 24:C6:96:BE:32:61
+  name: android-b7f57344bfe3567e
+  picture:
+  track: true
+
+ipad:
+  hide_if_away: false
+  icon:
+  mac: 64:20:0C:B5:EE:F7
+  name: iPad
+  picture:
+  track: true
+
+nicksgalaxys9:
+  hide_if_away: false
+  icon:
+  mac: 24:18:1D:AE:5E:A5
+  name: Nicks-Galaxy-S9
+  picture:
+  track: true

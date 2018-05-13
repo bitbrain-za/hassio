@@ -2,35 +2,62 @@ name: Demo Floorplan
 image: /local/custom_ui/floorplan/floorplan.svg
 stylesheet: /local/custom_ui/floorplan/floorplan.css
 
-hide_app_toolbar:
-
 # These options are optional
 # warnings:                  # enable warnings (to find out why things might ot be working correctly)
 # pan_zoom:                  # enable experimental panning / zooming
-# hide_app_toolbar:          # hide the application toolbar (when used as a custom panel)
-# date_format: DD-MMM-YYYY   # Date format to use in hover-over text
+hide_app_toolbar:          # hide the application toolbar (when used as a custom panel)
+date_format: DD-MMM-YYYY   # Date format to use in hover-over text
 
 last_motion_entity: sensor.template_last_motion
 last_motion_class: last-motion
 
-
-
 groups:
-  - name: Lights
+
+# Each light is tied to an indicator, CSS will set indicator visibility
+  - name: lights_focus
     entities:
-       - light.mes
-       - light.bedroom
-       - light.spare_room
-       - light.study
-       - light.passage
-       - light.bathroom
-       - light.entrance
-       - light.kitchen
-       - light.lounge
-       - light.lab
-       - light.store
-       - light.back
-       - light.front
+      # these are home assistant elements and get tied to svg entities with the same name
+      # - light.spare_room
+      # - light.passage
+      - light.kitchen
+      - light.entrance
+      # - light.store
+      - light.lounge
+      - light.lounge3
+      - light.office
+      - light.bedroom
+      - light.bathroom
+      - light.back
+      - light.front
+      - light.lab
+      - light.mes
+      - switch.mes_extractor
+    states:
+      - state: 'on'
+        class: 'light-on'
+      - state: 'off'
+        class: 'light-off'
+    # action:
+    #   domain: homeassistant   # This optional parameter allows you to use other services such as homeassistant.toggle like here.
+    #   service: toggle
+
+  - name: lights_base
+    entities:
+      # these are home assistant elements and get tied to svg entities with the same name
+      # - light.fp_spare_room
+      # - light.fp_passage
+      - light.fp_kitchen
+      - light.fp_entrance
+      # - light.fp_store
+      - light.fp_living_room
+      - light.fp_office
+      - light.fp_bedroom
+      - light.fp_bathroom
+      - light.fp_back
+      - light.fp_front
+      - light.fp_lab
+      - light.fp_mes
+      - switch.fp_mes_extractor
     states:
       - state: 'on'
         class: 'light-on'
@@ -40,11 +67,312 @@ groups:
       domain: homeassistant   # This optional parameter allows you to use other services such as homeassistant.toggle like here.
       service: toggle
 
+
   - name: Sensors
     entities:
       - sensor.floorplan_time
     text_template: '${entity.state ? entity.state : "unknown"}'
 
+
+  - name: scenes
+    entities:
+    - scene.bedroom_moon
+    - scene.bedroom_flame
+    - scene.bedroom_tree
+    - scene.bedroom_water
+    - scene.bedroom_off
+    - scene.bedroom_low
+    - scene.bedroom_medium
+    - scene.bedroom_high
+    states:
+    - state: 'on'
+      class: 'button-on'
+    - state: 'off'
+      class: 'button-off'
+    action:
+      service: turn_on
+
+##### Room Popups #####
+
+  - name: popup bedroom
+    elements:
+      - group.room_bedroom
+    action:
+      domain: class
+      service: toggle
+      data:
+        elements:
+          - popup.bedroom
+        classes:
+          - layer-visible
+          - layer-hidden
+        default_class: layer-hidden
+
+  - name: popup mes
+    elements:
+      - group.room_mes
+    action:
+      domain: class
+      service: toggle
+      data:
+        elements:
+          - popup.mes
+        classes:
+          - layer-visible
+          - layer-hidden
+        default_class: layer-hidden
+
+  - name: popup passage
+    elements:
+      - group.room_passage
+    action:
+      domain: class
+      service: toggle
+      data:
+        elements:
+          - popup.passage
+        classes:
+          - layer-visible
+          - layer-hidden
+        default_class: layer-hidden
+
+  - name: popup spare_room
+    elements:
+      - group.room_spare_room
+    action:
+      domain: class
+      service: toggle
+      data:
+        elements:
+          - popup.spare_room
+        classes:
+          - layer-visible
+          - layer-hidden
+        default_class: layer-hidden
+
+  - name: popup bathroom
+    elements:
+      - group.room_bathroom
+    action:
+      domain: class
+      service: toggle
+      data:
+        elements:
+          - popup.bathroom
+        classes:
+          - layer-visible
+          - layer-hidden
+        default_class: layer-hidden
+
+  - name: popup office
+    elements:
+      - group.room_office
+    action:
+      domain: class
+      service: toggle
+      data:
+        elements:
+          - popup.office
+        classes:
+          - layer-visible
+          - layer-hidden
+        default_class: layer-hidden
+
+  - name: popup kitchen
+    elements:
+      - group.room_kitchen
+    action:
+      domain: class
+      service: toggle
+      data:
+        elements:
+          - popup.kitchen
+        classes:
+          - layer-visible
+          - layer-hidden
+        default_class: layer-hidden
+
+  - name: popup entrance
+    elements:
+      - group.room_entrance
+    action:
+      domain: class
+      service: toggle
+      data:
+        elements:
+          - popup.entrance
+        classes:
+          - layer-visible
+          - layer-hidden
+        default_class: layer-hidden
+
+  - name: popup living_room
+    elements:
+      - group.room_living_room
+    action:
+      domain: class
+      service: toggle
+      data:
+        elements:
+          - popup.living_room
+        classes:
+          - layer-visible
+          - layer-hidden
+        default_class: layer-hidden
+
+  - name: popup lab
+    elements:
+      - group.room_lab
+    action:
+      domain: class
+      service: toggle
+      data:
+        elements:
+          - popup.lab
+        classes:
+          - layer-visible
+          - layer-hidden
+        default_class: layer-hidden
+
+  - name: close popup bedroom
+    elements:
+      - group.bedroom_close
+    action:
+      domain: class
+      service: toggle
+      data:
+        elements:
+          - popup.bedroom
+        classes:
+          - layer-visible
+          - layer-hidden
+        default_class: layer-hidden
+
+  - name: close popup mes
+    elements:
+      - group.mes_close
+    action:
+      domain: class
+      service: toggle
+      data:
+        elements:
+          - popup.mes
+        classes:
+          - layer-visible
+          - layer-hidden
+        default_class: layer-hidden
+
+  - name: close popup passage
+    elements:
+      - group.passage_close
+    action:
+      domain: class
+      service: toggle
+      data:
+        elements:
+          - popup.passage
+        classes:
+          - layer-visible
+          - layer-hidden
+        default_class: layer-hidden
+
+  - name: close popup spare_room
+    elements:
+      - group.spare_room_close
+    action:
+      domain: class
+      service: toggle
+      data:
+        elements:
+          - popup.spare_room
+        classes:
+          - layer-visible
+          - layer-hidden
+        default_class: layer-hidden
+
+  - name: close popup bathroom
+    elements:
+      - group.bathroom_close
+    action:
+      domain: class
+      service: toggle
+      data:
+        elements:
+          - popup.bathroom
+        classes:
+          - layer-visible
+          - layer-hidden
+        default_class: layer-hidden
+
+  - name: close popup office
+    elements:
+      - group.office_close
+    action:
+      domain: class
+      service: toggle
+      data:
+        elements:
+          - popup.office
+        classes:
+          - layer-visible
+          - layer-hidden
+        default_class: layer-hidden
+
+  - name: close popup kitchen
+    elements:
+      - group.kitchen_close
+    action:
+      domain: class
+      service: toggle
+      data:
+        elements:
+          - popup.kitchen
+        classes:
+          - layer-visible
+          - layer-hidden
+        default_class: layer-hidden
+
+  - name: close popup entrance
+    elements:
+      - group.entrance_close
+    action:
+      domain: class
+      service: toggle
+      data:
+        elements:
+          - popup.entrance
+        classes:
+          - layer-visible
+          - layer-hidden
+        default_class: layer-hidden
+
+  - name: close popup living_room
+    elements:
+      - group.living_room_close
+    action:
+      domain: class
+      service: toggle
+      data:
+        elements:
+          - popup.living_room
+        classes:
+          - layer-visible
+          - layer-hidden
+        default_class: layer-hidden
+
+  - name: close popup lab
+    elements:
+      - group.lab_close
+    action:
+      domain: class
+      service: toggle
+      data:
+        elements:
+          - popup.lab
+        classes:
+          - layer-visible
+          - layer-hidden
+        default_class: layer-hidden
 
   # - name: Sensors
   #   entities:

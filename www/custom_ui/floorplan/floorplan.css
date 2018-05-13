@@ -1,8 +1,29 @@
 /* SVG shapes */
 
+/*@keyframes fadeIn {
+  0% {
+    transform: rotateX(90deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    transform: rotateX(0deg);
+  }
+  100% {
+    transform: rotateX(90deg);
+  }
+}*/
+
 svg, svg * {
   vector-effect: non-scaling-stroke !important;
   pointer-events: all !important;
+  /*background-color: var(--floorplan-primary-background-color);*/
+  /*background-color: var(--floorplan-primary-color, #ffffff);*/
+  background-color: #000000 !important;
 }
 
 /* Hover over */
@@ -93,12 +114,12 @@ svg, svg * {
 /* Light */
 
 .light-off {
-  opacity: 0.8 !important;
+  opacity: 0.0 !important;
   transition: opacity 1s;
 }
 
 .light-on {
-  opacity: 0.0 !important;
+  opacity: 1.0 !important;
   transition: opacity 1s;
 }
 
@@ -144,3 +165,36 @@ svg, svg * {
   fill: #2baaa6 !important;
 }
 
+.layer-visible {
+  display: initial !important;
+}
+
+.layer-hidden {
+  display: none !important;
+}
+
+
+./*layer-visible {
+  animation-duration: 0.5s;
+  animation-name: fadeIn;
+  animation-fill-mode: forwards;
+  transform-origin: left
+}
+
+.layer-hidden {
+  animation-duration: 0.5s;
+  animation-name: fadeOut;
+  animation-fill-mode: forwards;
+  transform-origin: left
+}*/
+
+
+.button-off {
+  fill: #000000 !important;
+  transition: opacity 1s;
+}
+
+.button-on {
+  fill: #ffffff !important;
+  transition: opacity 1s;
+}

@@ -9,24 +9,6 @@
     data:
       topic: cmnd/sonoffs/POWER
 
-- id: C9FC5CEF-C6D4-4C15-9E86-06D1DD94A9D6
-  alias: come home inside
-  initial_state: 'on'
-  trigger:
-  - platform: state
-    entity_id: group.phil_devices
-    from: 'not_home'
-    to: 'home'
-  condition:
-  - condition: sun
-    after: sunset
-  action:
-  - service: light.turn_on
-    entity_id: light.entrance
-  - delay: '00:15:00'
-  - service: light.turn_off
-    entity_id: light.entrance
-
 - id: A17BE6CA-9181-44CD-A498-EF7FECD561ED
   alias: toggle_bedroom_light
   initial_state: 'on'
@@ -39,21 +21,3 @@
   action:
   - service: light.toggle
     entity_id: light.bedroom
-
-- id: 14C4D1D2-574E-4C77-A708-3C5236BB81F2
-  alias: turn on entrance when door opens
-  initial_state: 'on'
-  trigger:
-  - platform: state
-    entity_id: binary_sensor.door_window_sensor_158d0001f9e18e
-    from: 'off'
-    to: 'on'
-  condition:
-  - condition: sun
-    after: sunset
-  action:
-  - service: light.turn_on
-    entity_id: light.entrance 
-  - delay: '00:05:00'
-  - service: light.turn_off
-    entity_id: light.entrance 

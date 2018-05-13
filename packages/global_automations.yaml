@@ -1,0 +1,38 @@
+          #####################################
+          #    ________      __          __   #
+          #   / ____/ /___  / /_  ____ _/ /   #
+          #  / / __/ / __ \/ __ \/ __ `/ /    #
+          # / /_/ / / /_/ / /_/ / /_/ / /     #
+          # \____/_/\____/_.___/\__,_/_/      #
+          #                                   #
+          #####################################
+
+group:
+  lights_bedtime:
+    name: Bedtime Lights
+    view: no
+    icon: mdi:lightbulb
+    entities:
+      - light.spare_room
+      - light.passage
+      - light.kitchen
+      - light.entrance
+      - light.store
+      - light.lounge
+      - light.bathroom
+      - light.lab
+
+script:
+  script_bedtime:
+    alias: Goonight
+    sequence:
+      - service: light.turn_off
+        data:
+          entity_id: group.lights_bedtime
+      - service: climate.set_operation_mode
+        data:
+          entity_id: climate.carrier
+          operation_mode: 'off'
+      - service: media_player.turn_off
+        data:
+          entity_id: media_player.samsung_tv_remote

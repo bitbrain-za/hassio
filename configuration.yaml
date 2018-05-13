@@ -13,6 +13,7 @@ zone: !include zones.yaml
 
 # Enables the frontend
 frontend:
+  themes: !include_dir_merge_named themes/
 
 # Enables configuration UI
 config:
@@ -126,3 +127,13 @@ panel_custom:
 group: !include groups.yaml
 automation: !include_dir_merge_list automations/
 script: !include scripts.yaml
+
+input_select:
+  hass_theme:
+    name: HASS themes
+    options:
+      - default
+      - solarized
+      - PmxMononight
+    initial: default
+    icon: mdi:theme-light-dark
