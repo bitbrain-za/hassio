@@ -67,11 +67,17 @@ groups:
       domain: homeassistant   # This optional parameter allows you to use other services such as homeassistant.toggle like here.
       service: toggle
 
+  # - name: Sensors
+  #   entities:
+  #     - sensor.floorplan_time
+  #   text_template: '${entity.state ? entity.state : "unknown"}'
 
   - name: Sensors
     entities:
-      - sensor.floorplan_time
-    text_template: '${entity.state ? entity.state : "unknown"}'
+      - sensor.living_room_aircon_temp
+      - sensor.living_room_aircon_temp_glow
+      - sensor.living_room_temp
+      - sensor.living_room_temp_glow
 
   - name: scenes
     entities:
@@ -88,6 +94,46 @@ groups:
       class: 'button-on'
     - state: 'off'
       class: 'button-off'
+    action:
+      service: turn_on
+
+  - name: switches_mode
+    entities:
+    - switch.living_room_aircon_off
+    - switch.living_room_aircon_cool
+    - switch.living_room_aircon_heat
+    - switch.living_room_aircon_dry
+    states:
+    - state: 'on'
+      class: 'button-on'
+    - state: 'off'
+      class: 'button-off'
+    action:
+      service: toggle
+
+  - name: switches_fan
+    entities:
+    - switch.living_room_aircon_fan_auto
+    - switch.living_room_aircon_fan_low
+    - switch.living_room_aircon_fan_medium
+    - switch.living_room_aircon_fan_high
+    states:
+    - state: 'on'
+      class: 'button-glow'
+    - state: 'off'
+      class: 'button-off'
+    action:
+      service: turn_on
+
+  - name: Scripts
+    entities:
+      - script.living_room_aircon_temp_up
+      - script.living_room_aircon_temp_down
+    states:
+      - state: 'on'
+        class: 'button-on'
+      - state: 'off'
+        class: 'button-off'
     action:
       service: turn_on
 

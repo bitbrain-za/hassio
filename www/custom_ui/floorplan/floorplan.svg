@@ -15,7 +15,7 @@
    viewBox="0 0 1024 768"
    version="1.1"
    id="svg821"
-   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
    sodipodi:docname="pcb_style_reorganised.svg"
    enable-background="new">
   <defs
@@ -2125,6 +2125,19 @@
          stdDeviation="2.6499024"
          id="feGaussianBlur9052" />
     </filter>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter16732-0-1-8"
+       x="-0.1113294"
+       width="1.2226588"
+       y="-0.35236362"
+       height="1.7047272">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="1.4681817"
+         id="feGaussianBlur16734-8-8-5" />
+    </filter>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -2134,10 +2147,10 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="1"
-     inkscape:cx="597.69143"
-     inkscape:cy="438.93211"
+     inkscape:cx="543.19074"
+     inkscape:cy="438.24358"
      inkscape:document-units="px"
-     inkscape:current-layer="layer.rooms"
+     inkscape:current-layer="popup.bedroom"
      showgrid="false"
      units="px"
      inkscape:lockguides="false"
@@ -2148,10 +2161,10 @@
      gridtolerance="10"
      guidecolor="#00ffff"
      guideopacity="0.49803922"
-     inkscape:window-width="2560"
-     inkscape:window-height="1377"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
      inkscape:window-x="1912"
-     inkscape:window-y="-8"
+     inkscape:window-y="125"
      inkscape:window-maximized="1"
      inkscape:showpageshadow="false"
      showborder="true"
@@ -3431,7 +3444,7 @@
            r="8.3473158" />
       </g>
       <g
-         id="sensor.back_door"
+         id="binary_sensor.door_window_sensor_158d0001fa8d27"
          inkscape:label="sensor.door.back"
          style="display:inline">
         <path
@@ -3569,7 +3582,7 @@
            r="8.3473158" />
       </g>
       <g
-         id="sensor.front_door"
+         id="binary_sensor.door_window_sensor_158d0001f9e18e"
          inkscape:label="sensor.door.front"
          style="display:inline">
         <path
@@ -6099,7 +6112,7 @@
          style="display:inline">
         <g
            transform="translate(359.73537,302.98808)"
-           id="g16296-2-8"
+           id="switch.living_room_aircon_fan_high"
            inkscape:label="climate.living_room.fan.4"
            style="display:inline">
           <path
@@ -6232,7 +6245,7 @@
         </g>
         <g
            transform="translate(359.73537,302.98808)"
-           id="g16260-4-0"
+           id="switch.living_room_aircon_fan_medium"
            inkscape:label="climate.living_room.fan.3"
            style="display:inline">
           <path
@@ -6329,7 +6342,7 @@
         </g>
         <g
            transform="translate(359.73537,302.98808)"
-           id="g16233-1-9"
+           id="switch.living_room_aircon_fan_low"
            inkscape:label="climate.living_room.fan.2"
            style="display:inline">
           <path
@@ -6390,7 +6403,7 @@
         </g>
         <g
            transform="translate(359.73537,302.98808)"
-           id="g16215-9-6"
+           id="switch.living_room_aircon_fan_auto"
            inkscape:label="climate.living_room.fan.1"
            style="display:inline">
           <path
@@ -6415,8 +6428,8 @@
         </g>
         <g
            transform="translate(359.73537,302.98808)"
-           id="g16302-4-7"
-           inkscape:label="climate.living_room.temp.display"
+           id="sensor.living_room_aircon_temp_group"
+           inkscape:label="climate.living_room.temp.set"
            style="display:inline">
           <text
              transform="matrix(3.7795276,0,0,3.7795276,22.807714,-458.43357)"
@@ -6424,18 +6437,20 @@
              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.20438385px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;display:inline;vector-effect:none;fill:none;fill-opacity:1;stroke:#0087ff;stroke-width:1.05833328;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter16732-0-1)"
              x="86.270027"
              y="189.1707"
-             id="text8603-4-75"><tspan
+             id="sensor.living_room_aircon_temp_glow"
+             inkscape:label="sensor.living_room_aircon_temp_glow"><tspan
                sodipodi:role="line"
                id="tspan8601-7-2"
                x="86.270027"
                y="189.1707"
                style="vector-effect:none;fill:none;fill-opacity:1;stroke:#0087ff;stroke-width:1.05833328;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1">23°C</tspan></text>
           <text
-             id="text8621-5-3"
+             id="sensor.living_room_aircon_temp"
              y="256.5423"
              x="348.86768"
              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:49.90633392px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;display:inline;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:#00f5ff;stroke-width:0.40000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-             xml:space="preserve"><tspan
+             xml:space="preserve"
+             inkscape:label="sensor.living_room_aircon_temp"><tspan
                style="vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:#00f5ff;stroke-width:0.40000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
                y="256.5423"
                x="348.86768"
@@ -6444,7 +6459,7 @@
         </g>
         <g
            transform="translate(359.73537,302.98808)"
-           id="g16195-9-5"
+           id="script.living_room_aircon_temp_up"
            inkscape:label="climate.living_room.temp.up"
            style="display:inline">
           <g
@@ -6495,7 +6510,7 @@
         </g>
         <g
            transform="translate(359.73537,302.98808)"
-           id="g16209-7-6"
+           id="switch.living_room_aircon_temp_down"
            inkscape:label="climate.living_room.temp.down"
            style="display:inline">
           <g
@@ -6546,7 +6561,7 @@
         </g>
         <g
            transform="translate(359.73537,302.98808)"
-           id="g16181-1-5"
+           id="switch.living_room_aircon_dry"
            inkscape:label="climate.living_room.mode.dry"
            style="display:inline">
           <path
@@ -6568,7 +6583,7 @@
         </g>
         <g
            transform="translate(359.73537,302.98808)"
-           id="g16173-6-9"
+           id="switch.living_room_aircon_heat"
            inkscape:label="climate.living_room.mode.heat"
            style="display:inline">
           <path
@@ -6591,28 +6606,28 @@
         </g>
         <g
            transform="translate(359.73537,302.98808)"
-           id="g16168-8-0"
+           id="switch.living_room_aircon_cool"
            inkscape:label="climate.living_room.mode.cool"
            style="display:inline">
           <polygon
              transform="matrix(0.7584369,0,0,0.7584369,327.53907,122.12814)"
-             points="55,58.66 64.33,64.04 66.91,73.7 76.57,71.12 74.74,64.29 81.57,62.46 78.98,52.8 69.33,55.38 60,50 69.33,44.62 78.98,47.2 81.57,37.54 74.74,35.71 76.57,28.88 66.91,26.3 64.33,35.96 55,41.34 55,30.57 62.07,23.5 55,16.43 50,21.43 45,16.43 37.93,23.5 45,30.57 45,41.34 35.67,35.96 33.09,26.3 23.43,28.88 25.26,35.71 18.43,37.54 21.02,47.2 30.67,44.62 40,50 30.67,55.38 21.02,52.8 18.43,62.46 25.26,64.29 23.43,71.12 33.09,73.7 35.67,64.04 45,58.66 45,69.43 37.93,76.5 45,83.57 50,78.57 55,83.57 62.07,76.5 55,69.43 "
+             points="40,50 30.67,55.38 21.02,52.8 18.43,62.46 25.26,64.29 23.43,71.12 33.09,73.7 35.67,64.04 45,58.66 45,69.43 37.93,76.5 45,83.57 50,78.57 55,83.57 62.07,76.5 55,69.43 55,58.66 64.33,64.04 66.91,73.7 76.57,71.12 74.74,64.29 81.57,62.46 78.98,52.8 69.33,55.38 60,50 69.33,44.62 78.98,47.2 81.57,37.54 74.74,35.71 76.57,28.88 66.91,26.3 64.33,35.96 55,41.34 55,30.57 62.07,23.5 55,16.43 50,21.43 45,16.43 37.93,23.5 45,30.57 45,41.34 35.67,35.96 33.09,26.3 23.43,28.88 25.26,35.71 18.43,37.54 21.02,47.2 30.67,44.62 "
              id="polygon8699-4-7"
              style="display:inline;opacity:0.6;vector-effect:none;fill:#00f5ff;fill-opacity:1;stroke:#0087ff;stroke-width:10.54800987;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal;filter:url(#filter4007-2-8)" />
           <polygon
              style="display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:0.5362319;stroke:#00f5ff;stroke-width:0.65925062;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
              id="polygon8703-9-3"
-             points="66.91,26.3 64.33,35.96 55,41.34 55,30.57 62.07,23.5 55,16.43 50,21.43 45,16.43 37.93,23.5 45,30.57 45,41.34 35.67,35.96 33.09,26.3 23.43,28.88 25.26,35.71 18.43,37.54 21.02,47.2 30.67,44.62 40,50 30.67,55.38 21.02,52.8 18.43,62.46 25.26,64.29 23.43,71.12 33.09,73.7 35.67,64.04 45,58.66 45,69.43 37.93,76.5 45,83.57 50,78.57 55,83.57 62.07,76.5 55,69.43 55,58.66 64.33,64.04 66.91,73.7 76.57,71.12 74.74,64.29 81.57,62.46 78.98,52.8 69.33,55.38 60,50 69.33,44.62 78.98,47.2 81.57,37.54 74.74,35.71 76.57,28.88 "
+             points="62.07,76.5 55,69.43 55,58.66 64.33,64.04 66.91,73.7 76.57,71.12 74.74,64.29 81.57,62.46 78.98,52.8 69.33,55.38 60,50 69.33,44.62 78.98,47.2 81.57,37.54 74.74,35.71 76.57,28.88 66.91,26.3 64.33,35.96 55,41.34 55,30.57 62.07,23.5 55,16.43 50,21.43 45,16.43 37.93,23.5 45,30.57 45,41.34 35.67,35.96 33.09,26.3 23.43,28.88 25.26,35.71 18.43,37.54 21.02,47.2 30.67,44.62 40,50 30.67,55.38 21.02,52.8 18.43,62.46 25.26,64.29 23.43,71.12 33.09,73.7 35.67,64.04 45,58.66 45,69.43 37.93,76.5 45,83.57 50,78.57 55,83.57 "
              transform="matrix(0.7584369,0,0,0.7584369,327.53907,122.12814)" />
           <polygon
              id="polygon8707-9-1"
-             points="37.93,76.5 45,83.57 50,78.57 55,83.57 62.07,76.5 55,69.43 55,58.66 64.33,64.04 66.91,73.7 76.57,71.12 74.74,64.29 81.57,62.46 78.98,52.8 69.33,55.38 60,50 69.33,44.62 78.98,47.2 81.57,37.54 74.74,35.71 76.57,28.88 66.91,26.3 64.33,35.96 55,41.34 55,30.57 62.07,23.5 55,16.43 50,21.43 45,16.43 37.93,23.5 45,30.57 45,41.34 35.67,35.96 33.09,26.3 23.43,28.88 25.26,35.71 18.43,37.54 21.02,47.2 30.67,44.62 40,50 30.67,55.38 21.02,52.8 18.43,62.46 25.26,64.29 23.43,71.12 33.09,73.7 35.67,64.04 45,58.66 45,69.43 "
+             points="33.09,26.3 23.43,28.88 25.26,35.71 18.43,37.54 21.02,47.2 30.67,44.62 40,50 30.67,55.38 21.02,52.8 18.43,62.46 25.26,64.29 23.43,71.12 33.09,73.7 35.67,64.04 45,58.66 45,69.43 37.93,76.5 45,83.57 50,78.57 55,83.57 62.07,76.5 55,69.43 55,58.66 64.33,64.04 66.91,73.7 76.57,71.12 74.74,64.29 81.57,62.46 78.98,52.8 69.33,55.38 60,50 69.33,44.62 78.98,47.2 81.57,37.54 74.74,35.71 76.57,28.88 66.91,26.3 64.33,35.96 55,41.34 55,30.57 62.07,23.5 55,16.43 50,21.43 45,16.43 37.93,23.5 45,30.57 45,41.34 35.67,35.96 "
              transform="matrix(0.7584369,0,0,0.7584369,327.53907,122.12814)"
              style="display:none;fill:#ffffff;fill-opacity:1" />
         </g>
         <g
            transform="translate(359.73537,302.98808)"
-           id="g16163-4-2"
+           id="switch.living_room_aircon_off"
            inkscape:label="climate.living_room.mode.off"
            style="display:inline">
           <path
@@ -6656,6 +6671,37 @@
              y2="160.06366"
              style="display:none;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:1.99999988;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
              id="line8731-6-3" />
+        </g>
+        <g
+           transform="translate(-80.603016,183.59991)"
+           id="sensor.living_room_aircon_temp_group-5"
+           inkscape:label="climate.living_room.temp"
+           style="display:inline">
+          <text
+             transform="matrix(3.7795276,0,0,3.7795276,44.459085,-458.43357)"
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;display:inline;vector-effect:none;fill:none;fill-opacity:1;stroke:#0087ff;stroke-width:1.05833328;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter16732-0-1-8)"
+             x="86.270027"
+             y="189.1707"
+             id="sensor.living_room_temp_glow"
+             inkscape:label="sensor.living_room_temp_glow"><tspan
+               sodipodi:role="line"
+               id="tspan8601-7-2-4"
+               x="86.270027"
+               y="189.1707"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;vector-effect:none;fill:none;fill-opacity:1;stroke:#0087ff;stroke-width:1.05833328;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1">23°C</tspan></text>
+          <text
+             id="sensor.living_room_temp"
+             y="256.5423"
+             x="370.51904"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;display:inline;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:#00f5ff;stroke-width:0.40000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+             xml:space="preserve"
+             inkscape:label="sensor.living_room_temp"><tspan
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:#00f5ff;stroke-width:0.40000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+               y="256.5423"
+               x="370.51904"
+               id="tspan8619-1-6-2"
+               sodipodi:role="line">23°C</tspan></text>
         </g>
       </g>
       <g
@@ -10082,17 +10128,17 @@
            style="display:inline">
           <polygon
              transform="matrix(0.7584369,0,0,0.7584369,327.53907,122.12814)"
-             points="45,30.57 45,41.34 35.67,35.96 33.09,26.3 23.43,28.88 25.26,35.71 18.43,37.54 21.02,47.2 30.67,44.62 40,50 30.67,55.38 21.02,52.8 18.43,62.46 25.26,64.29 23.43,71.12 33.09,73.7 35.67,64.04 45,58.66 45,69.43 37.93,76.5 45,83.57 50,78.57 55,83.57 62.07,76.5 55,69.43 55,58.66 64.33,64.04 66.91,73.7 76.57,71.12 74.74,64.29 81.57,62.46 78.98,52.8 69.33,55.38 60,50 69.33,44.62 78.98,47.2 81.57,37.54 74.74,35.71 76.57,28.88 66.91,26.3 64.33,35.96 55,41.34 55,30.57 62.07,23.5 55,16.43 50,21.43 45,16.43 37.93,23.5 "
+             points="66.91,73.7 76.57,71.12 74.74,64.29 81.57,62.46 78.98,52.8 69.33,55.38 60,50 69.33,44.62 78.98,47.2 81.57,37.54 74.74,35.71 76.57,28.88 66.91,26.3 64.33,35.96 55,41.34 55,30.57 62.07,23.5 55,16.43 50,21.43 45,16.43 37.93,23.5 45,30.57 45,41.34 35.67,35.96 33.09,26.3 23.43,28.88 25.26,35.71 18.43,37.54 21.02,47.2 30.67,44.62 40,50 30.67,55.38 21.02,52.8 18.43,62.46 25.26,64.29 23.43,71.12 33.09,73.7 35.67,64.04 45,58.66 45,69.43 37.93,76.5 45,83.57 50,78.57 55,83.57 62.07,76.5 55,69.43 55,58.66 64.33,64.04 "
              id="polygon8699-4-3"
              style="display:inline;opacity:0.6;vector-effect:none;fill:#00f5ff;fill-opacity:1;stroke:#0087ff;stroke-width:10.54800987;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal;filter:url(#filter4007-2-3)" />
           <polygon
              style="display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:0.5362319;stroke:#00f5ff;stroke-width:0.65925062;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
              id="polygon8703-9-4"
-             points="23.43,71.12 33.09,73.7 35.67,64.04 45,58.66 45,69.43 37.93,76.5 45,83.57 50,78.57 55,83.57 62.07,76.5 55,69.43 55,58.66 64.33,64.04 66.91,73.7 76.57,71.12 74.74,64.29 81.57,62.46 78.98,52.8 69.33,55.38 60,50 69.33,44.62 78.98,47.2 81.57,37.54 74.74,35.71 76.57,28.88 66.91,26.3 64.33,35.96 55,41.34 55,30.57 62.07,23.5 55,16.43 50,21.43 45,16.43 37.93,23.5 45,30.57 45,41.34 35.67,35.96 33.09,26.3 23.43,28.88 25.26,35.71 18.43,37.54 21.02,47.2 30.67,44.62 40,50 30.67,55.38 21.02,52.8 18.43,62.46 25.26,64.29 "
+             points="55,41.34 55,30.57 62.07,23.5 55,16.43 50,21.43 45,16.43 37.93,23.5 45,30.57 45,41.34 35.67,35.96 33.09,26.3 23.43,28.88 25.26,35.71 18.43,37.54 21.02,47.2 30.67,44.62 40,50 30.67,55.38 21.02,52.8 18.43,62.46 25.26,64.29 23.43,71.12 33.09,73.7 35.67,64.04 45,58.66 45,69.43 37.93,76.5 45,83.57 50,78.57 55,83.57 62.07,76.5 55,69.43 55,58.66 64.33,64.04 66.91,73.7 76.57,71.12 74.74,64.29 81.57,62.46 78.98,52.8 69.33,55.38 60,50 69.33,44.62 78.98,47.2 81.57,37.54 74.74,35.71 76.57,28.88 66.91,26.3 64.33,35.96 "
              transform="matrix(0.7584369,0,0,0.7584369,327.53907,122.12814)" />
           <polygon
              id="polygon8707-9-3"
-             points="55,30.57 62.07,23.5 55,16.43 50,21.43 45,16.43 37.93,23.5 45,30.57 45,41.34 35.67,35.96 33.09,26.3 23.43,28.88 25.26,35.71 18.43,37.54 21.02,47.2 30.67,44.62 40,50 30.67,55.38 21.02,52.8 18.43,62.46 25.26,64.29 23.43,71.12 33.09,73.7 35.67,64.04 45,58.66 45,69.43 37.93,76.5 45,83.57 50,78.57 55,83.57 62.07,76.5 55,69.43 55,58.66 64.33,64.04 66.91,73.7 76.57,71.12 74.74,64.29 81.57,62.46 78.98,52.8 69.33,55.38 60,50 69.33,44.62 78.98,47.2 81.57,37.54 74.74,35.71 76.57,28.88 66.91,26.3 64.33,35.96 55,41.34 "
+             points="50,78.57 55,83.57 62.07,76.5 55,69.43 55,58.66 64.33,64.04 66.91,73.7 76.57,71.12 74.74,64.29 81.57,62.46 78.98,52.8 69.33,55.38 60,50 69.33,44.62 78.98,47.2 81.57,37.54 74.74,35.71 76.57,28.88 66.91,26.3 64.33,35.96 55,41.34 55,30.57 62.07,23.5 55,16.43 50,21.43 45,16.43 37.93,23.5 45,30.57 45,41.34 35.67,35.96 33.09,26.3 23.43,28.88 25.26,35.71 18.43,37.54 21.02,47.2 30.67,44.62 40,50 30.67,55.38 21.02,52.8 18.43,62.46 25.26,64.29 23.43,71.12 33.09,73.7 35.67,64.04 45,58.66 45,69.43 37.93,76.5 45,83.57 "
              transform="matrix(0.7584369,0,0,0.7584369,327.53907,122.12814)"
              style="display:none;fill:#ffffff;fill-opacity:1" />
         </g>
@@ -11654,17 +11700,17 @@
            style="display:inline">
           <polygon
              transform="matrix(0.7584369,0,0,0.7584369,327.53907,122.12814)"
-             points="76.57,71.12 74.74,64.29 81.57,62.46 78.98,52.8 69.33,55.38 60,50 69.33,44.62 78.98,47.2 81.57,37.54 74.74,35.71 76.57,28.88 66.91,26.3 64.33,35.96 55,41.34 55,30.57 62.07,23.5 55,16.43 50,21.43 45,16.43 37.93,23.5 45,30.57 45,41.34 35.67,35.96 33.09,26.3 23.43,28.88 25.26,35.71 18.43,37.54 21.02,47.2 30.67,44.62 40,50 30.67,55.38 21.02,52.8 18.43,62.46 25.26,64.29 23.43,71.12 33.09,73.7 35.67,64.04 45,58.66 45,69.43 37.93,76.5 45,83.57 50,78.57 55,83.57 62.07,76.5 55,69.43 55,58.66 64.33,64.04 66.91,73.7 "
+             points="69.33,44.62 78.98,47.2 81.57,37.54 74.74,35.71 76.57,28.88 66.91,26.3 64.33,35.96 55,41.34 55,30.57 62.07,23.5 55,16.43 50,21.43 45,16.43 37.93,23.5 45,30.57 45,41.34 35.67,35.96 33.09,26.3 23.43,28.88 25.26,35.71 18.43,37.54 21.02,47.2 30.67,44.62 40,50 30.67,55.38 21.02,52.8 18.43,62.46 25.26,64.29 23.43,71.12 33.09,73.7 35.67,64.04 45,58.66 45,69.43 37.93,76.5 45,83.57 50,78.57 55,83.57 62.07,76.5 55,69.43 55,58.66 64.33,64.04 66.91,73.7 76.57,71.12 74.74,64.29 81.57,62.46 78.98,52.8 69.33,55.38 60,50 "
              id="polygon8699"
              style="display:inline;opacity:0.6;vector-effect:none;fill:#00f5ff;fill-opacity:1;stroke:#0087ff;stroke-width:10.54800987;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal;filter:url(#filter4007)" />
           <polygon
              style="display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:0.5362319;stroke:#00f5ff;stroke-width:0.65925062;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
              id="polygon8703"
-             points="55,30.57 62.07,23.5 55,16.43 50,21.43 45,16.43 37.93,23.5 45,30.57 45,41.34 35.67,35.96 33.09,26.3 23.43,28.88 25.26,35.71 18.43,37.54 21.02,47.2 30.67,44.62 40,50 30.67,55.38 21.02,52.8 18.43,62.46 25.26,64.29 23.43,71.12 33.09,73.7 35.67,64.04 45,58.66 45,69.43 37.93,76.5 45,83.57 50,78.57 55,83.57 62.07,76.5 55,69.43 55,58.66 64.33,64.04 66.91,73.7 76.57,71.12 74.74,64.29 81.57,62.46 78.98,52.8 69.33,55.38 60,50 69.33,44.62 78.98,47.2 81.57,37.54 74.74,35.71 76.57,28.88 66.91,26.3 64.33,35.96 55,41.34 "
+             points="45,30.57 45,41.34 35.67,35.96 33.09,26.3 23.43,28.88 25.26,35.71 18.43,37.54 21.02,47.2 30.67,44.62 40,50 30.67,55.38 21.02,52.8 18.43,62.46 25.26,64.29 23.43,71.12 33.09,73.7 35.67,64.04 45,58.66 45,69.43 37.93,76.5 45,83.57 50,78.57 55,83.57 62.07,76.5 55,69.43 55,58.66 64.33,64.04 66.91,73.7 76.57,71.12 74.74,64.29 81.57,62.46 78.98,52.8 69.33,55.38 60,50 69.33,44.62 78.98,47.2 81.57,37.54 74.74,35.71 76.57,28.88 66.91,26.3 64.33,35.96 55,41.34 55,30.57 62.07,23.5 55,16.43 50,21.43 45,16.43 37.93,23.5 "
              transform="matrix(0.7584369,0,0,0.7584369,327.53907,122.12814)" />
           <polygon
              id="polygon8707"
-             points="55,83.57 62.07,76.5 55,69.43 55,58.66 64.33,64.04 66.91,73.7 76.57,71.12 74.74,64.29 81.57,62.46 78.98,52.8 69.33,55.38 60,50 69.33,44.62 78.98,47.2 81.57,37.54 74.74,35.71 76.57,28.88 66.91,26.3 64.33,35.96 55,41.34 55,30.57 62.07,23.5 55,16.43 50,21.43 45,16.43 37.93,23.5 45,30.57 45,41.34 35.67,35.96 33.09,26.3 23.43,28.88 25.26,35.71 18.43,37.54 21.02,47.2 30.67,44.62 40,50 30.67,55.38 21.02,52.8 18.43,62.46 25.26,64.29 23.43,71.12 33.09,73.7 35.67,64.04 45,58.66 45,69.43 37.93,76.5 45,83.57 50,78.57 "
+             points="76.57,71.12 74.74,64.29 81.57,62.46 78.98,52.8 69.33,55.38 60,50 69.33,44.62 78.98,47.2 81.57,37.54 74.74,35.71 76.57,28.88 66.91,26.3 64.33,35.96 55,41.34 55,30.57 62.07,23.5 55,16.43 50,21.43 45,16.43 37.93,23.5 45,30.57 45,41.34 35.67,35.96 33.09,26.3 23.43,28.88 25.26,35.71 18.43,37.54 21.02,47.2 30.67,44.62 40,50 30.67,55.38 21.02,52.8 18.43,62.46 25.26,64.29 23.43,71.12 33.09,73.7 35.67,64.04 45,58.66 45,69.43 37.93,76.5 45,83.57 50,78.57 55,83.57 62.07,76.5 55,69.43 55,58.66 64.33,64.04 66.91,73.7 "
              transform="matrix(0.7584369,0,0,0.7584369,327.53907,122.12814)"
              style="display:none;fill:#ffffff;fill-opacity:1" />
         </g>

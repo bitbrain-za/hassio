@@ -191,10 +191,19 @@ svg, svg * {
 
 .button-off {
   fill: #000000 !important;
-  transition: opacity 1s;
+  fill-opacity: 1 !important;
 }
 
 .button-on {
   fill: #ffffff !important;
-  transition: opacity 1s;
+  fill-opacity: 1 !important;
+}
+
+.button-glow{
+  text-shadow: 0 0 8px #0087FF;
+}
+
+
+.text-glow{
+  text-shadow: 0 0 3px #00F5FF 0 0 8px #0087FF;
 }
