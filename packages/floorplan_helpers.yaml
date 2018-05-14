@@ -65,6 +65,177 @@ light:
   #   entities:
   #     - light.store
 
+input_boolean:
+  
+  - living_room_mode_off:
+    initial_value: 'off'
+
+switch:
+
+  - platform: template
+    switches:
+      living_room_aircon_off:
+        value_template: "{{ is_state_attr ('climate.carrier', 'operation_mode', 'off') }}"
+        turn_on:
+          service: climate.set_operation_mode
+          data:
+            entity_id: climate.carrier
+            operation_mode: 'off'
+        turn_off:
+          service: climate.set_operation_mode
+          data:
+            entity_id: climate.carrier
+            operation_mode: 'cool'
+
+  - platform: template
+    switches:
+      living_room_aircon_cool:
+        value_template: "{{ is_state_attr ('climate.carrier', 'operation_mode', 'cool') }}"
+        turn_on:
+          service: climate.set_operation_mode
+          data:
+            entity_id: climate.carrier
+            operation_mode: 'cool'
+        turn_off:
+          service: input_boolean.turn_off
+          data:
+            entity_id: input_boolean.living_room_mode_off
+
+  - platform: template
+    switches:
+      living_room_aircon_heat:
+        value_template: "{{ is_state_attr ('climate.carrier', 'operation_mode', 'heat') }}"
+        turn_on:
+          service: climate.set_operation_mode
+          data:
+            entity_id: climate.carrier
+            operation_mode: 'heat'
+        turn_off:
+          service: input_boolean.turn_off
+          data:
+            entity_id: input_boolean.living_room_mode_off
+
+
+  - platform: template
+    switches:
+      living_room_aircon_dry:
+        value_template: "{{ is_state_attr ('climate.carrier', 'operation_mode', 'dry') }}"
+        turn_on:
+          service: climate.set_operation_mode
+          data:
+            entity_id: climate.carrier
+            operation_mode: 'dry'
+        turn_off:
+          service: input_boolean.turn_off
+          data:
+            entity_id: input_boolean.living_room_mode_off
+
+
+  - platform: template
+    switches:
+      living_room_aircon_fan_auto:
+        value_template: "{{ is_state_attr ('climate.carrier', 'fan_mode', 'auto') }}"
+        turn_on:
+          service: climate.set_fan_mode
+          data:
+            entity_id: climate.carrier
+            operation_mode: 'auto'
+        turn_off:
+          service: input_boolean.turn_off
+          data:
+            entity_id: input_boolean.living_room_mode_off
+
+  - platform: template
+    switches:
+      living_room_aircon_fan_low:
+        value_template: "{{ is_state_attr ('climate.carrier', 'fan_mode', 'low') }}"
+        turn_on:
+          service: climate.set_fan_mode
+          data:
+            entity_id: climate.carrier
+            operation_mode: 'low'
+        turn_off:
+          service: input_boolean.turn_off
+          data:
+            entity_id: input_boolean.living_room_mode_off
+
+
+  - platform: template
+    switches:
+      living_room_aircon_fan_medium:
+        value_template: "{{ is_state_attr ('climate.carrier', 'fan_mode', 'medium') }}"
+        turn_on:
+          service: climate.set_fan_mode
+          data:
+            entity_id: climate.carrier
+            operation_mode: 'medium'
+        turn_off:
+          service: input_boolean.turn_off
+          data:
+            entity_id: input_boolean.living_room_mode_off
+
+
+  - platform: template
+    switches:
+      living_room_aircon_fan_high:
+        value_template: "{{ is_state_attr ('climate.carrier', 'fan_mode', 'high') }}"
+        turn_on:
+          service: climate.set_fan_mode
+          data:
+            entity_id: climate.carrier
+            operation_mode: 'high'
+        turn_off:
+          service: input_boolean.turn_off
+          data:
+            entity_id: input_boolean.living_room_mode_off
+
+sensor:
+  - platform: template
+    sensors:
+      living_room_aircon_temp:
+      value_template: '{{ states.climate.carrier.attributes.temperature }}'
+
+  - platform: template
+    sensors:
+      living_room_aircon_temp_glow:
+      value_template: '{{ states.climate.carrier.attributes.temperature }}'
+
+  - platform: template
+    sensors:
+      living_room_temp:
+      value_template: '{{ states.sensor.temperature_158d00022cc5d7.state_with_unit }}'
+
+  - platform: template
+    sensors:
+      living_room_temp_glow:
+      value_template: '{{ states.sensor.temperature_158d00022cc5d7.state_with_unit }}'
+
+script:
+    living_room_temp_up:
+    sequence:
+    - service: climate.set_temperature
+      data_template:
+        entity_id: climate.carrier
+        temperature: >-
+          {% set current = states.climate.carrier.attributes.temperature|default(30)|int %}
+          {% set next = current + 1 %}
+          {% if next > 30 %}
+            {% set next = 30 %}
+          {% endif %}
+          {{ next }}
+    living_room_temp_down:
+    sequence:
+    - service: climate.set_temperature
+      data_template:
+        entity_id: climate.carrier
+        temperature: >-
+          {% set current = states.climate.carrier.attributes.temperature|default(17)|int %}
+          {% set next = current - 1 %}
+          {% if next < 17 %}
+            {% set next = 17 %}
+          {% endif %}
+          {{ next }}
+
 group:
   fp_mes_extractor:
     name: fp_mes_extractor

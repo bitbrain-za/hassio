@@ -30,12 +30,6 @@ light:
     token: !secret light_study_token
     model: philips.light.bulb
 
-  - platform: yeelight
-    devices:
-      192.168.1.36:
-        name: bedroom
-        save_on_change: false
-
   - platform: xiaomi_miio
     name: Lab
     host: 192.168.1.37

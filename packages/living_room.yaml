@@ -151,9 +151,63 @@ input_boolean:
     name: Quality time
     initial: 'off'
  
+#################   SCENES    #################
+
+scene:
+  - name: living_room_movie
+    entities:
+      light.lounge:
+        state: on
+        brightness_pct: 20
+        rgb_color: [102, 153, 255]
+
+  - name: living_room_dinner
+    entities:
+      light.lounge:
+        state: on
+        brightness_pct: 100
+        rgb_color: [255, 249, 229]
+
+  - name: living_room_music
+    entities:
+      light.lounge:
+        state: on
+        brightness_pct: 30
+        rgb_color: [0, 0, 255]
+
+  - name: living_room_cheese
+    entities:
+      light.lounge:
+        state: on
+        brightness_pct: 30
+        rgb_color: [255, 0, 128]
+
+  - name: living_room_off
+    entities:
+      light.lounge: off
+
+  - name: living_room_low
+    entities:
+      light.lounge:
+        state: on
+        brightness_pct: 20
+
+  - name: living_room_medium
+    entities:
+      light.lounge:
+        state: on
+        brightness_pct: 60
+
+  - name: living_room_high
+    entities:
+      light.lounge:
+        state: on
+        brightness_pct: 100
+
 #################   SCRIPTS    #################
 
 script:
+
   living_room_light_bright:
     sequence:
     - service: light.turn_on

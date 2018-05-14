@@ -73,7 +73,6 @@ groups:
       - sensor.floorplan_time
     text_template: '${entity.state ? entity.state : "unknown"}'
 
-
   - name: scenes
     entities:
     - scene.bedroom_moon
@@ -389,3 +388,4 @@ groups:
   #     else
   #       return "temp-high";
   #     '
+  
