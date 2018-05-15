@@ -32,6 +32,8 @@ groups:
       - light.lab
       - light.mes
       - switch.mes_extractor
+      - media_player.samsung_tv_remote 
+      - switch.living_room_aircon_power
     states:
       - state: 'on'
         class: 'light-on'
@@ -57,7 +59,10 @@ groups:
       - light.fp_front
       - light.fp_lab
       - light.fp_mes
-      - switch.fp_mes_extractor
+      - switch.tv_power_switch
+      - group.fp_mes_extractor
+      - switch.jukebox_power
+      - group.fp_living_room_aircon
     states:
       - state: 'on'
         class: 'light-on'
@@ -75,9 +80,17 @@ groups:
   - name: Sensors
     entities:
       - sensor.living_room_aircon_temp
-      - sensor.living_room_aircon_temp_glow
       - sensor.living_room_temp
-      - sensor.living_room_temp_glow
+
+  - name: Doors
+    entities:
+      - binary_sensor.door_window_sensor_158d0001fa8d27
+      - binary_sensor.door_window_sensor_158d0001f9e18e
+    states:
+      - state: 'off'
+        class: 'light-off'
+      - state: 'on'
+        class: 'light-on'
 
   - name: scenes
     entities:
@@ -89,6 +102,14 @@ groups:
     - scene.bedroom_low
     - scene.bedroom_medium
     - scene.bedroom_high
+    - scene.living_room_movie
+    - scene.living_room_dinner
+    - scene.living_room_music
+    - scene.living_room_cheese
+    - scene.living_room_off
+    - scene.living_room_low
+    - scene.living_room_medium
+    - scene.living_room_high
     states:
     - state: 'on'
       class: 'button-on'
@@ -103,23 +124,13 @@ groups:
     - switch.living_room_aircon_cool
     - switch.living_room_aircon_heat
     - switch.living_room_aircon_dry
-    states:
-    - state: 'on'
-      class: 'button-on'
-    - state: 'off'
-      class: 'button-off'
-    action:
-      service: toggle
-
-  - name: switches_fan
-    entities:
     - switch.living_room_aircon_fan_auto
     - switch.living_room_aircon_fan_low
     - switch.living_room_aircon_fan_medium
     - switch.living_room_aircon_fan_high
     states:
     - state: 'on'
-      class: 'button-glow'
+      class: 'button-on'
     - state: 'off'
       class: 'button-off'
     action:
@@ -127,8 +138,8 @@ groups:
 
   - name: Scripts
     entities:
-      - script.living_room_aircon_temp_up
-      - script.living_room_aircon_temp_down
+      - script.living_room_temp_up
+      - script.living_room_temp_down
     states:
       - state: 'on'
         class: 'button-on'

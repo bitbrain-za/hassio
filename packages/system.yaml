@@ -57,6 +57,7 @@ automation:
 
   - id: 6BFB2009-CE8C-452F-9984-128342F8FD56
     alias: Run Speedtest when PC and computer are both off
+    initial_state: 'on'
     trigger:
       platform: time
       minutes: '/60'

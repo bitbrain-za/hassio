@@ -56,6 +56,11 @@ light:
       - light.front
 
   - platform: group
+    name: fp_back
+    entities:
+      - light.back
+
+  - platform: group
     name: fp_lab
     entities:
       - light.lab
@@ -67,11 +72,31 @@ light:
 
 input_boolean:
   
-  living_room_mode_off:
+  living_room_aircon_dummy:
     name: Dummy bool
     initial: 'off'
 
 switch:
+
+  - platform: template
+    switches:
+      living_room_aircon_power:
+        value_template: >-
+          {% if is_state_attr ('climate.carrier', 'operation_mode', 'off') %}
+            False
+          {% else %} 
+            True
+          {% endif %} 
+        turn_on:
+          service: climate.set_operation_mode
+          data:
+            entity_id: climate.carrier
+            operation_mode: 'cool'
+        turn_off:
+          service: climate.set_operation_mode
+          data:
+            entity_id: climate.carrier
+            operation_mode: 'off'
 
   - platform: template
     switches:
@@ -98,9 +123,9 @@ switch:
             entity_id: climate.carrier
             operation_mode: 'cool'
         turn_off:
-          service: input_boolean.turn_off
+          service: input_boolean.toggle
           data:
-            entity_id: input_boolean.living_room_mode_off
+            entity_id: input_boolean.living_room_aircon_dummy
 
   - platform: template
     switches:
@@ -112,10 +137,9 @@ switch:
             entity_id: climate.carrier
             operation_mode: 'heat'
         turn_off:
-          service: input_boolean.turn_off
+          service: input_boolean.toggle
           data:
-            entity_id: input_boolean.living_room_mode_off
-
+            entity_id: input_boolean.living_room_aircon_dummy
 
   - platform: template
     switches:
@@ -127,10 +151,9 @@ switch:
             entity_id: climate.carrier
             operation_mode: 'dry'
         turn_off:
-          service: input_boolean.turn_off
+          service: input_boolean.toggle
           data:
-            entity_id: input_boolean.living_room_mode_off
-
+            entity_id: input_boolean.living_room_aircon_dummy
 
   - platform: template
     switches:
@@ -142,9 +165,9 @@ switch:
             entity_id: climate.carrier
             fan_mode: 'auto'
         turn_off:
-          service: input_boolean.turn_off
+          service: input_boolean.toggle
           data:
-            entity_id: input_boolean.living_room_mode_off
+            entity_id: input_boolean.living_room_aircon_dummy
 
   - platform: template
     switches:
@@ -156,10 +179,9 @@ switch:
             entity_id: climate.carrier
             fan_mode: 'low'
         turn_off:
-          service: input_boolean.turn_off
+          service: input_boolean.toggle
           data:
-            entity_id: input_boolean.living_room_mode_off
-
+            entity_id: input_boolean.living_room_aircon_dummy
 
   - platform: template
     switches:
@@ -171,10 +193,9 @@ switch:
             entity_id: climate.carrier
             fan_mode: 'medium'
         turn_off:
-          service: input_boolean.turn_off
+          service: input_boolean.toggle
           data:
-            entity_id: input_boolean.living_room_mode_off
-
+            entity_id: input_boolean.living_room_aircon_dummy
 
   - platform: template
     switches:
@@ -186,9 +207,9 @@ switch:
             entity_id: climate.carrier
             fan_mode: 'high'
         turn_off:
-          service: input_boolean.turn_off
+          service: input_boolean.toggle
           data:
-            entity_id: input_boolean.living_room_mode_off
+            entity_id: input_boolean.living_room_aircon_dummy
 
 sensor:
   - platform: template
@@ -198,20 +219,11 @@ sensor:
 
   - platform: template
     sensors:
-      living_room_aircon_temp_glow:
-        value_template: '{{ states.climate.carrier.attributes.temperature | round(0) }}°C'
-
-  - platform: template
-    sensors:
       living_room_temp:
         value_template: '{{ states.sensor.temperature_158d00022cc5d7.state_with_unit }}'
 
-  - platform: template
-    sensors:
-      living_room_temp_glow:
-        value_template: '{{ states.sensor.temperature_158d00022cc5d7.state_with_unit }}'
-
 script:
+
   living_room_temp_up:
     sequence:
     - service: climate.set_temperature
@@ -224,6 +236,7 @@ script:
             {% set next = 30 %}
           {% endif %}
           {{ next }}
+
   living_room_temp_down:
     sequence:
     - service: climate.set_temperature
@@ -243,3 +256,9 @@ group:
     view: no
     entities:
       switch.mes_extractor
+
+  fp_living_room_aircon:
+    name: fp_living_room_aircon
+    view: no
+    entities:
+      switch.living_room_aircon_power

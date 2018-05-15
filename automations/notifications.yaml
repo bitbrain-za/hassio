@@ -68,7 +68,9 @@
   - condition: template
     value_template: >-
       {% if is_state('climate.carrier', 'off') %}
-        false
+        False
+      {% else %}
+        True
       {% endif %}
   action:
   - service: notify.p_phone_telegram

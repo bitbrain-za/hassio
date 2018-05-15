@@ -56,10 +56,32 @@ climate:
 media_player:
   - platform: mpd
     name: jukebox_mpd
-    host: 192.168.1.16
+    host: 192.168.1.26
   - platform: spotify
     client_id: !secret spotify_client_id_ha
     client_secret: !secret spotify_client_secret_ha
+
+switch:
+
+  - platform: wake_on_lan
+    name: wake_jukebox
+    mac_address: !secret mac_jukebox
+
+  - platform: template
+    switches:
+      jukebox_power:
+        value_template: "{{ is_state ('device_tracker.jukebox', 'home') }}"
+        turn_on:
+          service: switch.turn_on
+          data:
+            entity_id: switch.wake_jukebox
+        turn_off:
+          service: switch.turn_off
+          data:
+            entity_id: switch.wake_jukebox
+        icon_template: >-
+          mdi:music
+
 
 #########################    STATE VARIABLES    #########################
 

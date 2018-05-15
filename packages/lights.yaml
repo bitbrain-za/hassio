@@ -46,23 +46,24 @@ light:
 #########################    GROUP    #########################
 
 group:
-  all_lights:
+  all_lights_view:
     name: all lights
     view: yes
     icon: mdi:lightbulb
     entities:
-      - light.spare_room
-      - light.passage
       - light.kitchen
-      - light.entrance
-      - light.store
       - light.lounge
+      - light.entrance
       - light.bedroom
+      - light.office
       - light.bathroom
       - light.mes
+      - light.lab
+      # - light.spare_room
+      # - light.passage
+      # - light.store
       - light.back
       - light.front
-      - light.lab
 
   inside_lights:
     name: inside lights
