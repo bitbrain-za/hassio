@@ -94,22 +94,46 @@ google_assistant:
   #   - switch
   #   - light
   #   - group
+  expose_by_default: false
   entity_config:
-    light.bedroom:
-      expose: false
-      room: bedroom
-    light.lounge1:
-      expose: false
+    light.lab:
+      expose: true
+      room: lab
+    climate.carrier:
+      expose: true
       room: living room
-    light.lounge2:
-      expose: false
+    media_player.jukebox_mpd:
+      expose: true
       room: living room
-    light.lounge:
-      expose: false
+    media_player.spotify:
+      expose: true
       room: living room
-    light.bathroom:
-      expose: false
-      room: bathroom
+    switch.jukebox_power:
+      expose: true
+      room: living room
+    sensor.temperature_158d00022cc5d7:
+      expose: true
+      name: living room temperature
+      room: living room
+    light.kitchen:
+      expose: true
+      room: kitchen
+    light.front:
+      expose: true
+    light.back:
+      expose: true
+    light.office:
+      expose: true
+      room: office
+    switch.pc:
+      expose: true
+      room: office
+    light.mes:
+      expose: true
+      room: main en suite
+    switch.mes_extractor:
+      expose: true
+      room: main en suite
 
 device_tracker:
   - platform: asuswrt
