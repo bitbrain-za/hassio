@@ -1,0 +1,97 @@
+          #################################################
+          #     ______      __                            #
+          #    / ____/___  / /__________ _____  ________  #
+          #   / __/ / __ \/ __/ ___/ __ `/ __ \/ ___/ _ \ #
+          #  / /___/ / / / /_/ /  / /_/ / / / / /__/  __/ #
+          # /_____/_/ /_/\__/_/   \__,_/_/ /_/\___/\___/  #
+          #                                               #
+          #################################################
+
+
+#########################    OBJECTS    #########################
+
+light:
+
+  - platform: mqtt
+    name: entrance
+    command_topic: "cmnd/sonoff_entrance/power"
+    state_topic: "stat/sonoff_entrance/POWER"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+
+
+#########################    VARIABLES    #########################
+
+timer:
+  entrance_off:
+    duration: '00:05:00'
+
+#########################    SCRIPTS    #########################
+
+script:
+
+  entrance_light_on_5_minutes:
+    alias: Turn on the Entrance for 5 Minutes
+    sequence:
+      - service: light.turn_on
+        entity_id: light.entrance
+      - service: timer.start
+        entity_id: timer.entrance_off
+        duration: '00:05:00'
+
+  entrance_light_on_15_minutes:
+    alias: Turn on the Entrance for 15 Minutes
+    sequence:
+      - service: light.turn_on
+        entity_id: light.entrance
+      - service: timer.start
+        entity_id: timer.entrance_off
+        duration: '00:15:00'
+
+#########################    AUTOMATIONS    #########################
+
+automation:
+
+  - id: B7909331-D503-48C5-A3EA-E098DB725487
+    alias: turn off timer expires
+    trigger:
+    - platform: state
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.entrance_off
+    action:
+      - service: light.turn_off
+        entity_id: light.entrance
+ 
+  - id: C9FC5CEF-C6D4-4C15-9E86-06D1DD94A9D6
+    alias: come home inside
+    initial_state: 'on'
+    trigger:
+    - platform: state
+      entity_id: group.phil_devices
+      from: 'not_home'
+      to: 'home'
+    condition:
+    - condition: sun
+      after: sunset
+    action:
+    - service: script.turn_on
+     data:
+        entity_id: script.entrance_light_on_15_minutes
+
+  - id: 14C4D1D2-574E-4C77-A708-3C5236BB81F2
+    alias: turn on entrance when door opens
+    initial_state: 'on'
+    trigger:
+    - platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001f9e18e
+      from: 'off'
+      to: 'on'
+    condition:
+    - condition: sun
+      after: sunset
+    action:
+    - service: script.turn_on
+      data:
+        entity_id: script.entrance_light_on_5_minutes

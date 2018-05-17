@@ -1,0 +1,18 @@
+mqtt:
+  broker: 192.168.1.32
+  port: !secret mqtt_port
+  client_id: home-assistant-1
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+
+automation:
+  - id: 6138C461-97E6-46BB-B97F-326A83273BA1
+    alias: 'Refresh MQTT Switches'
+    initial_state: 'on'
+    trigger:
+      platform: homeassistant
+      event: start
+    action:
+    - service: mqtt.publish
+      data:
+        topic: cmnd/sonoffs/POWER

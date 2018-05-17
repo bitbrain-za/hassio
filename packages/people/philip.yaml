@@ -60,7 +60,6 @@ group:
     name: Philip
     entities: 
       - sensor.philip_to_home
-      - sensor.philip_to_home
       - device_tracker.p_phone
   phil_home:
     name: Philip
@@ -68,7 +67,6 @@ group:
       - device_tracker.huawei_p9_lite
       - sensor.philip_battery
       - sensor.home_to_work
-
   phil_devices:
     name: phil_devices
     entities:

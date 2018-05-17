@@ -6,6 +6,8 @@
 
 
 sensor:
+  - platform: yr
+  
   - platform: openweathermap
     api_key: !secret own_api_key
     monitored_conditions:

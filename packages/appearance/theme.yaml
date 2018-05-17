@@ -1,0 +1,32 @@
+input_select:
+  hass_theme:
+    name: HASS themes
+    options:
+      - default
+      - solarized
+      - PmxMononight
+    initial: default
+    icon: mdi:theme-light-dark
+    
+automation:
+- id: hass_theme_boot
+  alias: Set Theme
+  initial_state: 'on'
+  trigger:
+    - platform: homeassistant 
+      event: start
+  action:
+  - service: frontend.set_theme
+    data_template:
+      name: solarized
+
+- id: hass_theme
+  alias: hass_theme
+  initial_state: 'on'
+  trigger:
+    - platform: state 
+      entity_id: input_select.hass_theme
+  action:
+    - service: frontend.set_theme
+      data_template:
+        name: "{{ states.input_select.hass_theme.state }}"

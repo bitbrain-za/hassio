@@ -3,6 +3,7 @@ sensor:
     name: "Mum Battery"
     state_topic: "zanzito/mum/battery_level"
     qos: 0
+    icon: mdi:battery
     unit_of_measuremetn: "%"
 
   - platform: google_travel_time
@@ -19,20 +20,12 @@ device_tracker:
 
 group:
   mum_devices:
-    name: mum
+    name: Mum
     entities:
       - device_tracker.mum_zanz
       - sensor.mum_battery
       - sensor.mum_to_me
-
-  mum:
-    name: Mum
-    view: true
-    icon: mdi:human-female
-    entities:
-      - camera.mum
-      - group.mum_devices
-
+  
 camera:
   - platform: generic
     name: mum

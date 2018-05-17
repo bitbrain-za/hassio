@@ -57,11 +57,3 @@ binary_sensor.door_window_sensor_158d0001f9e18e:
   friendly_name: front_door
 binary_sensor.door_window_sensor_158d0001fa8d27:
   friendly_name: back_door
-
-input_boolean.mute_pc:
-  icon_template: >-
-    {% if is_state('binary_sensor.door_window_sensor_158d0001ab56bd', 'on') %}
-      mdi:volume-high
-    {% else %}
-      mdi:volume-off
-    {% endif %}

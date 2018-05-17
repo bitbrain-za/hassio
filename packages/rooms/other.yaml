@@ -25,12 +25,6 @@ light:
         turn_off: null
 
   - platform: xiaomi_miio
-    name: office
-    host: 192.168.1.35
-    token: !secret light_study_token
-    model: philips.light.bulb
-
-  - platform: xiaomi_miio
     name: Lab
     host: 192.168.1.37
     token: !secret light_lab_token
@@ -42,41 +36,3 @@ light:
         friendly_name: Store
         turn_on: null
         turn_off: null
-
-#########################    GROUP    #########################
-
-group:
-  all_lights_view:
-    name: all lights
-    view: yes
-    icon: mdi:lightbulb
-    entities:
-      - light.kitchen
-      - light.lounge
-      - light.entrance
-      - light.bedroom
-      - light.office
-      - light.bathroom
-      - light.mes
-      - light.lab
-      # - light.spare_room
-      # - light.passage
-      # - light.store
-      - light.back
-      - light.front
-
-  inside_lights:
-    name: inside lights
-    view: no
-    icon: mdi:lightbulb
-    entities:
-      - light.spare_room
-      - light.passage
-      - light.kitchen
-      - light.entrance
-      - light.store
-      - light.lounge
-      - light.bedroom
-      - light.mes
-      - light.bathroom
-      - light.lab

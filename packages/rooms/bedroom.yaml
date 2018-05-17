@@ -71,3 +71,18 @@ scene:
 
 
 #########################    AUTOMATIONS    #########################
+
+automation:
+  
+- id: A17BE6CA-9181-44CD-A498-EF7FECD561ED
+  alias: toggle_bedroom_light
+  initial_state: 'on'
+  trigger:
+  - platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.wall_switch_158d00017101b2
+      click_type: single
+  action:
+  - service: light.toggle
+    entity_id: light.bedroom

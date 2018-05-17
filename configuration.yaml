@@ -10,12 +10,9 @@ homeassistant:
 
 zone: !include zones.yaml
 
-
-# Enables the frontend
 frontend:
   themes: !include_dir_merge_named themes/
 
-# Enables configuration UI
 config:
 
 http:
@@ -26,120 +23,19 @@ http:
   base_url: !secret ha_url
   ssl_certificate: "/ssl/fullchain.pem"
   ssl_key: "/ssl/privkey.pem"
-# Checks for available updates
-# Note: This component will send some information about your system to
-# the developers to assist with development of Home Assistant.
-# For more information, please see:
-# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+
 updater:
-  # Optional, allows Home Assistant developers to focus on popular components.
-  # include_used_components: true
-
-# Discover some devices automatically
 discovery:
-
-# Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
-
-# Enables support for tracking state changes over time
 history:
-
-# View all events in a logbook
 logbook:
-
-# Enables a map showing the location of tracked devices
 map:
-
-# Track the sun
 sun:
 
-sensor:
-# Weather prediction
-  - platform: yr
-
-#floorplan time display
-  - platform: template
-    sensors:
-      floorplan_date:
-        friendly_name: 'Date'
-        value_template: >-
-          {{now().strftime("%d")}}:{{now().strftime("%m")}}:{{now().strftime("%Y")}}
-  - platform: template
-    sensors:
-      floorplan_time:
-        friendly_name: 'Time'
-        value_template: >-
-          {{now().strftime("%H")}}:{{now().strftime("%M")}}
-
-# Text to speech
 tts:
   - platform: google
 
-# Cloud
 cloud:
-
-mqtt:
-  broker: 192.168.1.32
-  port: !secret mqtt_port
-  client_id: home-assistant-1
-  username: !secret mqtt_username
-  password: !secret mqtt_password
-
-google_assistant:
-  project_id: !secret google_assistant_project_id
-  client_id: !secret google_assistant_client_id
-  access_token: !secret google_assistant_access_token
-  # api_key: !secret google_distance_matrix_api 
-  # exposed_domains:
-  #   - switch
-  #   - light
-  #   - group
-  expose_by_default: false
-  entity_config:
-    light.lab:
-      expose: true
-      room: lab
-    climate.carrier:
-      expose: true
-      room: living room
-    media_player.jukebox_mpd:
-      expose: true
-      room: living room
-    media_player.spotify:
-      expose: true
-      room: living room
-    switch.jukebox_power:
-      expose: true
-      room: living room
-    sensor.temperature_158d00022cc5d7:
-      expose: true
-      name: living room temperature
-      room: living room
-    light.kitchen:
-      expose: true
-      room: kitchen
-    light.front:
-      expose: true
-    light.back:
-      expose: true
-    light.office:
-      expose: true
-      room: office
-    switch.pc:
-      expose: true
-      room: office
-    light.mes:
-      expose: true
-      room: main en suite
-    switch.mes_extractor:
-      expose: true
-      room: main en suite
-
-device_tracker:
-  - platform: asuswrt
-    host: 192.168.1.1
-    username: !secret router_username
-    password: !secret router_password
 
 panel_custom:
   - name: floorplan
@@ -147,17 +43,3 @@ panel_custom:
     sidebar_icon: mdi:home
     url_path: floorplan
     config: !include floorplan.yaml
-
-group: !include groups.yaml
-automation: !include_dir_merge_list automations/
-script: !include scripts.yaml
-
-input_select:
-  hass_theme:
-    name: HASS themes
-    options:
-      - default
-      - solarized
-      - PmxMononight
-    initial: default
-    icon: mdi:theme-light-dark

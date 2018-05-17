@@ -1,0 +1,29 @@
+group:
+  - everyone:
+    name: Everyone
+    entities:
+      - device_tracker.p_phone
+      - device_tracker.huawei_p9_lite
+  
+  - inside_lights:
+    name: inside lights
+    view: no
+    icon: mdi:lightbulb
+    entities:
+      - light.spare_room
+      - light.passage
+      - light.kitchen
+      - light.entrance
+      - light.store
+      - light.lounge
+      - light.bedroom
+      - light.mes
+      - light.bathroom
+      - light.lab
+
+  - philip:
+    name: Philip
+    view: no
+    entities:
+      - group.phil_home
+      - group.phil_not_home

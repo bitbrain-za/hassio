@@ -1,0 +1,78 @@
+group:
+  # default_view:
+  #   view: yes
+  #   icon: mdi:home
+  #   entities:
+  #     - group.people
+  #     - group.weather
+
+  - landing:
+    view: yes
+    icon: mdi:home
+    entities:
+      - camera.philip
+      - group.network
+      - group.phil_home
+      - group.phil_not_home
+      - group.current_weather
+      - group.weather_card_forecast
+      - camera.the_oyster_box
+
+  - media:
+    name: Media Devices
+    view: yes
+    icon: mdi:play-circle
+    entities:
+      - media_player.samsung_tv_remote
+      - media_player.plex
+      - media_player.jukebox_mpd
+      - media_player.spotify
+
+  - weather:
+    name: Weather
+    view: yes
+    icon: mdi:weather-pouring
+    entities:
+      - camera.weather_map
+      - group.current_weather
+      - group.weather_card_forecast
+      - camera.the_oyster_box
+
+  - system:
+    name: System
+    view: yes
+    icon: mdi:desktop-classic
+    entities:
+      - group.network
+      - group.sys_status
+      - group.desktop
+
+  - all_lights_view:
+    name: all lights
+    view: yes
+    icon: mdi:lightbulb
+    entities:
+      - light.kitchen
+      - light.lounge
+      - light.entrance
+      - light.bedroom
+      - light.office
+      - light.bathroom
+      - light.mes
+      - light.lab
+      # - light.spare_room
+      # - light.passage
+      # - light.store
+      - light.back
+      - light.front
+
+  - people:
+    name: People
+    view: yes
+    icon: mdi:account-multiple
+    entities:
+      - group.philip
+      - group.mum_devices
+      - camera.mum
+      - camera.philip
+

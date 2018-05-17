@@ -1,0 +1,6 @@
+light:
+  - platform: xiaomi_miio
+    name: office
+    host: 192.168.1.35
+    token: !secret light_study_token
+    model: philips.light.bulb
