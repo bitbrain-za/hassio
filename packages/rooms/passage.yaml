@@ -1,0 +1,66 @@
+          #############################################
+          #     ____                                  #
+          #    / __ \____ _______________ _____ ____  #
+          #   / /_/ / __ `/ ___/ ___/ __ `/ __ `/ _ \ #
+          #  / ____/ /_/ (__  |__  ) /_/ / /_/ /  __/ #
+          # /_/    \__,_/____/____/\__,_/\__, /\___/  #
+          #                             /____/        #
+          #############################################
+
+#########################    OBJECTS    #########################
+
+light:
+  - platform: xiaomi_miio
+    name: passage
+    host: 192.168.1.40
+    token: !secret light_passage_token
+    model: philips.light.bulb
+
+#########################    VARIABLES    #########################
+
+timer:
+  passage_light:
+    duration: '00:01:00'
+
+#########################    SCRIPTS    #########################
+
+script:
+
+  passage_motion_detected:
+    alias: Turn on the passage
+    sequence:
+      - service: light.turn_on
+        entity_id: light.passage
+      - service: timer.start
+        entity_id: timer.passage_light
+
+#########################    AUTOMATIONS    #########################
+
+automation:
+
+  - id: 4CE027BB-E0BF-4A92-ABB2-5462A36E4548
+    alias: passage timer expires
+    trigger:
+    - platform: state
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.passage_light
+    action:
+      - service: light.turn_off
+        entity_id: light.passage
+ 
+  - id: 097CCD26-9F3D-4EEA-98E2-CCC7448A375E
+    alias: turn on motion is detected
+    initial_state: 'on'
+    trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_passage
+      from: 'off'
+      to: 'on'
+    condition:
+    - condition: sun
+      after: sunset
+    action:
+    - service: script.turn_on
+      data:
+        entity_id: script.passage_motion_detected

@@ -27,6 +27,8 @@ timer:
   entrance_off:
     duration: '00:05:00'
 
+
+
 #########################    SCRIPTS    #########################
 
 script:
@@ -95,3 +97,16 @@ automation:
     - service: script.turn_on
       data:
         entity_id: script.entrance_light_on_5_minutes
+
+  - id: 90FC053E-1A56-4AD9-998B-B53183FFDDE3
+    alias: goodbye button pressed
+    initial_state: 'on'
+    trigger:
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.button_entrance
+        click_type: single
+    action:
+    - service: timer.start
+      entity_id: timer.goodbye

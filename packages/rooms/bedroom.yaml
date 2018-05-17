@@ -18,7 +18,11 @@ light:
 
 #########################    VARIABLES    #########################
 
-
+input_boolean:
+  
+  bedroom_dim:
+    name: Direction of light brightness control
+    initial: 'off'
 
 #########################    SCENES    #########################
 
@@ -69,12 +73,45 @@ scene:
         state: on
         brightness_pct: 100
 
+#################   SCRIPTS    #################
+
+script:
+
+  dim_light_bedroom:
+    sequence:
+    - condition: state
+      entity_id: input_boolean.bedroom_dim
+      state: 'on'
+    - service: light.turn_on
+      entity_id: light.bedroom
+      data_template:
+        brightness: '{{states.light.bedroom.attributes.brightness - 10}}'
+    - service: script.turn_off
+      entity_id: script.dim_light_bedroom
+    - service: script.turn_on
+      entity_id: script.dim_light_bedroom
+
+  brighten_light_bedroom:
+    sequence:
+    - condition: state
+      entity_id: input_boolean.bedroom_dim
+      state: 'off'
+    - service: light.turn_on
+      entity_id: light.bedroom
+      data_template:
+        brightness: '{{states.light.bedroom.attributes.brightness + 10}}'
+    - service: script.turn_off
+      entity_id: script.brighten_light_bedroom
+    - service: script.turn_on
+      entity_id: script.brighten_light_bedroom
 
 #########################    AUTOMATIONS    #########################
 
 automation:
-  
-- id: A17BE6CA-9181-44CD-A498-EF7FECD561ED
+
+  ##### Wall Switch #####
+
+- id: 749F1474-272C-4742-94D1-0536408AF3C4
   alias: toggle_bedroom_light
   initial_state: 'on'
   trigger:
@@ -86,3 +123,210 @@ automation:
   action:
   - service: light.toggle
     entity_id: light.bedroom
+
+  ##### Button - Single Press #####
+
+    #turn off the bedroom if it's on
+  - id: 854CFDDC-4FBC-4AAD-8FE4-8FC7C6BE464B
+    alias: Bedroom single switch
+    initial_state: 'on'
+    trigger:
+      - platform: event
+        event_type: click
+        event_data:
+          entity_id: binary_sensor.bedroom_button
+          click_type: single
+    condition: state
+      entity_id: light.bedroom
+      state: 'on'
+    action:
+      - service: light.turn_off
+        data_template:
+          entity_id: light.bedroom
+
+    # if we're in bed, turn the bedroom to 10% and red
+  - id: 4D03323C-9CEA-4735-8E59-54C3A40D5E6E 
+    alias: Bedroom single switch
+    initial_state: 'on'
+    trigger:
+      - platform: event
+        event_type: click
+        event_data:
+          entity_id: binary_sensor.bedroom_button
+          click_type: single
+    condition:
+      condition: or
+      conditions:
+        - condition: state
+          entity_id: light.bedroom
+          state: 'off'
+        - condition: state
+          entity_id: input_boolean.bedtime
+          state: 'on'
+    action:
+      - service: light.turn_on
+        data_template:
+          entity_id: light.bedroom
+          brightness_pct: 10
+          rgb_color: [255, 0, 0] 
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.bedroom_dim
+
+    # if we're not in bed, turn the bedroom to 100% and white
+  - id: E02C4831-D4BD-4A97-B395-C33F6E0F4E89
+    alias: Bedroom single switch
+    initial_state: 'on'
+    trigger:
+      - platform: event
+        event_type: click
+        event_data:
+          entity_id: binary_sensor.bedroom_button
+          click_type: single
+    condition:
+      condition: or
+      conditions:
+        - condition: state
+          entity_id: light.bedroom
+          state: 'off'
+        - condition: state
+          entity_id: input_boolean.bedtime
+          state: 'off'
+    action:
+      - service: light.turn_on
+        data_template:
+          entity_id: light.bedroom
+          brightness_pct: 100
+          rgb_color: [255, 249, 229] 
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.bedroom_dim
+
+#########################    DOUBLE    #########################
+
+  - id: F81CB052-5F67-4D76-9ADB-6F93F31EE2C4
+    alias: Bedroom double switch
+    initial_state: 'on'
+    trigger:
+      - platform: event
+        event_type: click
+        event_data:
+          entity_id: binary_sensor.bedroom_button
+          click_type: double
+    condition:
+      condition:
+      - condition: state
+        entity_id: input_boolean.bedtime
+        state: 'off'
+    # condition:
+    #   condition:
+    #   - condition: time
+    #     after: '22:00'
+    #     before: '06:00'
+    action:
+      - service: script.turn_on
+        entity_id: script.bedtime
+
+  - id: 4F71CC4A-2392-4651-9F79-B76FE8B1BCA0
+    alias: Bedroom double switch
+    initial_state: 'on'
+    trigger:
+      - platform: event
+        event_type: click
+        event_data:
+          entity_id: binary_sensor.bedroom_button
+          click_type: double
+    condition:
+      condition:
+      - condition: state
+        entity_id: input_boolean.bedtime
+        state: 'on'
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.bedtime
+
+#########################    HOLD    #########################
+
+  - id: 99BE8DB0-1CEE-4E1C-9EE1-06B5BBDA4BDD
+    alias: xiaomi bedroom brighten on
+    initial_state: 'on'
+    trigger:
+      - platform: event
+        event_type: click
+        event_data:
+          entity_id: binary_sensor.bedroom_button
+          click_type: long_click_press
+    condition:
+      condition: and
+      conditions:
+      - condition: state
+        entity_id: input_boolean.bedroom_dim
+        state: 'off'
+      - condition: state
+        entity_id: light.bedroom
+        state: 'on'
+    action:
+      - service: script.turn_on
+        entity_id: script.brighten_light_bedroom
+        
+  - id: 39BA2A0F-1393-413B-881A-A97B3ED4CBEA
+    alias: xiaomi bedroom brighten off
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.bedroom_button
+        from: 'on'
+        to: 'off'
+    condition:
+      condition: and
+      conditions:
+      - condition: state
+        entity_id: input_boolean.bedroom_dim
+        state: 'off'
+      - condition: state
+        entity_id: light.bedroom
+        state: 'on'
+    action:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.bedroom_dim
+   
+  - id: 7EF7B010-0F43-40F6-8109-F485C9BC4482
+    alias: xiaomi bedroom dim on
+    initial_state: 'on'
+    trigger:
+      - platform: event
+        event_type: click
+        event_data:
+          entity_id: binary_sensor.bedroom_button
+          click_type: long_click_press
+    condition:
+      condition: and
+      conditions:
+      - condition: state
+        entity_id: input_boolean.bedroom_dim
+        state: 'on'
+      - condition: state
+        entity_id: light.bedroom
+        state: 'on'
+    action:
+      - service: script.turn_on
+        entity_id: script.dim_light_bedroom
+
+  - id: 4E5E8592-C68E-43AE-B95B-501E74C0FB1E
+    alias: xiaomi bedroom brighten off
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.bedroom_button
+        from: 'on'
+        to: 'off'
+    condition:
+      condition: and
+      conditions:
+      - condition: state
+        entity_id: input_boolean.bedroom_dim
+        state: 'on'
+      - condition: state
+        entity_id: light.bedroom
+        state: 'on'
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.bedroom_dim

@@ -20,6 +20,20 @@ group:
       - light.mes
       - light.bathroom
       - light.lab
+      
+  lights_bedtime:
+    name: Bedtime Lights
+    view: no
+    icon: mdi:lightbulb
+    entities:
+      - light.spare_room
+      - light.passage
+      - light.kitchen
+      - light.entrance
+      - light.store
+      - light.lounge
+      - light.bathroom
+      - light.lab
 
   - philip:
     name: Philip

@@ -1,43 +1,44 @@
-          ###############################
-          #    ____  _________          #
-          #   / __ \/ __/ __(_)_______  #
-          #  / / / / /_/ /_/ / ___/ _ \ #
-          # / /_/ / __/ __/ / /__/  __/ #
-          # \____/_/ /_/ /_/\___/\___/  #
-          #                             #
-          ###############################
+          #########################
+          #     __          __    #
+          #    / /   ____ _/ /_   #
+          #   / /   / __ `/ __ \  #
+          #  / /___/ /_/ / /_/ /  #
+          # /_____/\__,_/_.___/   #
+          #                       #
+          #########################
+
 
 #########################    OBJECTS    #########################
 
 light:
   - platform: xiaomi_miio
-    name: office
-    host: 192.168.1.35
-    token: !secret light_study_token
+    name: Lab
+    host: 192.168.1.37
+    token: !secret light_lab_token
     model: philips.light.bulb
 
 #########################    SCENES    #########################
 
 scene:
-  - name: office_off
+  - name: lab_off
     entities:
-      light.office: off
+      light.lab: off
 
-  - name: office_low
+  - name: lab_low
     entities:
-      light.office:
+      light.lab:
         state: on
         brightness_pct: 20
 
-  - name: office_medium
+  - name: lab_medium
     entities:
-      light.office:
+      light.lab:
         state: on
         brightness_pct: 60
 
-  - name: office_high
+  - name: lab_high
     entities:
-      light.office:
+      light.lab:
         state: on
         brightness_pct: 100
 
@@ -46,15 +47,15 @@ scene:
 automation:
   # Toggle light on switch
   - id: 5EF654AE-7B73-4E0E-ADBB-464ABE5F76A8
-    alias: toggle_office_light
+    alias: toggle_lab_light
     initial_state: 'on'
     trigger:
     - platform: event
       event_type: click
       event_data:
-        entity_id: binary_sensor.wall_switch_office
+        entity_id: binary_sensor.wall_switch_lab
         click_type: single
     action:
     - service: light.toggle
-      entity_id: light.office
+      entity_id: light.lab
 

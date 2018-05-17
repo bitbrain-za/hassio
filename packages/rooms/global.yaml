@@ -7,24 +7,23 @@
           #                                   #
           #####################################
 
-group:
-  lights_bedtime:
-    name: Bedtime Lights
-    view: no
-    icon: mdi:lightbulb
-    entities:
-      - light.spare_room
-      - light.passage
-      - light.kitchen
-      - light.entrance
-      - light.store
-      - light.lounge
-      - light.bathroom
-      - light.lab
+
+#########################    VARIABLES    #########################
+
+timer:
+  goodbye:
+    duration: '00:02:00'
+
+input_boolean:
+  bedtime:
+    name: In Bed
+    initial: 'off'
+
+#########################    SCRIPTS    #########################
 
 script:
-  script_bedtime:
-    alias: Goonight
+  bedtime:
+    alias: Goodnight
     sequence:
       - service: light.turn_off
         data:
@@ -36,3 +35,44 @@ script:
       - service: media_player.turn_off
         data:
           entity_id: media_player.samsung_tv_remote
+  
+  going_out:
+    alias: Goodbye
+    sequence:
+      - service: light.turn_off
+        data:
+          entity_id: group.inside_lights
+      - service: climate.set_operation_mode
+        data:
+          entity_id: climate.carrier
+          operation_mode: 'off'
+      - service: media_player.turn_off
+        data:
+          entity_id: media_player.samsung_tv_remote
+  
+#########################    AUTOMATIONS    #########################
+
+automation:
+
+  - id: E61D107C-8B73-4113-BDC6-2A4565C8401F
+    alias: goodbye timer expires
+    trigger:
+    - platform: state
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.goodbye
+    action:
+    - service: script.turn_on
+      data:
+        entity_id: script.going_out
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.bedtime
+
+  - id: 
+    alias: wake up time
+    trigger:
+    - platform: sun
+      event: sunrise
+    action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.bedtime
