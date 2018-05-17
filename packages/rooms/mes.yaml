@@ -292,6 +292,8 @@ automation:
     action:
       - service: input_boolean.turn_on
         entity_id: input_boolean.mes_dim
+      - service: script.turn_off
+        entity_id: script.brighten_light_mes
    
   - id: A2572C53-B17F-4763-939E-C67E5202259C     
     alias: xiaomi mes dim on
@@ -335,6 +337,8 @@ automation:
     action:
       - service: input_boolean.turn_off
         entity_id: input_boolean.mes_dim
+      - service: script.turn_off
+        entity_id: script.dim_light_mes        
 
 #########################    OTHER    #########################
 

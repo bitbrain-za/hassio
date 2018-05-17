@@ -29,6 +29,7 @@ group:
       - light.spare_room
       - light.passage
       - light.kitchen
+      - light.office
       - light.entrance
       - light.store
       - light.lounge
