@@ -111,22 +111,23 @@ automation:
 
   ##### Wall Switch #####
 
-- id: 749F1474-272C-4742-94D1-0536408AF3C4
-  alias: toggle_bedroom_light
-  initial_state: 'on'
-  trigger:
-  - platform: event
-    event_type: click
-    event_data:
-      entity_id: binary_sensor.wall_switch_158d00017101b2
-      click_type: single
-  action:
-  - service: light.toggle
-    entity_id: light.bedroom
+  - id: 749F1474-272C-4742-94D1-0536408AF3C4
+    alias: toggle_bedroom_light
+    initial_state: 'on'
+    trigger:
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.wall_switch_158d00017101b2
+        click_type: single
+    action:
+    - service: light.toggle
+      entity_id: light.bedroom
 
   ##### Button - Single Press #####
 
     #turn off the bedroom if it's on
+
   - id: 854CFDDC-4FBC-4AAD-8FE4-8FC7C6BE464B
     alias: Bedroom single switch
     initial_state: 'on'
@@ -134,9 +135,10 @@ automation:
       - platform: event
         event_type: click
         event_data:
-          entity_id: binary_sensor.bedroom_button
+          entity_id: binary_sensor.bedside_button
           click_type: single
-    condition: state
+    condition:
+      condition: state
       entity_id: light.bedroom
       state: 'on'
     action:
@@ -152,7 +154,7 @@ automation:
       - platform: event
         event_type: click
         event_data:
-          entity_id: binary_sensor.bedroom_button
+          entity_id: binary_sensor.bedside_button
           click_type: single
     condition:
       condition: or
@@ -180,7 +182,7 @@ automation:
       - platform: event
         event_type: click
         event_data:
-          entity_id: binary_sensor.bedroom_button
+          entity_id: binary_sensor.bedside_button
           click_type: single
     condition:
       condition: or
@@ -209,10 +211,9 @@ automation:
       - platform: event
         event_type: click
         event_data:
-          entity_id: binary_sensor.bedroom_button
+          entity_id: binary_sensor.bedside_button
           click_type: double
     condition:
-      condition:
       - condition: state
         entity_id: input_boolean.bedtime
         state: 'off'
@@ -232,17 +233,15 @@ automation:
       - platform: event
         event_type: click
         event_data:
-          entity_id: binary_sensor.bedroom_button
+          entity_id: binary_sensor.bedside_button
           click_type: double
     condition:
-      condition:
       - condition: state
         entity_id: input_boolean.bedtime
         state: 'on'
     action:
       - service: input_boolean.turn_off
         entity_id: input_boolean.bedtime
-
 #########################    HOLD    #########################
 
   - id: 99BE8DB0-1CEE-4E1C-9EE1-06B5BBDA4BDD
@@ -252,7 +251,7 @@ automation:
       - platform: event
         event_type: click
         event_data:
-          entity_id: binary_sensor.bedroom_button
+          entity_id: binary_sensor.bedside_button
           click_type: long_click_press
     condition:
       condition: and
@@ -272,7 +271,7 @@ automation:
     initial_state: 'on'
     trigger:
       - platform: state
-        entity_id: binary_sensor.bedroom_button
+        entity_id: binary_sensor.bedside_button
         from: 'on'
         to: 'off'
     condition:
@@ -295,7 +294,7 @@ automation:
       - platform: event
         event_type: click
         event_data:
-          entity_id: binary_sensor.bedroom_button
+          entity_id: binary_sensor.bedside_button
           click_type: long_click_press
     condition:
       condition: and
@@ -315,7 +314,7 @@ automation:
     initial_state: 'on'
     trigger:
       - platform: state
-        entity_id: binary_sensor.bedroom_button
+        entity_id: binary_sensor.bedside_button
         from: 'on'
         to: 'off'
     condition:
@@ -330,3 +329,10 @@ automation:
     action:
       - service: input_boolean.turn_off
         entity_id: input_boolean.bedroom_dim
+
+#########################    CUSTOMIZATION    #########################
+
+homeassistant:
+  customize:
+    binary_sensor.bedside_button:
+      friendly_name: Bedside Button

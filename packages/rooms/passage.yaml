@@ -10,11 +10,19 @@
 #########################    OBJECTS    #########################
 
 light:
-  - platform: xiaomi_miio
-    name: passage
-    host: 192.168.1.40
-    token: !secret light_passage_token
-    model: philips.light.bulb
+  # - platform: xiaomi_miio
+  #   name: passage
+  #   host: 192.168.1.40
+  #   token: !secret light_passage_token
+  #   model: philips.light.bulb
+
+
+  - platform: template
+    lights:
+      spare_room:
+        friendly_name: Spare Room
+        turn_on: null
+        turn_off: null
 
 #########################    VARIABLES    #########################
 
@@ -41,7 +49,7 @@ automation:
   - id: 4CE027BB-E0BF-4A92-ABB2-5462A36E4548
     alias: passage timer expires
     trigger:
-    - platform: state
+    - platform: event
       event_type: timer.finished
       event_data:
         entity_id: timer.passage_light
@@ -54,7 +62,7 @@ automation:
     initial_state: 'on'
     trigger:
     - platform: state
-      entity_id: binary_sensor.motion_passage
+      entity_id: binary_sensor.passage_motion
       from: 'off'
       to: 'on'
     condition:

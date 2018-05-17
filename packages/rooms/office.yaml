@@ -52,7 +52,7 @@ automation:
     - platform: event
       event_type: click
       event_data:
-        entity_id: binary_sensor.wall_switch_office
+        entity_id: binary_sensor.office_switch
         click_type: single
     action:
     - service: light.toggle

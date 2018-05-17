@@ -1,11 +1,11 @@
 group:
-  - everyone:
+  everyone:
     name: Everyone
     entities:
       - device_tracker.p_phone
       - device_tracker.huawei_p9_lite
   
-  - inside_lights:
+  inside_lights:
     name: inside lights
     view: no
     icon: mdi:lightbulb
@@ -35,7 +35,7 @@ group:
       - light.bathroom
       - light.lab
 
-  - philip:
+  philip:
     name: Philip
     view: no
     entities:

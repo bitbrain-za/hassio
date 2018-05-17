@@ -39,8 +39,9 @@ script:
       - service: light.turn_on
         entity_id: light.entrance
       - service: timer.start
-        entity_id: timer.entrance_off
-        duration: '00:05:00'
+        data:
+          entity_id: timer.entrance_off
+          duration: '00:05:00'
 
   entrance_light_on_15_minutes:
     alias: Turn on the Entrance for 15 Minutes
@@ -48,8 +49,9 @@ script:
       - service: light.turn_on
         entity_id: light.entrance
       - service: timer.start
-        entity_id: timer.entrance_off
-        duration: '00:15:00'
+        data:
+          entity_id: timer.entrance_off
+          duration: '00:15:00'
 
 #########################    AUTOMATIONS    #########################
 
@@ -58,7 +60,7 @@ automation:
   - id: B7909331-D503-48C5-A3EA-E098DB725487
     alias: turn off timer expires
     trigger:
-    - platform: state
+    - platform: event
       event_type: timer.finished
       event_data:
         entity_id: timer.entrance_off
@@ -79,7 +81,7 @@ automation:
       after: sunset
     action:
     - service: script.turn_on
-     data:
+      data:
         entity_id: script.entrance_light_on_15_minutes
 
   - id: 14C4D1D2-574E-4C77-A708-3C5236BB81F2
@@ -105,7 +107,7 @@ automation:
     - platform: event
       event_type: click
       event_data:
-        entity_id: binary_sensor.button_entrance
+        entity_id: binary_sensor.entrance_button
         click_type: single
     action:
     - service: timer.start

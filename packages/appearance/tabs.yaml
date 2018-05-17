@@ -6,7 +6,7 @@ group:
   #     - group.people
   #     - group.weather
 
-  - landing:
+  landing:
     view: yes
     icon: mdi:home
     entities:
@@ -18,7 +18,7 @@ group:
       - group.weather_card_forecast
       - camera.the_oyster_box
 
-  - media:
+  media:
     name: Media Devices
     view: yes
     icon: mdi:play-circle
@@ -28,7 +28,7 @@ group:
       - media_player.jukebox_mpd
       - media_player.spotify
 
-  - weather:
+  weather:
     name: Weather
     view: yes
     icon: mdi:weather-pouring
@@ -38,7 +38,7 @@ group:
       - group.weather_card_forecast
       - camera.the_oyster_box
 
-  - system:
+  system:
     name: System
     view: yes
     icon: mdi:desktop-classic
@@ -47,7 +47,7 @@ group:
       - group.sys_status
       - group.desktop
 
-  - all_lights_view:
+  all_lights_view:
     name: all lights
     view: yes
     icon: mdi:lightbulb
@@ -66,7 +66,7 @@ group:
       - light.back
       - light.front
 
-  - people:
+  people:
     name: People
     view: yes
     icon: mdi:account-multiple

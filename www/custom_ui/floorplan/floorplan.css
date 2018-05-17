@@ -1,22 +1,16 @@
 /* SVG shapes */
 
-/*@keyframes fadeIn {
-  0% {
-    transform: rotateX(90deg);
-  }
-  100% {
-    transform: rotateX(0deg);
-  }
+@font-face {
+  font-family: "tr2ntr2n";
+  src: url("fonts/floorplan/tr2n-webfont.eot");
+  src: url("fonts/floorplan/tr2n-webfont.eot?#iefix") format("embedded-opentype"),
+       url("fonts/floorplan/tr2n-webfont.woff2") format("woff2"),
+       url("fonts/floorplan/tr2n-webfont.woff") format("woff"),
+       url("fonts/floorplan/tr2n-webfont.svg#tr2ntr2n") format("svg"),
+       url("fonts/floorplan/tr2n.ttf") format("truetype"); 
+  font-weight: normal;
+  font-style: normal;
 }
-
-@keyframes fadeOut {
-  0% {
-    transform: rotateX(0deg);
-  }
-  100% {
-    transform: rotateX(90deg);
-  }
-}*/
 
 svg, svg * {
   vector-effect: non-scaling-stroke !important;
@@ -24,7 +18,9 @@ svg, svg * {
   /*background-color: var(--floorplan-primary-background-color);*/
   /*background-color: var(--floorplan-primary-color, #ffffff);*/
   background-color: #000000 !important;
+  font-family: tr2ntr2n !important; 
 }
+
 
 /* Hover over */
 
