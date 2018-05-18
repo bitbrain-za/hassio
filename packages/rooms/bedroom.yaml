@@ -25,6 +25,10 @@ input_boolean:
     name: bedroom brightness control
     initial: 'off'
 
+timer:
+  bedroom_dimmer:
+    duration: 1
+
 #########################    SCENES    #########################
 
 scene:
@@ -344,6 +348,68 @@ automation:
   #       entity_id: input_boolean.bedroom_dim
   #     - service: script.turn_off
   #       entity_id: script.dim_light_bedroom
+
+    #####  TIMER  #####
+
+  - id: 99BE8DB0-1CEE-4E1C-9EE1-06B5BBDA4BDD
+    alias: xiaomi bedroom brighten on
+    initial_state: 'on'
+    trigger:
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.bedside_button
+        click_type: long_click_press
+    condition:
+      - condition: state
+        entity_id: light.bedroom
+        state: 'on'
+    action:
+      - service: timer.start
+        entity_id: timer.bedroom_dim
+
+  - id: A656F81E-2914-4104-A6CE-7B28D86ABB53
+    alias: Timer Expires
+    trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.bedroom_dimmer
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: binary_sensor.bedside_button
+          state: 'on'
+        - condition: state
+          entity_id: light.bedroom
+          state: 'on'
+        - condition: state
+          entity_id: input_boolean.bedroom_dim
+          state: 'on'
+    action:
+    - service: light.turn_on
+      entity_id: light.bedroom
+      data_template:
+        brightness: >-
+          {% if is_state('input_boolean.bedroom_dim', 'on') %}
+            {% if states.light.bedroom.attributes.brightness | int > 10 %}
+              {{states.light.bedroom.attributes.brightness | int - 10}}
+            {% else %}
+              {{ 10 }}
+            {% endif %}
+          {% else %}
+            {% if states.light.bedroom.attributes.brightness | int < 245 %}
+              {{states.light.bedroom.attributes.brightness | int + 10}}
+            {% else %}
+              {{ 255 }}
+            {% endif %}
+          {% endif %}
+    - service: timer.start
+      entity_id: timer.bedroom_dimmer
+
+
+
 
 #########################    CUSTOMIZATION    #########################
 
