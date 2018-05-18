@@ -30,30 +30,30 @@ sensor.owm_temperature:
   friendly_name: Temperature
 
 
-sensor.temperature_158d00022cc5d7:
+sensor.temperature_living_room:
   friendly_name: Lounge Temperature
 sensor.humidity_158d00022cc5d7:
   friendly_name: Lounge Humidity
 sensor.pressure_158d00022cc5d7:
   friendly_name: Lounge Pressure
 
-binary_sensor.switch_158d0001e5c0de:
+binary_sensor.mes_button:
   friendly_name: switch mes
 
-binary_sensor.wall_switch_158d00017101b2:
+binary_sensor.bedroom_wall:
   friendly_name: wall switch 1  
 
-binary_sensor.wall_switch_158d0001710295:
+binary_sensor.bathroom_wall:
   friendly_name: wall switch 2
   
-binary_sensor.wall_switch_both_158d0001f3f4a8:
+binary_sensor.living_room_wall_both:
   friendly_name: double switch both
-binary_sensor.wall_switch_left_158d0001f3f4a8:
+binary_sensor.living_room_wall_left:
   friendly_name: double switch left
 binary_sensor.wall_switch_right_158d0001f3f4a8:
   friendly_name: double switch right
 
-binary_sensor.door_window_sensor_158d0001f9e18e:
+binary_sensor.front_door:
   friendly_name: front_door
-binary_sensor.door_window_sensor_158d0001fa8d27:
+binary_sensor.back_door:
   friendly_name: back_door

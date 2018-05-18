@@ -220,7 +220,7 @@ sensor:
   - platform: template
     sensors:
       living_room_temp:
-        value_template: '{{ states.sensor.temperature_158d00022cc5d7.state_with_unit }}'
+        value_template: '{{ states.sensor.temperature_living_room.state_with_unit }}'
 
   - platform: template
     sensors:

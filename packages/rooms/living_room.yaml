@@ -36,7 +36,7 @@ climate:
     min_temp: 17
     max_temp: 30
     target_temp: 23
-    temp_sensor: sensor.temperature_158d00022cc5d7
+    temp_sensor: sensor.temperature_living_room
     default_operation: 'off'
     default_fan_mode: low
     customize:
@@ -369,7 +369,7 @@ automation:
       - platform: event
         event_type: click
         event_data:
-          entity_id: binary_sensor.wall_switch_left_158d0001f3f4a8
+          entity_id: binary_sensor.living_room_wall_left
           click_type: single
     action:
       - service: light.toggle
@@ -396,7 +396,7 @@ automation:
       - platform: event
         event_type: click
         event_data:
-          entity_id: binary_sensor.wall_switch_both_158d0001f3f4a8
+          entity_id: binary_sensor.living_room_wall_both
           click_type: both
     condition:
       - condition: state
@@ -416,7 +416,7 @@ automation:
       - platform: event
         event_type: click
         event_data:
-          entity_id: binary_sensor.wall_switch_both_158d0001f3f4a8
+          entity_id: binary_sensor.living_room_wall_both
           click_type: both
     condition: 
       - condition: state
@@ -525,7 +525,7 @@ automation:
       to: 'home'
     condition:
     - condition: numeric_state
-      entity_id: sensor.temperature_158d00022cc5d7
+      entity_id: sensor.temperature_living_room
       above: '24'
     action:
     - service: climate.set_operation_mode
@@ -539,7 +539,7 @@ automation:
     initial_state: 'on'
     trigger:
     - platform: state
-      entity_id: binary_sensor.door_window_sensor_158d0001fa8d27
+      entity_id: binary_sensor.back_door
       from: 'off'
       to: 'on'
       for: '00:03:00'

@@ -18,7 +18,7 @@ groups:
     entities:
       # these are home assistant elements and get tied to svg entities with the same name
       # - light.spare_room
-      # - light.passage
+      - light.passage
       - light.kitchen
       - light.entrance
       # - light.store
@@ -47,7 +47,7 @@ groups:
     entities:
       # these are home assistant elements and get tied to svg entities with the same name
       # - light.fp_spare_room
-      # - light.fp_passage
+      - light.fp_passage
       - light.fp_kitchen
       - light.fp_entrance
       # - light.fp_store
@@ -59,7 +59,7 @@ groups:
       - light.fp_front
       - light.fp_lab
       - light.fp_mes
-      - switch.tv_power_switch
+      - switch.tv_power
       - group.fp_mes_extractor
       - switch.jukebox_power
       - group.fp_living_room_aircon
@@ -84,8 +84,9 @@ groups:
 
   - name: Doors
     entities:
-      - binary_sensor.door_window_sensor_158d0001fa8d27
-      - binary_sensor.door_window_sensor_158d0001f9e18e
+      - binary_sensor.back_door
+      - binary_sensor.front_door
+      - binary_sensor.freezer_door
     states:
       - state: 'off'
         class: 'light-off'

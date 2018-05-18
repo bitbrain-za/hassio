@@ -134,7 +134,7 @@ automation:
     alias: greet philip
     trigger:
       platform: state
-      entity_id: binary_sensor.door_window_sensor_158d0001f9e18e
+      entity_id: binary_sensor.front_door
       from: 'off'
       to: 'on'
     condition:

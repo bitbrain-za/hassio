@@ -10,53 +10,17 @@
 #########################    OBJECTS    #########################
 
 light:
-  # - platform: xiaomi_miio
-  #   name: passage
-  #   host: 192.168.1.40
-  #   token: !secret light_passage_token
-  #   model: philips.light.bulb
-
-
-  - platform: template
-    lights:
-      spare_room:
-        friendly_name: Spare Room
-        turn_on: null
-        turn_off: null
-
-#########################    VARIABLES    #########################
-
-timer:
-  passage_light:
-    duration: '00:01:00'
-
-#########################    SCRIPTS    #########################
-
-script:
-
-  passage_motion_detected:
-    alias: Turn on the passage
-    sequence:
-      - service: light.turn_on
-        entity_id: light.passage
-      - service: timer.start
-        entity_id: timer.passage_light
+  - platform: xiaomi_miio
+    name: passage
+    host: 192.168.1.40
+    token: !secret light_passage_token
+    model: philips.light.bulb
+  
 
 #########################    AUTOMATIONS    #########################
 
 automation:
 
-  - id: 4CE027BB-E0BF-4A92-ABB2-5462A36E4548
-    alias: passage timer expires
-    trigger:
-    - platform: event
-      event_type: timer.finished
-      event_data:
-        entity_id: timer.passage_light
-    action:
-      - service: light.turn_off
-        entity_id: light.passage
- 
   - id: 097CCD26-9F3D-4EEA-98E2-CCC7448A375E
     alias: turn on motion is detected
     initial_state: 'on'
@@ -69,6 +33,28 @@ automation:
     - condition: sun
       after: sunset
     action:
-    - service: script.turn_on
-      data:
-        entity_id: script.passage_motion_detected
+    - service: light.turn_on
+      data_template:
+        entity_id: light.passage
+        brightness_pct: >-
+          {% if is_state('input_boolean.bedtime', 'on') %}
+            {{ 30 }}
+          {% else %}
+            {{ 100 }}
+          {% endif %}
+
+  - id: 87A188FB-0A93-400B-AD18-A86BB1D0EA25
+    alias: turn off when no motion is detected
+    initial_state: 'on'
+    trigger:
+    - platform: state
+      entity_id: binary_sensor.passage_motion
+      from: 'on'
+      to: 'off'
+    condition:
+    - condition: state
+      entity_id: light.passage
+      state: 'on'
+    action:
+    - service: light.turn_off
+      entity_id: light.passage

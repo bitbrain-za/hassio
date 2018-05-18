@@ -99,7 +99,7 @@ automation:
     initial_state: 'on'
     trigger:
     - platform: state
-      entity_id: binary_sensor.door_window_sensor_158d0001f9e18e
+      entity_id: binary_sensor.front_door
       from: 'off'
       to: 'on'
     condition:
@@ -117,7 +117,7 @@ automation:
     initial_state: 'on'
     trigger:
     - platform: state
-      entity_id: binary_sensor.door_window_sensor_158d0001f9e18e
+      entity_id: binary_sensor.front_door
       from: 'on'
       to: 'off'
       for: '00:03:00'
@@ -136,7 +136,7 @@ automation:
     initial_state: 'on'
     trigger:
     - platform: state
-      entity_id: binary_sensor.door_window_sensor_158d0001f9e18e
+      entity_id: binary_sensor.front_door
       from: 'on'
       to: 'off'
       for: '00:30:00'
@@ -153,7 +153,7 @@ automation:
     initial_state: 'on'
     trigger:
     - platform: state
-      entity_id: binary_sensor.door_window_sensor_158d0001fa8d27
+      entity_id: binary_sensor.back_door
       from: 'off'
       to: 'on'
     condition:
@@ -171,7 +171,7 @@ automation:
     initial_state: 'on'
     trigger:
     - platform: state
-      entity_id: binary_sensor.door_window_sensor_158d0001fa8d27
+      entity_id: binary_sensor.back_door
       from: 'on'
       to: 'off'
       for: '00:30:00'
@@ -190,7 +190,7 @@ automation:
     initial_state: 'on'
     trigger:
     - platform: state
-      entity_id: binary_sensor.door_window_sensor_158d0001fa8d27
+      entity_id: binary_sensor.back_door
       from: 'on'
       to: 'off'
       for: '00:30:00'
