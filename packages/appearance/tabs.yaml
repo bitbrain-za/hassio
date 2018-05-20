@@ -6,17 +6,39 @@ group:
   #     - group.people
   #     - group.weather
 
-  landing:
+  default_view:
     view: yes
     icon: mdi:home
     entities:
-      - camera.philip
-      - group.network
-      - group.phil_home
-      - group.phil_not_home
+      # - camera.philip
+      - group.lights_control
       - group.current_weather
       - group.weather_card_forecast
+      - media_player.spotify
       - camera.the_oyster_box
+      - group.phil_home
+      - group.phil_not_home
+      - group.living_room
+      - group.network
+       
+  all_lights_view:
+    name: all lights
+    view: yes
+    icon: mdi:lightbulb
+    entities:
+      - light.kitchen
+      - light.lounge
+      - light.entrance
+      - light.bedroom
+      - light.office
+      - light.bathroom
+      - light.mes
+      - light.lab
+      # - light.spare_room
+      - light.passage
+      # - light.store
+      - light.back
+      - light.front
 
   media:
     name: Media Devices
@@ -27,6 +49,7 @@ group:
       - media_player.plex
       - media_player.jukebox_mpd
       - media_player.spotify
+      - switch.jukebox_power
 
   weather:
     name: Weather
@@ -47,24 +70,6 @@ group:
       - group.sys_status
       - group.desktop
 
-  all_lights_view:
-    name: all lights
-    view: yes
-    icon: mdi:lightbulb
-    entities:
-      - light.kitchen
-      - light.lounge
-      - light.entrance
-      - light.bedroom
-      - light.office
-      - light.bathroom
-      - light.mes
-      - light.lab
-      # - light.spare_room
-      # - light.passage
-      # - light.store
-      - light.back
-      - light.front
 
   people:
     name: People

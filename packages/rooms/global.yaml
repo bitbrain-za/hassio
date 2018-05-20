@@ -64,6 +64,7 @@ automation:
 
   - id: E61D107C-8B73-4113-BDC6-2A4565C8401F
     alias: goodbye timer expires
+    initial_state: 'on'
     trigger:
     - platform: event
       event_type: timer.finished
@@ -78,6 +79,7 @@ automation:
 
   - id: 243A96FD-97EA-496C-9DEF-846B83F7FB50
     alias: wake up time
+    initial_state: 'on'
     trigger:
     - platform: sun
       event: sunrise

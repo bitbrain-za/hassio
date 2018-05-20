@@ -50,10 +50,42 @@ binary_sensor.living_room_wall_both:
   friendly_name: double switch both
 binary_sensor.living_room_wall_left:
   friendly_name: double switch left
-binary_sensor.wall_switch_right_158d0001f3f4a8:
+binary_sensor.living_room_wall_right:
   friendly_name: double switch right
 
 binary_sensor.front_door:
   friendly_name: front_door
 binary_sensor.back_door:
   friendly_name: back_door
+
+
+light.kitchen:
+  friendly_name: Kitchen
+light.lounge:
+  friendly_name: Lounge
+light.entrance:
+  friendly_name: Entrance
+light.bathroom:
+  friendly_name: Bathroom
+light.bedroom:
+  friendly_name: Bedroom
+light.mes:
+  friendly_name: Main En Suite
+light.back:
+  friendly_name: Garden
+light.front:
+  friendly_name: Front Door
+light.passage:
+  friendly_name: Passage
+light.office:
+  friendly_name: Office
+light.lab:
+  friendly_name: Lab
+
+group.philip:
+  friendly_name: Philip
+  entity_picture: /local/turtle.jpg 
+
+switch.jukebox_power:
+  friendly_name: Jukebox Power
+  entity_picture: /local/icons/jukebox.png

@@ -81,6 +81,7 @@ automation:
 
   - id: 28677636-CB69-4157-AEEE-9CE6CD589063
     alias: 'Battery Alert'
+    initial_state: 'on'
     trigger:
       - platform: time
         at: '10:00:00'

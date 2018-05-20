@@ -351,7 +351,7 @@
      inkscape:cx="853.1852"
      inkscape:cy="409.0721"
      inkscape:document-units="px"
-     inkscape:current-layer="g3282"
+     inkscape:current-layer="popup.kitchen"
      showgrid="false"
      units="px"
      inkscape:lockguides="false"
@@ -1375,14 +1375,14 @@
          r="8.3473158"
          cy="61.580509"
          cx="332.35999"
-         id="light.fb_back"
+         id="light.fp_back"
          style="display:inline;opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal;filter:url(#filter6433)"
          inkscape:label="light.back" />
       <circle
          r="8.3473158"
          cy="95.786804"
          cx="295.85559"
-         id="binary_sensor.door_window_sensor_158d0001fa8d27"
+         id="sensor.fp_back_door"
          style="opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal;filter:url(#filter6433)"
          inkscape:label="sensor.door.back" />
       <circle
@@ -1448,7 +1448,7 @@
          r="8.3473158"
          cy="667.39423"
          cx="234.95605"
-         id="binary_sensor.front_door"
+         id="sensor.fp_front_door"
          style="opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal;filter:url(#filter6433)"
          inkscape:label="sensor.door.front" />
       <circle
@@ -1475,14 +1475,14 @@
          r="8.3473158"
          cy="580.96442"
          cx="345.50208"
-         id="binary_sensor.freezer_door"
+         id="sensor.fp_freezer_door"
          style="opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal;filter:url(#filter6433)"
          inkscape:label="sensor.freezer_door" />
       <circle
          r="8.3473158"
          cy="531.95221"
          cx="345.50208"
-         id="binary_sensor.fridge_door"
+         id="sensor.fp_fridge_door"
          style="opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal;filter:url(#filter6433)"
          inkscape:label="sensor.fridge_door" />
     </g>
@@ -1533,7 +1533,7 @@
          r="8.3473158"
          cy="38.26685"
          cx="560.53369"
-         id="switch.climate_office"
+         id="sensor.fp_office_aircon"
          style="opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal;filter:url(#filter6433)"
          inkscape:label="switch.climate_office" />
       <circle
@@ -1587,7 +1587,7 @@
          r="8.3473158"
          cy="250"
          cx="897.00012"
-         id="light.fp_bedroom"
+         id="light.fp_bedroom_ceiling"
          style="opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal;filter:url(#filter6433)"
          inkscape:label="light.fp_bedroom" />
       <circle
@@ -2258,7 +2258,7 @@
         <polygon
            inkscape:label="climate.living_room.mode.cool"
            transform="matrix(0.7584369,0,0,0.7584369,687.27444,425.11622)"
-           points="78.98,47.2 81.57,37.54 74.74,35.71 76.57,28.88 66.91,26.3 64.33,35.96 55,41.34 55,30.57 62.07,23.5 55,16.43 50,21.43 45,16.43 37.93,23.5 45,30.57 45,41.34 35.67,35.96 33.09,26.3 23.43,28.88 25.26,35.71 18.43,37.54 21.02,47.2 30.67,44.62 40,50 30.67,55.38 21.02,52.8 18.43,62.46 25.26,64.29 23.43,71.12 33.09,73.7 35.67,64.04 45,58.66 45,69.43 37.93,76.5 45,83.57 50,78.57 55,83.57 62.07,76.5 55,69.43 55,58.66 64.33,64.04 66.91,73.7 76.57,71.12 74.74,64.29 81.57,62.46 78.98,52.8 69.33,55.38 60,50 69.33,44.62 "
+           points="55,16.43 50,21.43 45,16.43 37.93,23.5 45,30.57 45,41.34 35.67,35.96 33.09,26.3 23.43,28.88 25.26,35.71 18.43,37.54 21.02,47.2 30.67,44.62 40,50 30.67,55.38 21.02,52.8 18.43,62.46 25.26,64.29 23.43,71.12 33.09,73.7 35.67,64.04 45,58.66 45,69.43 37.93,76.5 45,83.57 50,78.57 55,83.57 62.07,76.5 55,69.43 55,58.66 64.33,64.04 66.91,73.7 76.57,71.12 74.74,64.29 81.57,62.46 78.98,52.8 69.33,55.38 60,50 69.33,44.62 78.98,47.2 81.57,37.54 74.74,35.71 76.57,28.88 66.91,26.3 64.33,35.96 55,41.34 55,30.57 62.07,23.5 "
            id="switch.living_room_aircon_cool"
            style="display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:#00f5ff;stroke-width:0.65925062;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter3458-51)" />
         <path
@@ -2827,7 +2827,7 @@
          inkscape:label="indicator.light.back" />
       <circle
          style="opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal;filter:url(#filter6433)"
-         id="sensor.door.back"
+         id="binary_sensor.back_door"
          cx="295.85559"
          cy="95.786804"
          r="8.3473158"
@@ -3194,7 +3194,7 @@
          inkscape:label="device.light.entrance" />
       <circle
          style="opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal;filter:url(#filter6433)"
-         id="sensor.door.front"
+         id="binary_sensor.front_door"
          cx="234.95605"
          cy="667.39423"
          r="8.3473158"
@@ -3357,7 +3357,7 @@
          inkscape:label="background.kitchen" />
       <circle
          style="opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal;filter:url(#filter6433)"
-         id="sensor.door.fridge"
+         id="binary_sensor.fridge_door"
          cx="345.50208"
          cy="531.95221"
          r="8.3473158"
@@ -3365,7 +3365,7 @@
       <circle
          inkscape:label="sensor.door.freezer"
          style="opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal;filter:url(#filter6433)"
-         id="sensor.door.freezer"
+         id="binary_sensor.freezer_door"
          cx="345.50208"
          cy="580.96442"
          r="8.3473158" />
@@ -4115,7 +4115,7 @@
         <polygon
            inkscape:label="climate.office.mode.cool"
            transform="matrix(0.7584369,0,0,0.7584369,435.46514,441.80755)"
-           points="45,58.66 45,69.43 37.93,76.5 45,83.57 50,78.57 55,83.57 62.07,76.5 55,69.43 55,58.66 64.33,64.04 66.91,73.7 76.57,71.12 74.74,64.29 81.57,62.46 78.98,52.8 69.33,55.38 60,50 69.33,44.62 78.98,47.2 81.57,37.54 74.74,35.71 76.57,28.88 66.91,26.3 64.33,35.96 55,41.34 55,30.57 62.07,23.5 55,16.43 50,21.43 45,16.43 37.93,23.5 45,30.57 45,41.34 35.67,35.96 33.09,26.3 23.43,28.88 25.26,35.71 18.43,37.54 21.02,47.2 30.67,44.62 40,50 30.67,55.38 21.02,52.8 18.43,62.46 25.26,64.29 23.43,71.12 33.09,73.7 35.67,64.04 "
+           points="64.33,64.04 66.91,73.7 76.57,71.12 74.74,64.29 81.57,62.46 78.98,52.8 69.33,55.38 60,50 69.33,44.62 78.98,47.2 81.57,37.54 74.74,35.71 76.57,28.88 66.91,26.3 64.33,35.96 55,41.34 55,30.57 62.07,23.5 55,16.43 50,21.43 45,16.43 37.93,23.5 45,30.57 45,41.34 35.67,35.96 33.09,26.3 23.43,28.88 25.26,35.71 18.43,37.54 21.02,47.2 30.67,44.62 40,50 30.67,55.38 21.02,52.8 18.43,62.46 25.26,64.29 23.43,71.12 33.09,73.7 35.67,64.04 45,58.66 45,69.43 37.93,76.5 45,83.57 50,78.57 55,83.57 62.07,76.5 55,69.43 55,58.66 "
            id="polygon8703-9"
            style="display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:#00f5ff;stroke-width:0.65925062;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter3458-51)" />
         <path
@@ -4459,7 +4459,7 @@
       </g>
       <circle
          style="opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal;filter:url(#filter6433)"
-         id="climate.office"
+         id="binary_sensor.office_aircon"
          cx="560.53369"
          cy="38.26685"
          r="8.3473158"
@@ -4937,7 +4937,7 @@
         <circle
            inkscape:label="light.bedroom"
            style="opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal;filter:url(#filter6433)"
-           id="light.bedroom"
+           id="light.bedroom_ceiling"
            cx="897.00012"
            cy="250"
            r="8.3473158" />
@@ -5395,7 +5395,7 @@
            inkscape:label="climate.bedroom.mode.heat" />
         <polygon
            transform="matrix(0.7584369,0,0,0.7584369,327.53907,122.12814)"
-           points="69.33,44.62 78.98,47.2 81.57,37.54 74.74,35.71 76.57,28.88 66.91,26.3 64.33,35.96 55,41.34 55,30.57 62.07,23.5 55,16.43 50,21.43 45,16.43 37.93,23.5 45,30.57 45,41.34 35.67,35.96 33.09,26.3 23.43,28.88 25.26,35.71 18.43,37.54 21.02,47.2 30.67,44.62 40,50 30.67,55.38 21.02,52.8 18.43,62.46 25.26,64.29 23.43,71.12 33.09,73.7 35.67,64.04 45,58.66 45,69.43 37.93,76.5 45,83.57 50,78.57 55,83.57 62.07,76.5 55,69.43 55,58.66 64.33,64.04 66.91,73.7 76.57,71.12 74.74,64.29 81.57,62.46 78.98,52.8 69.33,55.38 60,50 "
+           points="55,30.57 62.07,23.5 55,16.43 50,21.43 45,16.43 37.93,23.5 45,30.57 45,41.34 35.67,35.96 33.09,26.3 23.43,28.88 25.26,35.71 18.43,37.54 21.02,47.2 30.67,44.62 40,50 30.67,55.38 21.02,52.8 18.43,62.46 25.26,64.29 23.43,71.12 33.09,73.7 35.67,64.04 45,58.66 45,69.43 37.93,76.5 45,83.57 50,78.57 55,83.57 62.07,76.5 55,69.43 55,58.66 64.33,64.04 66.91,73.7 76.57,71.12 74.74,64.29 81.57,62.46 78.98,52.8 69.33,55.38 60,50 69.33,44.62 78.98,47.2 81.57,37.54 74.74,35.71 76.57,28.88 66.91,26.3 64.33,35.96 55,41.34 "
            id="climate.bedroom.mode.cool"
            style="display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:#00f5ff;stroke-width:0.65925062;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter3458-51)"
            inkscape:label="climate.bedroom.mode.cool" />

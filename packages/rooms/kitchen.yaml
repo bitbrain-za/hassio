@@ -32,7 +32,7 @@ automation:
       - platform: event
         event_type: click
         event_data:
-          entity_id: binary_sensor.wall_switch_right_158d0001f3f4a8
+          entity_id: binary_sensor.kitchen_switch
           click_type: single
     action:
       - service: light.toggle
@@ -78,6 +78,7 @@ automation:
 
   - id: 297DFEC5-271A-4FB6-B8B3-DB6F08A3FF7B
     alias: Alert timer Expires
+    initial_state: 'on'
     trigger:
     - platform: event
       event_type: timer.finished

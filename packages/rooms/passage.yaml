@@ -30,8 +30,9 @@ automation:
       from: 'off'
       to: 'on'
     condition:
-    - condition: sun
-      after: sunset
+    - condition: state
+      entity_id: sun.sun
+      state: below_horizon
     action:
     - service: light.turn_on
       data_template:

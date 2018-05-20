@@ -36,9 +36,34 @@ group:
       - light.bathroom
       - light.lab
 
+  lights_control:
+    name: Lights
+    view: no
+    entities:
+      - light.kitchen
+      - light.lounge
+      - light.entrance
+      - light.bathroom
+      - light.bedroom
+      - light.mes
+      - light.back
+      - light.front
+      - light.passage
+      - light.office
+      - light.lab
+
   philip:
     name: Philip
     view: no
     entities:
       - group.phil_home
       - group.phil_not_home
+
+  living_room:
+    name: Lounge
+    view: no
+    entities:
+      - sensor.temperature_living_room 
+      - climate.carrier
+      - switch.jukebox_power
+      - media_player.samsung_tv_remote

@@ -13,9 +13,22 @@ light:
   - platform: yeelight
     devices:
       192.168.1.36:
-        name: bedroom
+        name: bedroom_ceiling
         save_on_change: false
         use_music_mode: true
+
+  - platform: yeelight
+    devices:
+      192.168.1.52:
+        name: bedside
+        save_on_change: false
+        use_music_mode: true
+
+  - platform: group
+    name: bedroom
+    entities:
+      - light.bedroom_ceiling
+      - light.bedside
 
 #########################    VARIABLES    #########################
 
@@ -120,10 +133,6 @@ automation:
         event_data:
           entity_id: binary_sensor.bedside_button
           click_type: single
-    condition:
-      condition: state
-      entity_id: light.bedroom
-      state: 'on'
     action:
       - service: light.toggle
         data_template:

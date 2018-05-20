@@ -5,9 +5,14 @@ light:
   #     - light.bedside
 
   - platform: group
-    name: fp_bedroom
+    name: fp_bedroom_ceiling
     entities:
-      - light.bedroom
+      - light.bedroom_ceiling
+
+  - platform: group
+    name: fp_bedside
+    entities:
+      - light.bedside
 
   - platform: group
     name: fp_mes
@@ -235,6 +240,25 @@ sensor:
         value_template: >-
           {{now().strftime("%H")}}:{{now().strftime("%M")}}
 
+  - platform: template
+    sensors:
+      fp_freezer_door:
+        value_template: '{{ states.binary_sensor.freezer_door.state }}'
+
+  - platform: template
+    sensors:
+      fp_front_door:
+        value_template: '{{ states.binary_sensor.front_door.state }}'
+
+  - platform: template
+    sensors:
+      fp_back_door:
+        value_template: '{{ states.binary_sensor.back_door.state }}'
+
+  - platform: template
+    sensors:
+      fp_office_aircon:
+        value_template: '{{ states.binary_sensor.office_aircon.state }}'
 script:
 
   living_room_temp_up:

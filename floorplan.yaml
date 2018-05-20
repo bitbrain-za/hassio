@@ -25,7 +25,8 @@ groups:
       - light.lounge
       - light.lounge3
       - light.office
-      - light.bedroom
+      - light.bedroom_ceiling
+      - light.bedside
       - light.bathroom
       - light.back
       - light.front
@@ -53,7 +54,8 @@ groups:
       # - light.fp_store
       - light.fp_living_room
       - light.fp_office
-      - light.fp_bedroom
+      - light.fp_bedroom_ceiling
+      - light.fp_bedside
       - light.fp_bathroom
       - light.fp_back
       - light.fp_front
@@ -84,8 +86,13 @@ groups:
 
   - name: Doors
     entities:
+      - sensor.fp_front_door
+      - sensor.fp_back_door
+      - sensor.fp_office_aircon
+      - sensor.fp_freezer_door
       - binary_sensor.back_door
       - binary_sensor.front_door
+      - binary_sensor.office_aircon
       - binary_sensor.freezer_door
     states:
       - state: 'off'

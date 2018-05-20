@@ -76,13 +76,18 @@ automation:
     platform: state
     to: not_home
   condition:
-  - condition: template
-    value_template: >-
-      {% if is_state('climate.carrier', 'off') %}
-        False
-      {% else %}
-        True
-      {% endif %}
+    condition: and
+    conditions:
+    - condition: template
+      value_template: >-
+        {% if is_state('climate.carrier', 'off') %}
+          False
+        {% else %}
+          True
+        {% endif %}
+    - condition: state
+      entity_id: binary_sensor.office_aircon
+      state: 'on'
   action:
   - service: notify.p_phone_telegram
     data:
