@@ -110,9 +110,9 @@ automation:
         from: 'off'
         to: 'on'
     condition:
-      - condition: time
-        after: '23:00'
-        before: '07:00'
+      - condition: state
+        entity_id: input_boolean.bedtime
+        state: on
     action:
       - service: light.turn_on
         data_template:
@@ -131,9 +131,9 @@ automation:
         from: 'off'
         to: 'on'
     condition:
-      - condition: time
-        after: '07:00'
-        before: '23:00'
+      - condition: state
+        entity_id: input_boolean.bedtime
+        state: off
     action:
       - service: light.turn_on
         data_template:

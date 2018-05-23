@@ -134,6 +134,12 @@ scene:
         state: on
         brightness_pct: 10
         rgb_color: [102, 108, 255]
+      light.kitchen:
+        state: off
+      light.entrance:
+        state: off
+      light.passage:
+        state: off
 
   - name: living_room_dinner
     entities:
@@ -141,6 +147,12 @@ scene:
         state: on
         brightness: 158
         rgb_color: [255,145,108]
+      light.kitchen:
+        state: off
+      light.entrance:
+        state: off
+      light.passage:
+        state: off
 
   - name: living_room_music
     entities:
@@ -148,6 +160,12 @@ scene:
         state: on
         brightness_pct: 100
         rgb_color: [0, 0, 255]
+      light.kitchen:
+        state: off
+      light.entrance:
+        state: off
+      light.passage:
+        state: off
 
   - name: living_room_cheese
     entities:
@@ -155,6 +173,12 @@ scene:
         state: on
         brightness_pct: 30
         rgb_color: [255, 0, 128]
+      light.kitchen:
+        state: off
+      light.entrance:
+        state: off
+      light.passage:
+        state: off
 
   - name: living_room_sunset
     entities:
@@ -162,6 +186,12 @@ scene:
         state: on
         brightness_pct: 50
         rgb_color: [255,63,0]
+      light.kitchen:
+        state: off
+      light.entrance:
+        state: off
+      light.passage:
+        state: off
 
   - name: living_room_select_1
     entities:
@@ -245,11 +275,8 @@ script:
         data:
           entity_id: light.lounge
           brightness_pct: 30
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.living_room_colour
-          option: "living_room_select_4"
-
+          rgb_color: [255,0,0]
+      
 #################   AUTOMATIONS    #################
 
 #######################################################################################################

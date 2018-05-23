@@ -29,7 +29,8 @@ group:
       - light.kitchen
       - light.lounge
       - light.entrance
-      - light.bedroom
+      - light.bedroom_ceiling
+      - light.bedside
       - light.office
       - light.bathroom
       - light.mes

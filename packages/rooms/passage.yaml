@@ -39,7 +39,7 @@ automation:
         entity_id: light.passage
         brightness_pct: >-
           {% if is_state('input_boolean.bedtime', 'on') %}
-            {{ 30 }}
+            {{ 10 }}
           {% else %}
             {{ 100 }}
           {% endif %}
