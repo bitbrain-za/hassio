@@ -20,6 +20,7 @@ group:
       - group.phil_not_home
       - group.living_room
       - group.network
+      - input_boolean.bedtime
        
   all_lights_view:
     name: all lights

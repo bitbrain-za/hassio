@@ -21,6 +21,9 @@ http:
   ssl_certificate: "/ssl/fullchain.pem"
   ssl_key: "/ssl/privkey.pem"
 
+logger:
+  default: debug
+
 updater:
 discovery:
 conversation:

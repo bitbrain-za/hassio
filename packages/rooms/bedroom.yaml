@@ -15,14 +15,14 @@ light:
       192.168.1.36:
         name: bedroom_ceiling
         save_on_change: false
-        use_music_mode: true
+        use_music_mode: false
 
   - platform: yeelight
     devices:
       192.168.1.52:
         name: bedside
         save_on_change: false
-        use_music_mode: true
+        use_music_mode: false
 
   - platform: group
     name: bedroom
@@ -143,7 +143,7 @@ automation:
         state: 'off'
       - condition: state
         entity_id: input_boolean.bedtime
-        state: on
+        state: 'off'
     action:
     - service: light.turn_on
       data:
@@ -168,7 +168,7 @@ automation:
         state: 'off'
       - condition: state
         entity_id: input_boolean.bedtime
-        state: off
+        state: 'on'
     action:
     - service: light.turn_on
       data:
@@ -179,7 +179,7 @@ automation:
         ##### Button - Single Press #####
 
   - id: 854CFDDC-4FBC-4AAD-8FE4-8FC7C6BE464B
-    alias: Bedroom button on
+    alias: Bedroom button off
     initial_state: 'on'
     trigger:
     - platform: event
@@ -196,13 +196,13 @@ automation:
       entity_id: light.bedroom
 
   - id: AD49B25E-B89C-406E-B8FB-E1AE3B3F5735
-    alias: bedroom button off
+    alias: bedroom button on
     initial_state: 'on'
     trigger:
     - platform: event
       event_type: click
       event_data:
-        entity_id: binary_sensor.bedroom_wall
+        entity_id: binary_sensor.bedside_button
         click_type: single
     condition:
     - condition: state

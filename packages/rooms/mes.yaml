@@ -100,28 +100,28 @@ automation:
         data_template:
           entity_id: light.mes
 
-# If it's after bedtime, turn the brightness down and set the dim direction up
+# # If it's after bedtime, turn the brightness down and set the dim direction up
   - id: ABD330D0-FB2F-4A59-A2FF-253351C287EC
     alias: MES on after bedtime
     initial_state: 'on'
     trigger:
-      - platform: state
-        entity_id: light.mes
-        from: 'off'
-        to: 'on'
+    - platform: state
+      entity_id: light.mes
+      from: 'off'
+      to: 'on'
     condition:
-      - condition: state
-        entity_id: input_boolean.bedtime
-        state: on
+    - condition: state
+      entity_id: input_boolean.bedtime
+      state: 'on'
     action:
-      - service: light.turn_on
-        data_template:
-          entity_id: light.mes
-          brightness_pct: 30
-      - service: input_boolean.turn_off
-        entity_id: input_boolean.mes_dim
+    - service: light.turn_on
+      data_template:
+        entity_id: light.mes
+        brightness_pct: 30
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.mes_dim
 
-# If it's before bedtime, turn the brightness up and set the dim direction down
+# # If it's before bedtime, turn the brightness up and set the dim direction down
   - id: AE70F85B-73C5-4F62-A7C7-EDD3D6B3E7F5
     alias: MES on not bedtime
     initial_state: 'on'
@@ -133,7 +133,7 @@ automation:
     condition:
       - condition: state
         entity_id: input_boolean.bedtime
-        state: off
+        state: 'off'
     action:
       - service: light.turn_on
         data_template:
