@@ -58,3 +58,22 @@ automation:
     - service: light.toggle
       entity_id: light.office
 
+  - id: 731952F9-1A83-4505-8DE7-984B3C0B0276
+    alias: bedtime aircon notification
+    initial_state: 'on'
+    trigger:
+    - platform: state
+      entity_id: input_boolean.bedtime
+      from: 'off'
+      to: 'on'
+    condition:
+    - platform: state
+      entity_id: binary_sensor.office_aircon
+      state: 'on'
+    action:
+    - service: notify.p_phone_telegram
+      data:
+        message: "You forgot to turn off the office aircon"
+
+
+
