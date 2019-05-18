@@ -1,0 +1,616 @@
+resources:
+  - url: https://cdn.jsdelivr.net/gh/bramkragten/custom-ui@master/weather-card/weather-card.min.js
+    type: module
+  - url: /local/plugins/card-tools.js?v=1
+    type: js
+  - url: /local/plugins/card-modder.js?v=1
+    type: js
+  - url: /local/plugins/compact-custom-header.js?v=0.0.1
+    type: module
+
+views:
+  #     __  ___      _
+  #    /  |/  /___ _(_)___
+  #   / /|_/ / __ `/ / __ \
+  #  / /  / / /_/ / / / / /
+  # /_/  /_/\__,_/_/_/ /_/
+
+  - title: main
+    background: center / cover no-repeat url("/local/back.png") fixed
+    icon: mdi:home-outline
+    cards:
+
+      - type: custom:compact-custom-header
+        main_config: true
+        background: transparent url("/local/header.jpg")
+
+      # Lights Card
+      - type: custom:card-modder
+        style:
+          # background-image: url("/local/cardbackK.png")
+          # background-repeat: no-repeat
+          background-color: rgba(50,50,50,0.3)
+          background-size: 100% 68px
+          border-radius: 20px
+          border: solid 1px rgba(100,100,100,0.3)
+          box-shadow: 3px 3px rgba(0,0,0,0.4)
+        card:
+          type: glance
+          # title: Lights
+          # column_width: calc(100% / 6)
+          show_state: false
+          entities:
+            - entity: light.lounge
+              name: Lounge
+              icon: mdi:sofa
+              tap_action:
+                action: toggle
+            - entity: light.passage
+              name: Passage
+              icon: mdi:ceiling-light
+              tap_action:
+                action: toggle
+            - entity: light.kitchen
+              name: Kitchen
+              icon: mdi:fridge-outline
+              tap_action:
+                action: toggle
+            - entity: light.entrance
+              name: Entrance
+              icon: mdi:door
+              tap_action:
+                action: toggle
+            - entity: light.bedroom
+              name: Bedroom
+              icon: mdi:hotel
+              tap_action:
+                action: toggle
+            - entity: light.mes
+              name: En-Suite
+              icon: mdi:toilet
+              tap_action:
+                action: toggle
+            - entity: light.bathroom
+              name: Bathroom
+              icon: mdi:toilet
+              tap_action:
+                action: toggle
+            - entity: light.office
+              name: Office
+              icon: mdi:desktop-classic
+              tap_action:
+                action: toggle
+            - entity: light.lab
+              name: Lab
+              icon: mdi:beaker-outline
+              tap_action:
+                action: toggle
+            - entity: light.back
+              name: Garden
+              icon: mdi:flower
+              tap_action:
+                action: toggle
+            - entity: light.front
+              name: Outside
+              icon: mdi:flower
+              tap_action:
+                action: toggle
+
+      # Thermostat
+      - type: custom:card-modder
+        style:
+          # background-image: url("/local/cardbackK.png")
+          # background-repeat: no-repeat
+          # background-color: rgba(50,50,50,0.3)
+          background-size: 100% 68px
+          border-radius: 20px
+          border: solid 1px rgba(100,100,100,0.3)
+          box-shadow: 3px 3px rgba(0,0,0,0.4)
+        card:
+          type: thermostat
+          entity: climate.carrier
+
+      # Oyster Box
+      - type: custom:card-modder
+        style:
+          background-image: url("/local/cardbackK.png")
+          background-repeat: no-repeat
+          background-color: rgba(50,50,50,0.3)
+          background-size: 100% 68px
+          border-radius: 20px
+          border: solid 1px rgba(100,100,100,0.3)
+          box-shadow: 3px 3px rgba(0,0,0,0.4)
+        card:
+          type: picture-glance
+          title: The Oyster Box
+          entities: []
+          camera_image: camera.the_oyster_box
+
+      # Shopping List
+      - type: custom:card-modder
+        style:
+          background-image: url("/local/cardbackK.png")
+          background-repeat: no-repeat
+          background-color: rgba(50,50,50,0.3)
+          background-size: 100% 68px
+          border-radius: 20px
+          border: solid 1px rgba(100,100,100,0.3)
+          box-shadow: 3px 3px rgba(0,0,0,0.4)
+        card:
+          type: shopping-list
+          title: Shopping List
+
+      # Weather
+      - type: custom:card-modder
+        style:
+          # background-image: url("/local/cardbackK.png")
+          # background-repeat: no-repeat
+          background-color: rgba(50,50,50,0.3)
+          background-size: 100% 68px
+          border-radius: 20px
+          border: solid 1px rgba(100,100,100,0.3)
+          box-shadow: 3px 3px rgba(0,0,0,0.4)
+        card:
+          type: 'custom:weather-card'
+          entity: weather.dark_sky
+          name: DBN
+
+#     __
+#    / /   ____  __  ______  ____ ____
+#   / /   / __ \/ / / / __ \/ __ `/ _ \
+#  / /___/ /_/ / /_/ / / / / /_/ /  __/
+# /_____/\____/\__,_/_/ /_/\__, /\___/
+#                         /____/
+
+  - title: Lounge
+    icon: mdi:sofa
+    background: center / cover no-repeat url("/local/back.png") fixed
+    cards:
+      - type: custom:compact-custom-header
+
+        # Light
+      - type: custom:card-modder
+        style:
+          background-repeat: no-repeat
+          background-color: rgba(50,50,50,0.3)
+          background-size: 100% 68px
+          border-radius: 20px
+          border: solid 1px rgba(100,100,100,0.3)
+          box-shadow: 3px 3px rgba(0,0,0,0.4)
+        card:
+          type: light
+          entity: light.lounge
+
+      # Thermostat
+      - type: custom:card-modder
+        style:
+          # background-image: url("/local/cardbackK.png")
+          # background-repeat: no-repeat
+          # background-color: rgba(50,50,50,0.3)
+          background-size: 100% 68px
+          border-radius: 20px
+          border: solid 1px rgba(100,100,100,0.3)
+          box-shadow: 3px 3px rgba(0,0,0,0.4)
+        card:
+          type: thermostat
+          entity: climate.carrier
+
+      # TV
+      - type: custom:card-modder
+        style:
+          background-repeat: no-repeat
+          background-color: rgba(50,50,50,0.3)
+          background-size: 100% 68px
+          border-radius: 20px
+          border: solid 1px rgba(100,100,100,0.3)
+          box-shadow: 3px 3px rgba(0,0,0,0.4)          
+        card:
+          type: entity-button
+          entity: switch.tv_power
+          show_name: false
+
+      # Spotify
+      - type: custom:card-modder
+        style:
+          background-repeat: no-repeat
+          background-color: rgba(50,50,50,0.3)
+          background-size: 100% 68px
+          border-radius: 20px
+          border: solid 1px rgba(100,100,100,0.3)
+          box-shadow: 3px 3px rgba(0,0,0,0.4)          
+        card:
+          type: media-control
+          entity: media_player.spotify
+
+#    _____            __
+#   / ___/__  _______/ /____  ____ ___
+#   \__ \/ / / / ___/ __/ _ \/ __ `__ \
+#  ___/ / /_/ (__  ) /_/  __/ / / / / /
+# /____/\__, /____/\__/\___/_/ /_/ /_/
+#      /____/
+
+  - title: System
+    icon: mdi:desktop-classic
+    background: center / cover no-repeat url("/local/back.png") fixed
+    cards:
+      - type: custom:compact-custom-header
+
+      # Internet
+      - type: custom:card-modder
+        style:
+          background-repeat: no-repeat
+          background-color: rgba(50,50,50,0.3)
+          background-size: 100% 68px
+          border-radius: 20px
+          border: solid 1px rgba(100,100,100,0.3)
+          box-shadow: 3px 3px rgba(0,0,0,0.4)          
+        card:
+          type: vertical-stack 
+          cards:
+          - type: gauge
+            name: Download
+            unit: 'Mbit/s'
+            entity: sensor.speedtest_download 
+            severity:
+              red: 0
+              yellow: 4
+              green: 8
+            min: 0
+            max: 10
+          - type: gauge
+            name: Upload
+            unit: 'Mbit/s'
+            entity: sensor.speedtest_upload
+            min: 0
+            max: 5
+            severity:
+              red: 0
+              yellow: 2
+              green: 4
+          - type: gauge
+            name: Ping
+            unit: 'ms'
+            entity: sensor.speedtest_ping
+            min: 0
+            max: 1000
+            severity:
+              green: 0
+              yellow: 300
+              red: 600
+          - type: history-graph
+            title: Internet
+            hours_to_show: 120
+            entities:
+              - sensor.speedtest_download
+              - sensor.speedtest_upload
+
+      # System
+      - type: custom:card-modder
+        style:
+          background-repeat: no-repeat
+          background-color: rgba(50,50,50,0.3)
+          background-size: 100% 68px
+          border-radius: 20px
+          border: solid 1px rgba(100,100,100,0.3)
+          box-shadow: 3px 3px rgba(0,0,0,0.4)          
+        card:
+          type: vertical-stack 
+          cards:
+          - type: gauge
+            name: Disk
+            unit: '%'
+            entity: sensor.disk_use_percent_home
+            severity:
+              green: 0
+              yellow: 33
+              red: 66
+          - type: gauge
+            name: CPU
+            unit: '%'
+            entity: sensor.processor_use
+            severity:
+              green: 0
+              yellow: 33
+              red: 66          
+
+
+#    _____      __  __  _
+#   / ___/___  / /_/ /_(_)___  ____ ______
+#   \__ \/ _ \/ __/ __/ / __ \/ __ `/ ___/
+#  ___/ /  __/ /_/ /_/ / / / / /_/ (__  )
+# /____/\___/\__/\__/_/_/ /_/\__, /____/
+#                           /____/
+
+  - title: Settings
+    background: center / cover no-repeat url("/local/back.png") fixed
+    icon: mdi:settings
+    cards:
+      - type: custom:compact-custom-header
+      - type: custom:card-modder
+        style:
+          background-image: url("/local/cardbackK.png")
+          background-repeat: no-repeat
+          background-color: rgba(50,50,50,0.3)
+          background-size: 100% 68px
+          border-radius: 20px
+          border: solid 1px rgba(100,100,100,0.3)
+          box-shadow: 3px 3px rgba(0,0,0,0.4)
+        card:
+          type: glance
+          entities: 
+            - input_select.hass_theme
+
+       
+#     ________                       __
+#    / ____/ /___  ____  _________  / /___ _____
+#   / /_  / / __ \/ __ \/ ___/ __ \/ / __ `/ __ \
+#  / __/ / / /_/ / /_/ / /  / /_/ / / /_/ / / / /
+# /_/   /_/\____/\____/_/  / .___/_/\__,_/_/ /_/
+#                         /_/
+
+  - title: Floorplan
+    panel: true
+    # background: center / cover no-repeat url("/local/back.png") fixed
+    # background: rgba(255,0,0,50)
+    icon: mdi:floor-plan
+    cards:
+      - type: picture-elements
+        background-color: rgba(255,0,0,100)
+        image: /local/floorplan/floorplan.png
+        elements: 
+          # Office
+          - type: image
+            tap_action: 
+              action: toggle
+            entity: light.office
+            image: /local/floorplan/light.png
+            state_filter:
+              "off": opacity(0%)
+              "on": opacity(100%)
+            style:
+              top: 17.8%
+              left: 48.05%
+              width: 5%
+          - type: image
+            entity: binary_sensor.office_aircon
+            image: /local/floorplan/light.png
+            state_filter:
+              "off": opacity(0%)
+              "on": opacity(100%)
+            style:
+              top: 10%
+              left: 40.7%
+              width: 5%
+          - type: image
+            entity: device_tracker.bc5ff42036a8
+            image: /local/floorplan/light.png
+            state_filter:
+              "not_home": opacity(0%)
+              "home": opacity(100%)
+            style:
+              top: 29%
+              left: 45.8%
+              width: 5%
+          # Bedroom
+          - type: image
+            tap_action: 
+              action: toggle
+            entity: light.bedside
+            image: /local/floorplan/light.png
+            state_filter:
+              "off": opacity(0%)
+              "on": opacity(100%)
+            style:
+              top: 30%
+              left: 63.5%
+              width: 5%              
+          - type: image
+            tap_action: 
+              action: toggle
+            entity: light.bedroom_ceiling
+            image: /local/floorplan/light.png
+            state_filter:
+              "off": opacity(0%)
+              "on": opacity(100%)
+            style:
+              top: 35.1%
+              left: 60.85%
+              width: 5%
+          # MES
+          - type: image
+            tap_action: 
+              action: toggle
+            entity: light.mes
+            image: /local/floorplan/light.png
+            state_filter:
+              "off": opacity(0%)
+              "on": opacity(100%)
+            style:
+              top: 72.2%
+              left: 64.68%
+              width: 5%
+          - type: image
+            tap_action: 
+              action: toggle
+            entity: switch.mes_extractor
+            image: /local/floorplan/light.png
+            state_filter:
+              "off": opacity(0%)
+              "on": opacity(100%)
+            style:
+              top: 81.2%
+              left: 64.68%
+              width: 5%              
+          # Lounge
+          - type: image
+            tap_action: 
+              action: toggle
+            entity: light.back
+            image: /local/floorplan/light.png
+            state_filter:
+              "off": opacity(0%)
+              "on": opacity(100%)
+            style:
+              top: 12.9%
+              left: 26.9%
+              width: 5%
+          - type: image
+            entity: binary_sensor.back_door
+            image: /local/floorplan/light.png
+            state_filter:
+              "off": opacity(0%)
+              "on": opacity(100%)
+            style:
+              top: 16.9%
+              left: 24.8%
+              width: 5%
+          - type: image
+            tap_action: 
+              action: toggle
+            entity: switch.living_room_aircon_power
+            image: /local/floorplan/light.png
+            state_filter:
+              "off": opacity(0%)
+              "on": opacity(100%)
+            style:
+              top: 23.0%
+              left: 21.4%
+              width: 5%
+          - type: image
+            tap_action: 
+              action: toggle
+            entity: light.lounge1
+            image: /local/floorplan/light.png
+            state_filter:
+              "off": opacity(0%)
+              "on": opacity(100%)
+            style:
+              top: 37.6%
+              left: 25.7%
+              width: 5%
+          - type: image
+            tap_action: 
+              action: toggle
+            entity: light.lounge1
+            image: /local/floorplan/light.png
+            state_filter:
+              "off": opacity(0%)
+              "on": opacity(100%)
+            style:
+              top: 37.6%
+              left: 28.6%
+              width: 5%
+          - type: image
+            tap_action: 
+              action: toggle
+            entity: switch.tv_power
+            image: /local/floorplan/light.png
+            state_filter:
+              "off": opacity(0%)
+              "on": opacity(100%)
+            style:
+              top: 40.75%
+              left: 20.75%
+              width: 5%
+          # Lab
+          - type: image
+            tap_action: 
+              action: toggle
+            entity: light.lab
+            image: /local/floorplan/light.png
+            state_filter:
+              "off": opacity(0%)
+              "on": opacity(100%)
+            style:
+              top: 51.00%
+              left: 12.05%
+              width: 5%
+          # Entrance
+          - type: image
+            tap_action: 
+              action: toggle
+            entity: light.entrance
+            image: /local/floorplan/light.png
+            state_filter:
+              "off": opacity(0%)
+              "on": opacity(100%)
+            style:
+              top: 73.5%
+              left: 21.05%
+              width: 5%
+          - type: image
+            tap_action: 
+              action: toggle
+            entity: binary_sensor.front_door
+            image: /local/floorplan/light.png
+            state_filter:
+              "off": opacity(0%)
+              "on": opacity(100%)
+            style:
+              top: 84.50%
+              left: 21.05%
+              width: 5%
+          - type: image
+            tap_action: 
+              action: toggle
+            entity: light.front
+            image: /local/floorplan/light.png
+            state_filter:
+              "off": opacity(0%)
+              "on": opacity(100%)
+            style:
+              top: 89.54%
+              left: 21.80%
+              width: 5%
+          # Kitchen
+          - type: image
+            tap_action: 
+              action: toggle
+            entity: light.kitchen
+            image: /local/floorplan/light.png
+            state_filter:
+              "off": opacity(0%)
+              "on": opacity(100%)
+            style:
+              top: 78.5%
+              left: 31.2%
+              width: 5%
+          - type: image
+            entity: binary_sensor.freezer_door
+            image: /local/floorplan/light.png
+            state_filter:
+              "off": opacity(0%)
+              "on": opacity(100%)
+            style:
+              top: 74.2%
+              left: 27.8%
+              width: 5%
+          # Bathroom
+          - type: image
+            tap_action: 
+              action: toggle
+            entity: light.kitchen
+            image: /local/floorplan/light.png
+            state_filter:
+              "off": opacity(0%)
+              "on": opacity(100%)
+            style:
+              top: 78.5%
+              left: 42.65%
+              width: 5%
+          # Passage
+          - type: image
+            tap_action: 
+              action: toggle
+            entity: light.passage
+            image: /local/floorplan/light.png
+            state_filter:
+              "off": opacity(0%)
+              "on": opacity(100%)
+            style:
+              top: 51%
+              left: 45.4%
+              width: 5%              
+          
+
+      - type: custom:compact-custom-header
