@@ -1,26 +1,23 @@
-#Philip Devices
 device_tracker.bc5ff42036a8:
   friendly_name: Philip Desktop
 device_tracker.huawei_p9_lite:
   friendly_name: Philip
-  entity_picture: /local/turtle.jpg 
+  entity_picture: /local/turtle.jpg
 device_tracker.p_phone:
   friendly_name: Philip
-  entity_picture: /local/turtle.jpg 
+  entity_picture: /local/turtle.jpg
 sensor.philip_battery:
   friendly_name: Battery
   icon: mdi:battery
-
 device_tracker.mum_zanz:
   friendly_name: Mum
-  entity_picture: /local/people/mum.png 
-
+  entity_picture: /local/people/mum.png
 sensor.owm_cloud_coverage:
   friendly_name: Clouds
   icon: mdi:weather-partlycloudy
-sensor.owm_condition: 
+sensor.owm_condition:
   friendly_name: Condition
-sensor.owm_humidity: 
+sensor.owm_humidity:
   friendly_name: Humidity
   icon: mdi:water-percent
 sensor.owm_rain:
@@ -28,37 +25,28 @@ sensor.owm_rain:
   icon: mdi:weather-rainy
 sensor.owm_temperature:
   friendly_name: Temperature
-
-
 sensor.temperature_living_room:
   friendly_name: Lounge Temperature
 sensor.humidity_158d00022cc5d7:
   friendly_name: Lounge Humidity
 sensor.pressure_158d00022cc5d7:
   friendly_name: Lounge Pressure
-
 binary_sensor.mes_button:
   friendly_name: switch mes
-
 binary_sensor.bedroom_wall:
-  friendly_name: wall switch 1  
-
+  friendly_name: wall switch 1
 binary_sensor.bathroom_wall:
   friendly_name: wall switch 2
-  
 binary_sensor.living_room_wall_both:
   friendly_name: double switch both
 binary_sensor.living_room_wall_left:
   friendly_name: double switch left
 binary_sensor.living_room_wall_right:
   friendly_name: double switch right
-
 binary_sensor.front_door:
   friendly_name: front_door
 binary_sensor.back_door:
   friendly_name: back_door
-
-
 light.kitchen:
   friendly_name: Kitchen
 light.lounge:
@@ -81,11 +69,14 @@ light.office:
   friendly_name: Office
 light.lab:
   friendly_name: Lab
-
 group.philip:
   friendly_name: Philip
-  entity_picture: /local/turtle.jpg 
-
+  entity_picture: /local/turtle.jpg
 switch.jukebox_power:
   friendly_name: Jukebox Power
   entity_picture: /local/icons/jukebox.png
+device_tracker.002314451368: {}
+
+# binary_sensor.floorplan:
+#   custom_ui_state_card: state-card-floorplan
+#   config: !include floorplan.yaml

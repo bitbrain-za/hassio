@@ -5,6 +5,8 @@ input_select:
       - default
       - solarized
       - PmxMononight
+      - Night_Theme
+      - pb
     initial: default
     icon: mdi:theme-light-dark
     
@@ -18,7 +20,7 @@ automation:
   action:
   - service: frontend.set_theme
     data_template:
-      name: solarized
+      name: Night_Theme
 
 - id: hass_theme
   alias: hass_theme

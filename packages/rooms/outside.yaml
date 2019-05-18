@@ -40,7 +40,7 @@ automation:
     trigger:
     - platform: sun
       event: sunset
-      offset: '-01:00:00'
+      # offset: '-01:00:00'
     action:
     - service: light.turn_on
       data_template:
@@ -131,21 +131,21 @@ automation:
         brightness_pct: 30
 
   # On the off chance the door is closed less than 30 minutes before sunrise
-  - id: 0BFB06D4-3683-45FF-9A6F-A6C75D7A5D9C
-    alias: turn off front when door is closed for 3 minutes in an odd time
-    initial_state: 'on'
-    trigger:
-    - platform: state
-      entity_id: binary_sensor.front_door
-      from: 'on'
-      to: 'off'
-      for: '00:30:00'
-    condition:
-    - condition: sun
-      before: sunset
-    action:
-    - service: light.turn_off
-      entity_id: light.front
+  # - id: 0BFB06D4-3683-45FF-9A6F-A6C75D7A5D9C
+  #   alias: turn off front when door is closed for 3 minutes in an odd time
+  #   initial_state: 'on'
+  #   trigger:
+  #   - platform: state
+  #     entity_id: binary_sensor.front_door
+  #     from: 'on'
+  #     to: 'off'
+  #     for: '00:30:00'
+  #   condition:
+  #   - condition: sun
+  #     before: sunset
+  #   action:
+  #   - service: light.turn_off
+  #     entity_id: light.front
 
   # When the back door is opened, turn on the back light
   - id: 1B764172-4BE2-4276-843A-9DAD4F46EA11

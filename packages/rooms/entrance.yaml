@@ -113,10 +113,40 @@ automation:
     initial_state: 'on'
     trigger:
     - platform: event
-      event_type: click
+      event_type: xiaomi_aqara.click
       event_data:
         entity_id: binary_sensor.entrance_button
         click_type: single
     action:
     - service: timer.start
       entity_id: timer.goodbye
+
+  - id: 0CDFFF09-3A2C-4FC7-8419-B8BD250BDCB7
+    alias: goodbye button pressed
+    initial_state: 'on'
+    trigger:
+    - platform: event
+      event_type: xiaomi_aqara.click
+      event_data:
+        entity_id: binary_sensor.entrance_button
+        click_type: single
+    action:
+    - service: light.turn_on
+      entity_id: light.entrance
+    - service: light.turn_off
+      entity_id: group.goodbye_lights
+    - service: timer.start
+      entity_id: timer.goodbye
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.carrier
+        operation_mode: 'off'
+    - service: media_player.turn_off
+      data:
+        entity_id: media_player.samsung_tv_remote
+    - service: script.turn_on
+      data:
+        entity_id: script.going_out
+    - service: media_player.turn_off
+      data:
+        entity_id: media_player.smart_ir_tv

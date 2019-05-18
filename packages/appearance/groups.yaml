@@ -19,8 +19,25 @@ group:
       - light.bedroom
       - light.mes
       - light.bathroom
+      - light.office
       - light.lab
       
+  goodbye_lights:
+    name: goodbye lights
+    view: no
+    icon: mdi:lightbulb
+    entities:
+      - light.spare_room
+      - light.passage
+      - light.kitchen
+      - light.store
+      - light.lounge
+      - light.bedroom
+      - light.mes
+      - light.bathroom
+      - light.lab
+      - light.office
+
   lights_bedtime:
     name: Bedtime Lights
     view: no
@@ -66,4 +83,15 @@ group:
       - sensor.temperature_living_room 
       - climate.carrier
       - switch.jukebox_power
-      - media_player.samsung_tv_remote
+      - media_player.smart_ir_tv
+
+  tarantula:
+    name: Tarantula
+    view: no
+    entities: 
+    - sensor.octoprint_actual_bed_temp
+    - sensor.octoprint_actual_tool0_temp
+    - sensor.octoprint_current_state
+    - sensor.octoprint_job_percentage
+    - sensor.octoprint_target_bed_temp
+    - sensor.octoprint_target_tool0_temp

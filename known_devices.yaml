@@ -191,22 +191,6 @@ android5193037bdc6b05c7:
   picture:
   track: true
 
-jukebox:
-  hide_if_away: false
-  icon:
-  mac: 8C:89:A5:2B:7A:A3
-  name: jukebox
-  picture:
-  track: true
-
-jukebox_2:
-  hide_if_away: false
-  icon:
-  mac: B8:27:EB:F2:E0:45
-  name: jukebox
-  picture:
-  track: true
-
 desktopn8gkdpd:
   hide_if_away: false
   icon:
@@ -231,11 +215,12 @@ desktopc8ac5qm:
   picture:
   track: true
 
-jukebox_3:
+jukebox:
   hide_if_away: false
   icon:
   mac: 40:9B:CD:06:26:B1
   name: jukebox
+  consider_home: 30
   picture:
   track: true
 
@@ -276,5 +261,237 @@ nicksgalaxys9:
   icon:
   mac: 24:18:1D:AE:5E:A5
   name: Nicks-Galaxy-S9
+  picture:
+  track: true
+
+esp_0df678:
+  hide_if_away: false
+  icon:
+  mac: 78:11:DC:0D:F6:78
+  name: ESP 0DF678
+  picture:
+  track: true
+
+yeelinklightcolor1_miio86765265:
+  hide_if_away: false
+  icon:
+  mac: 7C:49:EB:0F:8F:E4
+  name: yeelink-light-color1 miio86765265
+  picture:
+  track: true
+
+philips_ipad:
+  hide_if_away: false
+  icon:
+  mac:
+  name: philips ipad
+  picture:
+  track: true
+
+octopi:
+  hide_if_away: false
+  icon:
+  mac: B8:27:EB:1A:C1:82
+  name: octopi
+  picture:
+  track: true
+
+b827eb4f94d7:
+  hide_if_away: false
+  icon:
+  mac: B8:27:EB:4F:94:D7
+  name: b827eb4f94d7
+  picture:
+  track: true
+
+octopi_2:
+  hide_if_away: false
+  icon:
+  mac: B8:27:EB:F2:E0:45
+  name: octopi
+  picture:
+  track: true
+
+khmpc:
+  hide_if_away: false
+  icon:
+  mac: 30:10:B3:7C:4F:CB
+  name: KHM-PC
+  picture:
+  track: true
+
+androida4d463caaa9e2448:
+  hide_if_away: false
+  icon:
+  mac: 9C:2A:83:40:05:31
+  name: android-a4d463caaa9e2448
+  picture:
+  track: true
+
+smj320w8:
+  hide_if_away: false
+  icon:
+  mac: 14:56:8E:25:38:F9
+  name: SM-J320W8
+  picture:
+  track: true
+
+android56a4e73f4953b4c7:
+  hide_if_away: false
+  icon:
+  mac: BC:76:5E:80:76:DF
+  name: android-56a4e73f4953b4c7
+  picture:
+  track: true
+
+charlie:
+  hide_if_away: false
+  icon:
+  mac: 40:F0:2F:A7:0C:E3
+  name: Charlie
+  picture:
+  track: true
+
+chanelsiphone:
+  hide_if_away: false
+  icon:
+  mac: 00:F7:6F:B7:2F:FA
+  name: Chanels-iPhone
+  picture:
+  track: true
+
+a02c36b79e74:
+  hide_if_away: false
+  icon:
+  mac: A0:2C:36:B7:9E:74
+  name: a02c36b79e74
+  picture:
+  track: true
+
+galaxys8:
+  hide_if_away: false
+  icon:
+  mac: 30:07:4D:CE:C9:F3
+  name: Galaxy-S8
+  picture:
+  track: true
+
+28ef011dcfc5:
+  hide_if_away: false
+  icon:
+  mac: 28:EF:01:1D:CF:C5
+  name: 28ef011dcfc5
+  picture:
+  track: true
+
+galaxys8_2:
+  hide_if_away: false
+  icon:
+  mac: 30:07:4D:DF:4B:FA
+  name: Galaxy-S8
+  picture:
+  track: true
+
+akirasmbp:
+  hide_if_away: false
+  icon:
+  mac: 38:F9:D3:41:23:0C
+  name: Akiras-MBP
+  picture:
+  track: true
+
+android1783acecfabdfde7:
+  hide_if_away: false
+  icon:
+  mac: BC:E5:9F:C4:81:77
+  name: android-1783acecfabdfde7
+  picture:
+  track: true
+
+androidb4094c9b312efa38:
+  hide_if_away: false
+  icon:
+  mac: 40:B8:37:D5:B1:8D
+  name: android-b4094c9b312efa38
+  picture:
+  track: true
+
+2014817redmi:
+  hide_if_away: false
+  icon:
+  mac: 58:44:98:31:FF:4D
+  name: 2014817-Redmi
+  picture:
+  track: true
+
+silvanapc:
+  hide_if_away: false
+  icon:
+  mac: 48:5D:60:D2:BC:60
+  name: Silvana-PC
+  picture:
+  track: true
+
+b8c1111879e2:
+  hide_if_away: false
+  icon:
+  mac: B8:C1:11:18:79:E2
+  name: b8c1111879e2
+  picture:
+  track: true
+
+cameronsiphone:
+  hide_if_away: false
+  icon:
+  mac: CC:25:EF:72:A4:13
+  name: Camerons-iPhone
+  picture:
+  track: true
+
+4098adbfd90c:
+  hide_if_away: false
+  icon:
+  mac: 40:98:AD:BF:D9:0C
+  name: 4098adbfd90c
+  picture:
+  track: true
+
+carol:
+  hide_if_away: false
+  icon:
+  mac: 80:86:F2:3E:3C:FD
+  name: Carol
+  picture:
+  track: true
+
+carolbaowiphone:
+  hide_if_away: false
+  icon:
+  mac: E0:66:78:CC:E0:76
+  name: CarolBaowiPhone
+  picture:
+  track: true
+
+carol_2:
+  hide_if_away: false
+  icon:
+  mac: 78:24:AF:B1:D3:BE
+  name: Carol
+  picture:
+  track: true
+
+jenthinkpad:
+  hide_if_away: false
+  icon:
+  mac: F0:D5:BF:27:A6:5A
+  name: Jen-ThinkPad
+  picture:
+  track: true
+
+raspberrypi_2:
+  hide_if_away: false
+  icon:
+  mac: B8:27:EB:F6:9A:73
+  name: raspberrypi
   picture:
   track: true

@@ -9,8 +9,7 @@
 
 #########################    OBJECTS    #########################
 
-light:
-  - platform: yeelight
+yeelight:
     devices:
       192.168.1.33:
         name: lounge1
@@ -21,36 +20,51 @@ light:
         transition: 1000
         save_on_change: false
 
+light:
   - platform: group
     name: lounge
     entities:
       - light.lounge1
       - light.lounge2
 
+
+smartir:
+  update_branch: rc
+      
 climate:
-  - platform: broadlink
+  - platform: smartir
     name: Carrier
-    host: 192.168.1.50
-    mac: !secret braodlink_rm_mini_mac 
-    ircodes_ini: 'broadlink_climate_codes/carrier.ini'
-    min_temp: 17
-    max_temp: 30
-    target_temp: 23
-    temp_sensor: sensor.temperature_living_room
-    default_operation: 'off'
-    default_fan_mode: low
-    customize:
-      operations:
-        - 'off'
-        - cool
-        - heat
-        - dry
-        - auto
-      fan_modes:
-        - low
-        - medium
-        - high
-        - auto
+    unique_id: office_ac
+    device_code: 1160
+    controller_data: 192.168.1.50
+    temperature_sensor: sensor.temperature_living_room
+    humidity_sensor: sensor.humidity_158d00022cc5d7
+    # power_sensor: binary_sensor.ac_power
+
+# climate:
+#   - platform: broadlink
+#     name: Carrier
+#     host: 192.168.1.50
+#     mac: !secret braodlink_rm_mini_mac 
+#     ircodes_ini: 'broadlink_climate_codes/carrier.ini'
+#     min_temp: 17
+#     max_temp: 30
+#     target_temp: 23
+#     temp_sensor: sensor.temperature_living_room
+#     default_operation: 'off'
+#     default_fan_mode: low
+#     customize:
+#       operations:
+#         - 'off'
+#         - cool
+#         - heat
+#         - dry
+#         - auto
+#       fan_modes:
+#         - low
+#         - medium
+#         - high
+#         - auto
 
 media_player:
   - platform: mpd
@@ -59,6 +73,12 @@ media_player:
   - platform: spotify
     client_id: !secret spotify_client_id_ha
     client_secret: !secret spotify_client_secret_ha
+  - platform: smartir
+    name: tv_ir
+    unique_id: tv_ir
+    device_code: 1060
+    controller_data: 192.168.1.50
+
 
 switch:
 
@@ -80,6 +100,10 @@ switch:
           service: shell_command.turn_off_jukebox
         icon_template: >-
           mdi:music
+
+  - platform: broadlink
+    host: 192.168.1.50
+    mac: !secret braodlink_rm_mini_mac          
 
 shell_command:
   turn_off_jukebox: 'ssh hass@192.168.1.26 sudo poweroff'
@@ -116,6 +140,14 @@ input_select:
       - living_room_music
       - living_room_sunset
       - living_room_select_6
+
+  j_single_options:
+    name: j single
+    initial: j_living_room_1
+    options:
+      - j_living_room_1
+      - j_living_room_2
+      - j_living_room_3
 
 #########################    BOOLEANS    #########################
 
@@ -197,7 +229,7 @@ scene:
     entities:
       light.lounge:
         state: on
-        rgb_color: [255,228,205]
+        rgb_color: [255,177,110]
 
   - name: living_room_select_2
     entities:
@@ -251,6 +283,32 @@ scene:
         state: on
         brightness_pct: 100
 
+  - name: j_living_room_1
+    entities:
+      light.lounge:
+        state: on
+        brightness_pct: 50
+        rgb_color: [255,177,110] 
+
+  - name: j_living_room_2
+    entities:
+      light.lounge:
+        state: on
+        brightness_pct: 20
+        rgb_color: [255,150,60] 
+
+  - name: j_living_room_3
+    entities:
+      light.lounge:
+        state: on
+        brightness_pct: 1
+        rgb_color: [255,122,0] 
+
+  # - name: j_living_room_4
+  #   entities:
+  #     light.lounge:
+  #       state: off
+
 #################   SCRIPTS    #################
 
 script:
@@ -276,6 +334,28 @@ script:
           entity_id: light.lounge
           brightness_pct: 30
           rgb_color: [255,0,0]
+
+  snooze:
+    alias: snooze_on_the_couch
+    sequence:
+      -  service: media_player.select_source
+         data: 
+           entity_id: media_player.spotify
+           source: jukebox
+      -  service: media_player.play_media
+         data:
+           entity_id: media_player.spotify
+           media_content_type: playlist
+           media_content_id: 
+      - service: light.turn_off
+        entity_id: light.kitchen
+      - service: light.turn_off
+        entity_id: light.entrance
+      - service: light.turn_on
+        data:
+          entity_id: light.lounge
+          brightness_pct: 10
+          rgb_color: [255,122,0]
       
 #################   AUTOMATIONS    #################
 
@@ -301,7 +381,7 @@ automation:
     initial_state: 'on'
     trigger:
       - platform: event
-        event_type: click
+        event_type: xiaomi_aqara.click
         event_data:
           entity_id: binary_sensor.living_room_wall_left
           click_type: single
@@ -319,7 +399,7 @@ automation:
     initial_state: 'on'
     trigger:
       - platform: event
-        event_type: click
+        event_type: xiaomi_aqara.click
         event_data:
           entity_id: binary_sensor.living_room_wall_left
           click_type: single
@@ -331,7 +411,7 @@ automation:
       - service: light.turn_on
         data:
           entity_id: light.lounge
-          rgb_color: [255,228,205]
+          rgb_color: [255,177,110]
           brightness_pct: 100
 
           #########
@@ -343,7 +423,7 @@ automation:
     initial_state: 'on'
     trigger:
       - platform: event
-        event_type: click
+        event_type: xiaomi_aqara.click
         event_data:
           entity_id: binary_sensor.living_room_wall_right
           click_type: single
@@ -375,7 +455,7 @@ automation:
     initial_state: 'on'
     trigger:
       - platform: event
-        event_type: click
+        event_type: xiaomi_aqara.click
         event_data:
           entity_id: binary_sensor.living_room_wall_both
           click_type: both
@@ -405,7 +485,7 @@ automation:
     initial_state: 'on'
     trigger:
       - platform: event
-        event_type: click
+        event_type: xiaomi_aqara.click
         event_data:
           entity_id: binary_sensor.lounge_button
           click_type: single
@@ -421,7 +501,7 @@ automation:
     initial_state: 'on'
     trigger:
       - platform: event
-        event_type: click
+        event_type: xiaomi_aqara.click
         event_data:
           entity_id: binary_sensor.lounge_button
           click_type: double
@@ -434,7 +514,7 @@ automation:
     initial_state: 'on'
     trigger:
       - platform: event
-        event_type: click
+        event_type: xiaomi_aqara.click
         event_data:
           entity_id: binary_sensor.lounge_button
           click_type: long_click_press
@@ -445,6 +525,89 @@ automation:
     action:
       - service: script.turn_on
         entity_id: script.sauce
+
+      #####   J-BUTTON   #####
+
+  - id: 24986361-D220-41D0-A51B-B5742C8D14DB
+    alias: J Livingroom button single
+    initial_state: 'on'
+    trigger:
+      - platform: event
+        event_type: xiaomi_aqara.click
+        event_data:
+          entity_id: binary_sensor.j_button
+          click_type: single
+    action:
+      - service: input_select.select_next
+        entity_id: input_select.j_single_options
+      - service: scene.turn_on
+        data_template:
+          entity_id: scene.{{ states.input_select.j_single_options.state }}
+      - service: light.turn_off
+        entity_id: light.kitchen
+      - service: light.turn_off
+        entity_id: light.entrance
+      - service: light.turn_off
+        entity_id: light.passage
+
+  - id: 192A8150-11E1-4AA3-899C-BADC81BB48D9
+    alias: J Livingroom button double
+    initial_state: 'on'
+    trigger:
+      - platform: event
+        event_type: xiaomi_aqara.click
+        event_data:
+          entity_id: binary_sensor.j_button
+          click_type: double
+    action:
+      - service: light.toggle
+        entity_id: light.lounge
+      - service: light.turn_off
+        entity_id: light.kitchen
+      - service: light.turn_off
+        entity_id: light.entrance
+      - service: light.turn_off
+        entity_id: light.passage
+
+  - id: EA331197-FA38-48FA-9E80-95E4EC20DA35
+    alias: J Livingroom button hold
+    initial_state: 'on'
+    trigger:
+      - platform: event
+        event_type: xiaomi_aqara.click
+        event_data:
+          entity_id: binary_sensor.j_button
+          click_type: long_click_press
+    condition:
+      - condition: state
+        entity_id: light.lounge
+        state: 'on'
+    action:
+      -  service: media_player.select_source
+         data: 
+           entity_id: media_player.spotify
+           source: jukebox
+      -  service: media_player.play_media
+         data:
+           entity_id: media_player.spotify
+           media_content_type: playlist
+           media_content_id: spotify:user:ci5uaf6f7eb3incloais4h4zn:playlist:1QsVbVJJzCVxYZEY5HIN2l
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.j_single_options
+          option: j_living_room_3
+      - service: scene.turn_on
+        data_template:
+          entity_id: scene.{{ states.input_select.j_single_options.state }}
+      - service: light.turn_off
+        entity_id: light.kitchen
+      - service: light.turn_off
+        entity_id: light.entrance
+      - service: light.turn_off
+        entity_id: light.passage
+      - service: light.turn_on
+        data:
+          entity_id: light.bathroom
 
 #########################################
 #    _________                 __       #

@@ -50,7 +50,7 @@ automation:
     initial_state: 'on'
     trigger:
     - platform: event
-      event_type: click
+      event_type: xiaomi_aqara.click
       event_data:
         entity_id: binary_sensor.office_switch
         click_type: single
@@ -67,7 +67,7 @@ automation:
       from: 'off'
       to: 'on'
     condition:
-    - platform: state
+    - condition: state
       entity_id: binary_sensor.office_aircon
       state: 'on'
     action:

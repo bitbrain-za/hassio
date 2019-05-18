@@ -15,18 +15,16 @@ sensor:
     name: "Philip Battery"
     state_topic: "zanzito/philip_phone/battery_level"
     qos: 0
-    unit_of_measuremetn: "%"
+    unit_of_measurement: "%"
 
   - platform: google_travel_time
     name: Home to Work
-    icon: mdi:car-side
     api_key: !secret google_distance_matrix_api
     origin: zone.home
     destination: zone.work
 
   - platform: google_travel_time
     name: Philip to Home
-    icon: mdi:car
     api_key: !secret google_distance_matrix_api
     origin: device_tracker.p_phone
     destination: zone.home
@@ -35,7 +33,7 @@ sensor:
     name: "Tablet Battery"
     state_topic: "zanzito/philip_tab/battery_level"
     qos: 0
-    unit_of_measuremetn: "%"
+    unit_of_measurement: "%"
 
 device_tracker:
   - platform: mqtt_json

@@ -9,11 +9,13 @@
 
 #########################    OBJECTS    #########################
 
+asuswrt:
+  host: 192.168.1.1
+  username: !secret router_username
+  password: !secret router_password
+
 device_tracker:
   - platform: asuswrt
-    host: 192.168.1.1
-    username: !secret router_username
-    password: !secret router_password
 
 sensor:
   - platform: systemmonitor
@@ -22,15 +24,15 @@ sensor:
         arg: /home
       - type: memory_free
       - type: processor_use
-      - type: since_last_boot
+      - type: last_boot
 
-  - platform: speedtest
-    monitored_conditions:
-      - ping
-      - download
-      - upload
-    server_id: 10385 # washington speedtest server
-    manual: true
+speedtestdotnet:
+  monitored_conditions:
+    - ping
+    - download
+    - upload
+  server_id: 10385 # washington speedtest server
+  manual: true
 
 xiaomi_aqara:
   gateways:
@@ -46,7 +48,7 @@ group:
       - sensor.memory_free
       - sensor.disk_use_percent_home
       - sensor.processor_use
-      - sensor.since_last_boot
+      - sensor.last_boot
 
   network:
     name: Network
@@ -64,20 +66,20 @@ automation:
     alias: Run Speedtest when PC and computer are both off
     initial_state: 'on'
     trigger:
-      platform: time
+      platform: time_pattern
       minutes: '/60'
       seconds: 0
     condition:
       condition: and
       conditions:
       - condition: state
-        entity_id: input_boolean.power_pc
-        state: 'off'
+        entity_id: device_tracker.bc5ff42036a8
+        state: 'not_home'
       - condition: state
-        entity_id: media_player.samsung_tv_remote
-        state: 'off'
+        entity_id: device_tracker.samsung
+        state: 'not_home'
     action:
-      - service: sensor.update_speedtest
+      - service: speedtestdotnet.speedtest
 
   - id: 28677636-CB69-4157-AEEE-9CE6CD589063
     alias: 'Battery Alert'
@@ -136,14 +138,14 @@ automation:
 
 #########################    CUSTOMIZATION    #########################
 
-homeassistant:
-  customize:
-    sensor.speedtest_ping:
-      friendly_name: Ping
-      icon: mdi:speedometer
-    sensor.speedtest_download:
-      friendly_name: Download
-      icon: mdi:download
-    sensor.speedtest_upload:
-      friendly_name: Upload
-      icon: mdi:upload
+# homeassistant:
+#   customize:
+#     sensor.speedtest_ping:
+#       friendly_name: Ping
+#       icon: mdi:speedometer
+#     sensor.speedtest_download:
+#       friendly_name: Download
+#       icon: mdi:download
+#     sensor.speedtest_upload:
+#       friendly_name: Upload
+#       icon: mdi:upload

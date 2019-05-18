@@ -10,8 +10,12 @@ homeassistant:
 
 zone: !include zones.yaml
 
-frontend:
-  themes: !include_dir_merge_named themes/
+frontend: !include frontend.yaml
+# panel_custom: !include panel_custom.yaml
+# binary_sensor:
+#   - platform: mqtt
+#     state_topic: dummy/floorplan/sensor
+#     name: Floorplan
 
 config:
 
@@ -22,7 +26,7 @@ http:
   ssl_key: "/ssl/privkey.pem"
 
 logger:
-  default: debug
+  default: warn
 
 updater:
 discovery:
@@ -30,17 +34,19 @@ conversation:
 history:
 logbook:
 map:
-sun:
 ios:
 
 tts:
-  - platform: google
+  - platform: google_translate
+    service_name: google_say
 
 cloud:
 
-panel_custom:
-  - name: floorplan
-    sidebar_title: Floorplan
-    sidebar_icon: mdi:home
-    url_path: floorplan
-    config: !include floorplan.yaml
+shopping_list:
+
+lovelace:
+  mode: yaml
+
+recorder:
+  purge_keep_days: 5
+  purge_interval: 1

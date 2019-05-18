@@ -39,7 +39,7 @@ script:
           operation_mode: 'off'
       - service: media_player.turn_off
         data:
-          entity_id: media_player.samsung_tv_remote
+          entity_id: media_player.smart_ir_tv
       - service: input_boolean.turn_on
         entity_id: input_boolean.bedtime
 
@@ -54,9 +54,24 @@ script:
         data:
           entity_id: climate.carrier
           operation_mode: 'off'
-      - service: media_player.turn_off
+      - service: light.turn_on
+        data_template:
+          entity_id: light.front
+          brightness_pct: 100
+
+  new_day:
+    alias: reset_each_day
+    sequence:
+      - service: input_select.select_option
         data:
-          entity_id: media_player.samsung_tv_remote
+          entity_id: input_select.j_single_options
+          option: j_living_room_1
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.couch_single_options
+          option: living_room_select_1
+          
+
   
 #########################    AUTOMATIONS    #########################
 
@@ -74,8 +89,6 @@ automation:
     - service: script.turn_on
       data:
         entity_id: script.going_out
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.bedtime
 
   - id: 243A96FD-97EA-496C-9DEF-846B83F7FB50
     alias: wake up time

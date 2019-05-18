@@ -91,7 +91,7 @@ automation:
     initial_state: 'on'
     trigger:
       - platform: event
-        event_type: click
+        event_type: xiaomi_aqara.click
         event_data:
           entity_id: binary_sensor.mes_button
           click_type: single
@@ -117,7 +117,7 @@ automation:
     - service: light.turn_on
       data_template:
         entity_id: light.mes
-        brightness_pct: 30
+        brightness_pct: 5
     - service: input_boolean.turn_off
       entity_id: input_boolean.mes_dim
 
@@ -152,7 +152,7 @@ automation:
     initial_state: 'on'
     trigger:
       - platform: event
-        event_type: click
+        event_type: xiaomi_aqara.click
         event_data:
           entity_id: binary_sensor.mes_button
           click_type: double
@@ -179,7 +179,7 @@ automation:
     initial_state: 'on'
     trigger:
       - platform: event
-        event_type: click
+        event_type: xiaomi_aqara.click
         event_data:
           entity_id: binary_sensor.mes_button
           click_type: double
@@ -206,7 +206,7 @@ automation:
     initial_state: 'on'
     trigger:
       - platform: event
-        event_type: click
+        event_type: xiaomi_aqara.click
         event_data:
           entity_id: binary_sensor.mes_button
           click_type: double
@@ -230,7 +230,7 @@ automation:
     initial_state: 'on'
     trigger:
       - platform: event
-        event_type: click
+        event_type: xiaomi_aqara.click
         event_data:
           entity_id: binary_sensor.mes_button
           click_type: double
@@ -255,7 +255,7 @@ automation:
     initial_state: 'on'
     trigger:
       - platform: event
-        event_type: click
+        event_type: xiaomi_aqara.click
         event_data:
           entity_id: binary_sensor.mes_button
           click_type: long_click_press
@@ -300,7 +300,7 @@ automation:
     initial_state: 'on'
     trigger:
       - platform: event
-        event_type: click
+        event_type: xiaomi_aqara.click
         event_data:
           entity_id: binary_sensor.mes_button
           click_type: long_click_press
