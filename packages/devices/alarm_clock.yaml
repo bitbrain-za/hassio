@@ -1,0 +1,90 @@
+sensor:
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+      - 'date_time'
+      - 'time_date'
+      - 'beat'
+
+input_boolean:
+  # Switch to Enable Alarm Clock
+  house_option_alarmclock:
+    name: Alarm Clock
+    initial: off
+    icon: mdi:alarm
+  # Used by Automation to enable Snooze
+  house_alarmclock_snooze:
+    name: Snoozing
+    initial: off
+    icon: mdi:alarm-snooze
+  # Used by Automation to track if alarm clock is running
+  house_alarmclock_active:
+    name: Snoozing
+    initial: off
+    icon: mdi:alarm-snooze
+  alarm_clock:
+    name: alarm clock
+  alarm_clock_lights:
+    name: alarm lights
+  alarm_config:
+
+input_datetime:
+  # The Alarm Time input by the User
+  alarmclock_time:
+    name: Alarm Time
+    has_date: false
+    has_time: true
+
+switch:
+      # workaround to get the entity to change colour
+  - platform: template
+    switches:
+      alarm_clock_switch:
+        value_template: "{{ is_state('input_boolean.alarm_clock', 'on') }}"
+        turn_on:
+          service: input_boolean.turn_on
+          data:
+            entity_id: input_boolean.alarm_clock
+        turn_off:
+          service: input_boolean.turn_off
+          data:
+            entity_id: input_boolean.alarm_clock
+      sunrise_enable:
+        value_template: "{{ is_state('input_boolean.alarm_clock_lights', 'on') }}"
+        turn_on:
+          service: input_boolean.turn_on
+          data:
+            entity_id: input_boolean.alarm_clock_lights
+        turn_off:
+          service: input_boolean.turn_off
+          data:
+            entity_id: input_boolean.alarm_clock_lights            
+
+
+automation:
+  - id: 49824DCD-F440-4793-BCDD-B144FD1A1E3E
+    alias: early_morning
+    initial_state: 'on'
+    trigger:
+      # - platform: time
+      #   at: '05:20'
+      - platform: template
+        value_template: "{{ states('sensor.time') == (states.input_datetime.alarmclock_time.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"        
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: device_tracker.huawei_p9_lite
+          state: 'home'
+        - condition: state
+          entity_id: input_boolean.alarm_clock
+          state: 'on'
+        - condition: state
+          entity_id: input_boolean.alarm_clock_lights
+          state: 'on'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.bedroom
+          effect: Sunrise     

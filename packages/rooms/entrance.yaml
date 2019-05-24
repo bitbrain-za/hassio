@@ -144,9 +144,9 @@ automation:
     - service: media_player.turn_off
       data:
         entity_id: media_player.samsung_tv_remote
-    - service: script.turn_on
-      data:
-        entity_id: script.going_out
+    # - service: script.turn_on
+    #   data:
+    #     entity_id: script.going_out
     - service: media_player.turn_off
       data:
         entity_id: media_player.smart_ir_tv

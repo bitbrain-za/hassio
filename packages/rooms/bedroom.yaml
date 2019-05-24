@@ -10,16 +10,27 @@
 #########################    OBJECTS    #########################
 
 yeelight:
-    devices:
-      192.168.1.36:
-        name: bedroom_ceiling
-        save_on_change: false
-        use_music_mode: false
-
-      192.168.1.52:
-        name: bedside
-        save_on_change: false
-        use_music_mode: false
+  devices:
+    192.168.1.36:
+      name: bedroom_ceiling
+      save_on_change: false
+      use_music_mode: false
+    192.168.1.52:
+      name: bedside
+      save_on_change: false
+      use_music_mode: false
+  custom_effects:
+    - name: 'Sunrise'
+      flow_params:
+        count: 1
+        action: stay
+        transitions:
+          - RGBTransition: [255, 0, 0, 2000, 1]
+          - TemperatureTransition: [1700, 180000, 10]
+          - TemperatureTransition: [1800, 180000, 15]
+          - TemperatureTransition: [2000, 180000, 30]
+          - TemperatureTransition: [2200, 180000, 60]
+          - TemperatureTransition: [2500, 180000, 100]
 
 light:
   - platform: group
@@ -27,6 +38,7 @@ light:
     entities:
       - light.bedroom_ceiling
       - light.bedside
+
 
 #########################    VARIABLES    #########################
 
@@ -46,6 +58,7 @@ input_select:
       - bedroom_water
     initial: bedroom_moon
     icon: mdi:theme-light-dark
+
 
 #########################    SCENES    #########################
 
@@ -315,3 +328,32 @@ automation:
       - service: scene.turn_on
         data_template:
           entity_id: scene.{{ states.input_select.bedroom_scene.state }}
+
+  - id: F7AD7D3C-7B5C-4690-B4E6-9FCF603A08F1
+    alias: good_morning
+    initial_state: 'on'
+    trigger:
+      - platform: time
+        at: '06:20'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: device_tracker.huawei_p9_lite
+          state: 'home'
+        - condition: time
+          weekday:
+            - mon
+            - tue
+            - wed
+            - thu
+            - fri
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.bedroom
+          transition: 600
+          brightness: 255
+          rgb_color: [255, 126, 0]
+
+
