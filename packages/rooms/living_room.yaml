@@ -33,8 +33,8 @@ smartir:
       
 climate:
   - platform: smartir
-    name: Carrier
-    unique_id: office_ac
+    name: Lounge AC
+    unique_id: lounge_ac
     device_code: 1160
     controller_data: 192.168.1.50
     temperature_sensor: sensor.temperature_living_room
@@ -43,10 +43,10 @@ climate:
 
 # climate:
 #   - platform: broadlink
-#     name: Carrier
+#     name: lounge_ac
 #     host: 192.168.1.50
 #     mac: !secret braodlink_rm_mini_mac 
-#     ircodes_ini: 'broadlink_climate_codes/carrier.ini'
+#     ircodes_ini: 'broadlink_climate_codes/lounge_ac.ini'
 #     min_temp: 17
 #     max_temp: 30
 #     target_temp: 23
@@ -104,6 +104,29 @@ switch:
   - platform: broadlink
     host: 192.168.1.50
     mac: !secret braodlink_rm_mini_mac          
+
+
+  - platform: template
+    switches:
+      living_room_aircon_power:
+        value_template: >-
+          {% if is_state_attr ('climate.loung_ac', 'operation_mode', 'off') %}
+            False
+          {% else %} 
+            True
+          {% endif %} 
+        turn_on:
+          service: climate.set_operation_mode
+          data:
+            entity_id: climate.lounge_ac
+            operation_mode: 'cool'
+        turn_off:
+          service: climate.set_operation_mode
+          data:
+            entity_id: climate.lounge_ac
+            operation_mode: 'off'
+
+
 
 shell_command:
   turn_off_jukebox: 'ssh hass@192.168.1.26 sudo poweroff'
@@ -633,7 +656,7 @@ automation:
     action:
     - service: climate.set_operation_mode
       data_template:
-        entity_id: climate.carrier
+        entity_id: climate.lounge_ac
         operation_mode: 'cool'
 
 # If the back door is left open for 3 minutes, turn off the aircon
@@ -649,5 +672,5 @@ automation:
     action:
     - service: climate.set_operation_mode
       data_template:
-        entity_id: climate.carrier
+        entity_id: climate.lounge_ac
         operation_mode: 'off'

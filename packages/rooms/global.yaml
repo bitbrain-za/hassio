@@ -33,16 +33,34 @@ script:
       - service: light.turn_off
         data:
           entity_id: group.lights_bedtime
-      - service: climate.set_operation_mode
-        data:
-          entity_id: climate.carrier
-          operation_mode: 'off'
       - service: media_player.turn_off
         data:
           entity_id: media_player.smart_ir_tv
       - service: input_boolean.turn_on
         entity_id: input_boolean.bedtime
+      - service: climate.set_operation_mode
+        data:
+          entity_id: climate.loung_ac
+          operation_mode: 'off'
+      - service: climate.set_operation_mode
+        data:
+          entity_id: climate.study_ac
+          operation_mode: 'off'
 
+  all_ac_off:
+    sequence:
+      - service: climate.set_operation_mode
+        data:
+          entity_id: climate.bedroom_ac
+          operation_mode: 'off'
+      - service: climate.set_operation_mode
+        data:
+          entity_id: climate.loung_ac
+          operation_mode: 'off'
+      - service: climate.set_operation_mode
+        data:
+          entity_id: climate.study_ac
+          operation_mode: 'off'
   
   going_out:
     alias: Goodbye
@@ -50,10 +68,9 @@ script:
       - service: light.turn_off
         data:
           entity_id: group.inside_lights
-      - service: climate.set_operation_mode
+      - service: script.turn_on
         data:
-          entity_id: climate.carrier
-          operation_mode: 'off'
+          entity_id: script.all_ac_off
       - service: light.turn_on
         data_template:
           entity_id: light.front

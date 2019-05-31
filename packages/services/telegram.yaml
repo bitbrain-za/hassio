@@ -80,7 +80,7 @@ automation:
     conditions:
     - condition: template
       value_template: >-
-        {% if is_state('climate.carrier', 'off') %}
+        {% if is_state('climate.loung_ac', 'off') %}
           False
         {% else %}
           True

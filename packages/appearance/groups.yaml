@@ -81,7 +81,7 @@ group:
     view: no
     entities:
       - sensor.temperature_living_room 
-      - climate.carrier
+      - climate.lounge_ac
       - switch.jukebox_power
       - media_player.smart_ir_tv
 

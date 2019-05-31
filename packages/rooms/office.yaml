@@ -16,6 +16,18 @@ light:
     token: !secret light_study_token
     model: philips.light.bulb
 
+climate:
+  - platform: smartir
+    name: Study AC
+    unique_id: study_ac
+    device_code: 9002
+    controller_data: 192.168.1.54
+
+switch:
+  - platform: broadlink
+    host: 192.168.1.54
+    mac: !secret mac_office_rm_mini
+
 #########################    SCENES    #########################
 
 scene:

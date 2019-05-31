@@ -39,6 +39,17 @@ light:
       - light.bedroom_ceiling
       - light.bedside
 
+climate:
+  - platform: smartir
+    name: Bedroom AC
+    unique_id: bedroom_ac
+    device_code: 9001
+    controller_data: 192.168.1.53
+
+switch:
+  - platform: broadlink
+    host: 192.168.1.53
+    mac: !secret mac_bedroom_rm_mini
 
 #########################    VARIABLES    #########################
 

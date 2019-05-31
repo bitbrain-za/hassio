@@ -39,6 +39,11 @@ ios:
 tts:
   - platform: google_translate
     service_name: google_say
+    cache: true
+    cache_dir: /tmp/tts
+    time_memory: 300
+    base_url: http://192.168.1.32:8123
+    service_name: google_say
 
 cloud:
 
@@ -50,3 +55,7 @@ lovelace:
 recorder:
   purge_keep_days: 5
   purge_interval: 1
+
+spotcast:
+  username: !secret spotify_username
+  password: !secret spotify_password

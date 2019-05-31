@@ -139,7 +139,15 @@ automation:
       entity_id: timer.goodbye
     - service: climate.set_operation_mode
       data:
-        entity_id: climate.carrier
+        entity_id: climate.lounge_ac
+        operation_mode: 'off'
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.bedroom_ac
+        operation_mode: 'off'
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.study_ac
         operation_mode: 'off'
     - service: media_player.turn_off
       data:

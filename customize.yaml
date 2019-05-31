@@ -76,7 +76,3 @@ switch.jukebox_power:
   friendly_name: Jukebox Power
   entity_picture: /local/icons/jukebox.png
 device_tracker.002314451368: {}
-
-# binary_sensor.floorplan:
-#   custom_ui_state_card: state-card-floorplan
-#   config: !include floorplan.yaml
