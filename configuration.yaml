@@ -8,19 +8,23 @@ homeassistant:
   customize: !include customize.yaml
   packages: !include_dir_named packages
 
+  auth_providers:
+    - type: trusted_networks
+      trusted_networks:
+        - 192.168.1.0/24
+
 zone: !include zones.yaml
 
 frontend: !include frontend.yaml
-# panel_custom: !include panel_custom.yaml
-# binary_sensor:
-#   - platform: mqtt
-#     state_topic: dummy/floorplan/sensor
-#     name: Floorplan
 
 config:
 
+# sensor:
+#   - platform: seventeentrack
+#     username: !secret email
+#     password: !secret track_pass
+
 http:
-  api_password: !secret http_password
   base_url: !secret ha_url
   ssl_certificate: "/ssl/fullchain.pem"
   ssl_key: "/ssl/privkey.pem"
@@ -28,17 +32,27 @@ http:
 logger:
   default: warn
 
+hacs:
+  token: !secret github_hacs_token
+
 updater:
 discovery:
 conversation:
 history:
 logbook:
 map:
-ios:
+
+influxdb:
+  host: a0d7b954-influxdb
+  port: 8086
+  database: homeassistant
+  username: homeassistant
+  password: !secret influxdb_pass
+  max_retries: 3
+  default_measurement: state
 
 tts:
   - platform: google_translate
-    service_name: google_say
     cache: true
     cache_dir: /tmp/tts
     time_memory: 300
@@ -55,7 +69,3 @@ lovelace:
 recorder:
   purge_keep_days: 5
   purge_interval: 1
-
-spotcast:
-  username: !secret spotify_username
-  password: !secret spotify_password

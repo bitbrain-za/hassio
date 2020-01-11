@@ -1,0 +1,124 @@
+light:
+
+  - platform: template
+    lights:
+      spare_room:
+        friendly_name: Spare Room
+        turn_on: null
+        turn_off: null
+
+  - platform: template
+    lights:
+      store:
+        friendly_name: Store
+        turn_on: null
+        turn_off: null
+#MES
+  - platform: xiaomi_miio
+    name: mes
+    host: 192.168.1.39
+    token: !secret light_mes_token
+    model: philips.light.bulb
+
+#Study
+  - platform: xiaomi_miio
+    name: office
+    host: 192.168.1.35
+    token: !secret light_study_token
+    model: philips.light.bulb
+
+#Passage
+  - platform: xiaomi_miio
+    name: passage
+    host: 192.168.1.40
+    token: !secret light_passage_token
+    model: philips.light.bulb
+
+ #Lab      
+  - platform: xiaomi_miio
+    name: Lab
+    host: 192.168.1.37
+    token: !secret light_lab_token
+    model: philips.light.bulb
+
+#Back
+  - platform: xiaomi_miio
+    name: back
+    host: 192.168.1.45
+    token: !secret light_back_token
+    model: philips.light.bulb
+
+#Front
+  - platform: xiaomi_miio
+    name: front
+    host: 192.168.1.44
+    token: !secret light_front_token
+    model: philips.light.bulb
+
+#Groups
+  - platform: group
+    name: lounge
+    entities:
+      - light.lounge1
+      - light.lounge2
+
+  - platform: group
+    name: bedroom
+    entities:
+      - light.bedroom_ceiling
+      - light.bedside
+
+  - platform: group
+    name: inside
+    entities:
+      - light.spare_room
+      - light.passage
+      - light.kitchen
+      - light.entrance
+      - light.store
+      - light.lounge
+      - light.bedroom
+      - light.mes
+      - light.bathroom
+      - light.office
+      - light.lab
+
+yeelight:
+  devices:
+  #Bedroom
+    192.168.1.36:
+      name: bedroom_ceiling
+      save_on_change: false
+      use_music_mode: false
+    192.168.1.43:
+      name: bedside
+      save_on_change: false
+      use_music_mode: false
+  #Bathroom
+    192.168.1.38:
+      name: bathroom
+      save_on_change: false
+      transition: 1000
+  #Lounge
+    192.168.1.33:
+      name: lounge1
+      transition: 2000
+      save_on_change: false
+      use_music_mode: false
+    192.168.1.34:
+      name: lounge2
+      transition: 2000
+      save_on_change: false
+      use_music_mode: false
+  custom_effects:
+    - name: 'Sunrise'
+      flow_params:
+        count: 1
+        action: stay
+        transitions:
+          - RGBTransition: [255, 0, 0, 2000, 1]
+          - TemperatureTransition: [1700, 180000, 10]
+          - TemperatureTransition: [1800, 180000, 15]
+          - TemperatureTransition: [2000, 180000, 30]
+          - TemperatureTransition: [2200, 180000, 60]
+          - TemperatureTransition: [2500, 180000, 100]

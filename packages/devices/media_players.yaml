@@ -1,0 +1,10 @@
+
+media_player:
+  - platform: spotify
+    client_id: !secret spotify_client_id_ha
+    client_secret: !secret spotify_client_secret_ha
+  # - platform: smartir
+  #   name: tv_ir
+  #   unique_id: tv_ir
+  #   device_code: 1060
+  #   controller_data: 192.168.1.70

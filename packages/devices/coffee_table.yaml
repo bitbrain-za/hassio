@@ -1,0 +1,11 @@
+
+sensor:
+  - platform: mqtt
+    name: "coffee_table_tags"
+    state_topic: "coffee_table/tags"
+    qos: 0
+
+  - platform: mqtt
+    name: "coffee_table_buttons"
+    state_topic: "coffee_table/buttons"
+    qos: 0

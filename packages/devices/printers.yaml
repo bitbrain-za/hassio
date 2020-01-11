@@ -1,0 +1,25 @@
+
+octoprint:
+  host: 192.168.1.16
+  api_key: !secret octoprint_api_key
+  bed: true
+  number_of_tools: 1
+
+camera:
+  - platform: mjpeg
+    name: Printer Camera
+    mjpeg_url: http://192.168.1.16/webcam/?action=stream
+    still_image_url: http://192.168.1.16/webcam/?action=snapshot
+
+sensor:
+  - platform: octoprint
+    name: OctoPrint
+    monitored_conditions:
+      - Current State
+      - Temperatures
+      - Job Percentage
+
+input_boolean:
+  off_after_printing:
+    name: Off After Print
+    initial: off

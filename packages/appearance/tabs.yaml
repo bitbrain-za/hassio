@@ -53,7 +53,6 @@
 #       - media_player.plex
 #       - media_player.jukebox_mpd
 #       - media_player.spotify
-#       - switch.jukebox_power
 
 #   weather:
 #     name: Weather

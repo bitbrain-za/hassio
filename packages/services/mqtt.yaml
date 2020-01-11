@@ -4,15 +4,41 @@ mqtt:
   client_id: home-assistant-1
   username: !secret mqtt_username
   password: !secret mqtt_password
+  
+  discovery: true
+  birth_message:
+    topic: 'hass/status'
+    payload: 'online'
+  will_message:
+    topic: 'hass/status'
+    payload: 'offline'
 
-automation:
-  - id: 6138C461-97E6-46BB-B97F-326A83273BA1
-    alias: 'Refresh MQTT Switches'
-    initial_state: 'on'
-    trigger:
-      platform: homeassistant
-      event: start
-    action:
-    - service: mqtt.publish
-      data:
-        topic: cmnd/sonoffs/POWER
+
+input_boolean:
+  zigbee_permit_join:
+    name: Allow devices to join
+    initial: off
+    icon: mdi:cellphone-wireless
+
+timer:
+  zigbee_permit_join:
+    name: Time remaining
+    duration: 600
+
+sensor:
+  - platform: mqtt
+    name: Bridge state
+    state_topic: "zigbee2mqtt/bridge/state"
+    icon: mdi:router-wireless
+
+# automation:
+#   - id: 6138C461-97E6-46BB-B97F-326A83273BA1
+#     alias: 'Refresh MQTT Switches'
+#     initial_state: 'on'
+#     trigger:
+#       platform: homeassistant
+#       event: start
+#     action:
+#     - service: mqtt.publish
+#       data:
+#         topic: cmnd/sonoffs/POWER

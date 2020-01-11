@@ -1,12 +1,12 @@
-sensor:
-  - platform: rest
-    name: Oyster Box
-    value_template: '{{value_json.data[0]._id}}'
-    resource: 'http://api.deckchair.com/v1/camera/573aeba62b619354270c1a74/images'
+# sensor:
+#   - platform: rest
+#     name: Oyster Box
+#     value_template: '{{value_json.data[0]._id}}'
+#     resource: 'http://api.deckchair.com/v1/camera/573aeba62b619354270c1a74/images'
 
-camera:
-  - platform: generic
-    name: The Oyster Box
-    # https://camera.deckchair.com/red-carnation-the-oyster-box-durban-south-africa
-    still_image_url: 'http://api.deckchair.com/v1/viewer/image/{{ states("sensor.oyster_box") }}'
-    limit_refetch_to_url_change: false
+# camera:
+#   - platform: generic
+#     name: The Oyster Box
+#     # https://camera.deckchair.com/red-carnation-the-oyster-box-durban-south-africa
+#     still_image_url: 'http://api.deckchair.com/v1/viewer/image/{{ states("sensor.oyster_box") }}'
+#     limit_refetch_to_url_change: false

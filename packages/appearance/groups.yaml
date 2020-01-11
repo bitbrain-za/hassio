@@ -2,8 +2,7 @@ group:
   everyone:
     name: Everyone
     entities:
-      - device_tracker.p_phone
-      - device_tracker.huawei_p9_lite
+      - device_tracker.mi9tpro_miphone
   
   inside_lights:
     name: inside lights
@@ -12,7 +11,7 @@ group:
     entities:
       - light.spare_room
       - light.passage
-      - light.kitchen
+      - light.sonoff_kitchen
       - light.entrance
       - light.store
       - light.lounge
@@ -29,7 +28,7 @@ group:
     entities:
       - light.spare_room
       - light.passage
-      - light.kitchen
+      - light.sonoff_kitchen
       - light.store
       - light.lounge
       - light.bedroom
@@ -45,7 +44,7 @@ group:
     entities:
       - light.spare_room
       - light.passage
-      - light.kitchen
+      - light.sonoff_kitchen
       - light.office
       - light.entrance
       - light.store
@@ -57,7 +56,7 @@ group:
     name: Lights
     view: no
     entities:
-      - light.kitchen
+      - light.sonoff_kitchen
       - light.lounge
       - light.entrance
       - light.bathroom
@@ -75,15 +74,6 @@ group:
     entities:
       - group.phil_home
       - group.phil_not_home
-
-  living_room:
-    name: Lounge
-    view: no
-    entities:
-      - sensor.temperature_living_room 
-      - climate.lounge_ac
-      - switch.jukebox_power
-      - media_player.smart_ir_tv
 
   tarantula:
     name: Tarantula

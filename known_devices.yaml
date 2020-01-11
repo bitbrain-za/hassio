@@ -543,3 +543,195 @@ c8_f7_42_62_ed_52:
   name: c8 f7 42 62 ed 52
   picture:
   track: true
+
+raspberrypi_3:
+  hide_if_away: false
+  icon:
+  mac: B8:27:EB:1E:37:49
+  name: raspberrypi
+  picture:
+  track: true
+
+win_8nd9ugaj40q:
+  hide_if_away: false
+  icon:
+  mac: 04:92:26:D4:90:F6
+  name: WIN-8ND9UGAJ40Q
+  picture:
+  track: true
+
+desktop_8m3ru35:
+  hide_if_away: false
+  icon:
+  mac: 04:92:26:D0:7B:3C
+  name: DESKTOP-8M3RU35
+  picture:
+  track: true
+
+sonoff_7514:
+  hide_if_away: false
+  icon:
+  mac: 84:F3:EB:48:BD:5A
+  name: sonoff-7514
+  picture:
+  track: true
+
+raspberrypi_4:
+  hide_if_away: false
+  icon:
+  mac: B8:27:EB:9F:B1:7E
+  name: raspberrypi
+  picture:
+  track: true
+
+sonoff_1812:
+  hide_if_away: false
+  icon:
+  mac: CC:50:E3:C8:07:14
+  name: sonoff-1812
+  picture:
+  track: true
+
+zapinl_8yzczw2:
+  hide_if_away: false
+  icon:
+  mac: A0:51:0B:A7:8B:09
+  name: ZAPINL-8YZCZW2
+  picture:
+  track: true
+
+sonoff_0559:
+  hide_if_away: false
+  icon:
+  mac: C4:4F:33:B3:62:2F
+  name: sonoff-0559
+  picture:
+  track: true
+
+sonoff_0532:
+  hide_if_away: false
+  icon:
+  mac: C4:4F:33:B3:62:14
+  name: sonoff-0532
+  picture:
+  track: true
+
+desktop_g9fgn74:
+  hide_if_away: false
+  icon:
+  mac: 6C:62:6D:25:0C:13
+  name: DESKTOP-G9FGN74
+  picture:
+  track: true
+
+a0_28_ed_a1_6d_2b:
+  hide_if_away: false
+  icon:
+  mac: A0:28:ED:A1:6D:2B
+  name: a0 28 ed a1 6d 2b
+  picture:
+  track: true
+
+mi9tpro_miphone:
+  hide_if_away: false
+  icon:
+  mac: E0:DC:FF:F2:A9:11
+  name: Mi9TPro-MiPhone
+  picture:
+  track: true
+
+60_30_d4_31_85_a8:
+  hide_if_away: false
+  icon:
+  mac: 60:30:D4:31:85:A8
+  name: 60 30 d4 31 85 a8
+  picture:
+  track: true
+
+huawei_p8_lite:
+  hide_if_away: false
+  icon:
+  mac: 48:3C:0C:AD:B4:66
+  name: HUAWEI P8 lite
+  picture:
+  track: true
+
+artnet:
+  hide_if_away: false
+  icon:
+  mac: CC:50:E3:DF:BB:BA
+  name: ARTNET
+  picture:
+  track: true
+
+raspberrypi_5:
+  hide_if_away: false
+  icon:
+  mac: B8:27:EB:CA:E4:2B
+  name: raspberrypi
+  picture:
+  track: true
+
+iphone:
+  hide_if_away: false
+  icon:
+  mac: 88:B2:91:17:1A:DE
+  name: iPhone
+  picture:
+  track: true
+
+huawei_p_smart_aaa966610e:
+  hide_if_away: false
+  icon:
+  mac: 30:A1:FA:F5:44:61
+  name: HUAWEI P smart-aaa966610e
+  picture:
+  track: true
+
+3c_2e_ff_c3_93_0f:
+  hide_if_away: false
+  icon:
+  mac: 3C:2E:FF:C3:93:0F
+  name: 3c 2e ff c3 93 0f
+  picture:
+  track: true
+
+10_7b_44_eb_e0_7a:
+  hide_if_away: false
+  icon:
+  mac: 10:7B:44:EB:E0:7A
+  name: 10 7b 44 eb e0 7a
+  picture:
+  track: true
+
+desktop_u56nvck:
+  hide_if_away: false
+  icon:
+  mac: E8:B1:FC:77:26:F8
+  name: DESKTOP-U56NVCK
+  picture:
+  track: true
+
+raspberrypi_6:
+  hide_if_away: false
+  icon:
+  mac: DC:A6:32:33:50:16
+  name: raspberrypi
+  picture:
+  track: true
+
+macbookpro:
+  hide_if_away: false
+  icon:
+  mac: A8:BB:CF:01:E8:36
+  name: MacbookPro
+  picture:
+  track: true
+
+irrigation2:
+  hide_if_away: false
+  icon:
+  mac: CC:50:E3:DF:C3:90
+  name: irrigation2
+  picture:
+  track: true

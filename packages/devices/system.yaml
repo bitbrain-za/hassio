@@ -9,6 +9,12 @@
 
 #########################    OBJECTS    #########################
 
+system_health:
+
+spotcast:
+  username: !secret spotify_username
+  password: !secret spotify_password
+
 asuswrt:
   host: 192.168.1.1
   username: !secret router_username
@@ -16,6 +22,10 @@ asuswrt:
 
 device_tracker:
   - platform: asuswrt
+
+namecheapdns:
+  domain: !secret namecheap_tld
+  password: !secret namecheap_password
 
 sensor:
   - platform: systemmonitor
@@ -31,15 +41,14 @@ speedtestdotnet:
     - ping
     - download
     - upload
-  server_id: 10385 # washington speedtest server
+  server_id: 14204 # Palo Alto speedtest server
   manual: true
 
-xiaomi_aqara:
-  gateways:
-    - host: 192.168.1.51
-      mac: !secret xiaomi_gateway_mac
-      key: !secret xiaomi_gateway_password
-      # discovery_retry: 10
+# xiaomi_aqara:
+#   gateways:
+#     - host: 192.168.1.51
+#       mac: !secret xiaomi_gateway_mac
+#       key: !secret xiaomi_gateway_password
 
 group:
   sys_status:
@@ -57,95 +66,63 @@ group:
       - sensor.speedtest_download
       - sensor.speedtest_upload
 
+input_boolean:
+  booted:
+    name: Booted
+    initial: off
+
 
 #########################    AUTOMATIONS    #########################
 
 automation:
 
+  - id: letsencrypt-renewal
+    alias: 'LetsEncrypt renewal'
+    trigger:
+    - platform: time
+      at: '00:00:00'
+    action:
+    - service: hassio.addon_stop
+      data:
+        addon: core_nginx_proxy
+    - service: hassio.addon_restart
+      data:
+        addon: core_letsencrypt
+    - delay: '00:01:30'
+    - service: hassio.addon_start
+      data:
+        addon: core_nginx_proxy
+        
   - id: 6BFB2009-CE8C-452F-9984-128342F8FD56
-    alias: Run Speedtest when PC and computer are both off
+    alias: Run Speedtest when PC and tv are both off
     initial_state: 'on'
     trigger:
       platform: time_pattern
       minutes: '/60'
       seconds: 0
     condition:
-      condition: and
-      conditions:
-      - condition: state
-        entity_id: device_tracker.bc5ff42036a8
-        state: 'not_home'
-      - condition: state
-        entity_id: device_tracker.samsung
-        state: 'not_home'
+      - condition: template
+        value_template: >-
+          {%if states('sensor.rt_ac53_kbyte_sec_received') | float > 12 %}
+            False
+          {% else %} 
+            True
+          {% endif %} 
     action:
       - service: speedtestdotnet.speedtest
 
-  - id: 28677636-CB69-4157-AEEE-9CE6CD589063
-    alias: 'Battery Alert'
+  - id: F49BB5E9-0F39-4585-9D47-011A76A6AFAE
+    alias: 'booted'
     initial_state: 'on'
     trigger:
-      - platform: time
-        at: '10:00:00'
-      - platform: time
-        at: '18:00:00'
-    condition:
-      condition: or
-      conditions:
-        - condition: template
-          value_template: >-
-            {%- set threshold = 40 -%}
-            {%- for item in states.switch if (item.attributes.battery_level is defined and item.attributes['battery_level'] | int < threshold) or ("battery" in item.name | lower and ((item.state | int < threshold and item.state|int != 0) or item.state | lower == "low" or item.state | lower == "unknown")) -%}
-            {%- if loop.first -%}
-            {{ true }}
-            {%- endif -%}
-            {%- endfor -%}
-        - condition: template
-          value_template: >-
-            {%- set threshold = 40 -%}
-            {%- for item in states.sensor if (item.attributes.battery_level is defined and item.attributes['battery_level'] | int < threshold) or ("battery" in item.name | lower and ((item.state | int < threshold and item.state|int != 0) or item.state | lower == "low")) -%}
-            {%- if loop.first -%}
-            {{ true }}
-            {%- endif -%}
-            {%- endfor -%}
-        - condition: template
-          value_template: >-
-            {%- set threshold = 40 -%}
-            {%- for item in states.binary_sensor if (item.attributes.battery_level is defined and item.attributes['battery_level'] | int < threshold) or ("battery" in item.name | lower and ((item.state | int < threshold and item.state|int != 0) or item.state | lower == "low" or item.state | lower == "unknown")) -%}
-            {%- if loop.first -%}
-            {{ true }}
-            {%- endif -%}
-            {%- endfor -%}
+    - event: start
+      platform: homeassistant
+    condition: []
     action:
-      - service: notify.p_phone_telegram
-        data_template:
-          message: >-
-            {%- set threshold = 40 -%}
-            {%- set domains = [states.switch, states.sensor, states.binary_sensor ] -%}
-            {%- for domain in domains -%}
-            {%- if loop.first -%}
-            The following devices have low battery levels:
-            {%- endif -%}
-            {%- for item in domain if (item.attributes.battery_level is defined and item.attributes['battery_level'] | int < threshold) or ("battery" in item.name | lower and ((item.state | int < threshold and item.state|int != 0) or item.state | lower == "low" or item.state | lower == "unknown")) -%}
-            {%- if (item.attributes.battery_level is defined and item.attributes['battery_level'] | int < threshold) %}
-            {{ item.name }} ({{ item.attributes['battery_level'] }}),
-            {% endif -%}
-            {%- if "battery" in item.name | lower and ((item.state | int < threshold and item.state|int != 0) or item.state | lower == "low" or item.state | lower == "unknown") -%}
-            {{ item.name }} ({{ item.state }}),
-            {% endif -%}
-            {%- endfor -%}
-            {%- endfor -%}
-
-#########################    CUSTOMIZATION    #########################
-
-# homeassistant:
-#   customize:
-#     sensor.speedtest_ping:
-#       friendly_name: Ping
-#       icon: mdi:speedometer
-#     sensor.speedtest_download:
-#       friendly_name: Download
-#       icon: mdi:download
-#     sensor.speedtest_upload:
-#       friendly_name: Upload
-#       icon: mdi:upload
+    - service: input_boolean.turn_off 
+      data:
+        entity_id: input_boolean.booted
+    - delay: '00:00:05'
+    - service: input_boolean.turn_on 
+      data:
+        entity_id: input_boolean.booted

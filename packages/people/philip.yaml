@@ -17,17 +17,17 @@ sensor:
     qos: 0
     unit_of_measurement: "%"
 
-  - platform: google_travel_time
-    name: Home to Work
-    api_key: !secret google_distance_matrix_api
-    origin: zone.home
-    destination: zone.work
+  # - platform: google_travel_time
+  #   name: Home to Work
+  #   api_key: !secret google_distance_matrix_api
+  #   origin: zone.home
+  #   destination: zone.work
 
-  - platform: google_travel_time
-    name: Philip to Home
-    api_key: !secret google_distance_matrix_api
-    origin: device_tracker.p_phone
-    destination: zone.home
+  # - platform: google_travel_time
+  #   name: Philip to Home
+  #   api_key: !secret google_distance_matrix_api
+  #   origin: device_tracker.p_phone
+  #   destination: zone.home
 
   - platform: mqtt
     name: "Tablet Battery"
@@ -62,14 +62,13 @@ group:
   phil_home:
     name: Philip
     entities:
-      - device_tracker.huawei_p9_lite
+      - device_tracker.mi9tpro_miphone
       - sensor.philip_battery
       - sensor.home_to_work
   phil_devices:
     name: phil_devices
     entities:
-      - device_tracker.p_phone
-      - device_tracker.huawei_p9_lite
+      - device_tracker.mi9tpro_miphone
 
 #################   AUTOMATIONS    #################
 
@@ -125,24 +124,5 @@ automation:
     - service: input_boolean.turn_on
       entity_id: input_boolean.recently_home
     - delay: '00:03:00'
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.recently_home
-
-  - id: BD2A5DD1-50D2-4E5F-B6FD-F5CF4C114C7D
-    alias: greet philip
-    trigger:
-      platform: state
-      entity_id: binary_sensor.front_door
-      from: 'off'
-      to: 'on'
-    condition:
-      condition: state
-      entity_id: input_boolean.recently_home
-      state: 'on'
-    action:
-    - service: tts.google_say
-      entity_id: media_player.jukebox_mpd
-      data:
-        message: 'Welcome home Philip'
     - service: input_boolean.turn_off
       entity_id: input_boolean.recently_home

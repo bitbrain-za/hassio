@@ -40,7 +40,9 @@ PmxMononight:
   paper-item-icon_-_color: 'var(--paper-item-icon-color)'
   paper-item-selected_-_background-color: 'hsla(0, 0%, 0%, 0.2)'
   paper-tabs-selection-bar-color: 'hsla(0, 0%, 0%, 0.2)'
-  # Labels
+
+        #     border-radius: 20px;
+    # Labels
   label-badge-red: 'hsla(0, 0%, 0%, 0)'
   label-badge-border-color: 'var(--label-badge-red)'
   label-badge-background-color: 'var(--paper-card-background-color)'
@@ -64,4 +66,8 @@ PmxMononight:
   paper-slider-disabled-secondary-color: 'hsl(var(--base-hue), 80%, 25%)'
   paper-dialog-color: 'hsl(var(--base-hue), 20%, 80%)'
 
+  sidebar-icon-color: hsl(var(--huesat) 20%)'
+
   # floorplan-primary-background-color: "#000000"
+
+  border-radius: 20px

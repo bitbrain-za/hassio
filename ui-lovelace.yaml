@@ -3,12 +3,21 @@ resources:
     type: module
   - url: /local/plugins/card-tools.js?v=1
     type: js
-  - url: /local/plugins/card-modder.js?v=1
-    type: js
-  - url: /local/plugins/compact-custom-header.js?v=0.0.1
+  - url: /local/plugins/card-mod.js?v=1
     type: module
   - url: /local/plugins/time-input-row.js?v=0.0.1
     type: js
+  - url: /community_plugin/custom-header/custom-header.js
+    type: module
+
+custom_header:
+  compact_mode: true
+  background: transparent url("/local/header.jpg")
+  exceptions:
+    - conditions:
+        query_string: kiosk
+      config:
+        kiosk_mode: true
 
 views:
   #     __  ___      _
@@ -22,192 +31,188 @@ views:
     icon: mdi:home-outline
     cards:
 
-      - type: custom:compact-custom-header
-        main_config: true
-        background: transparent url("/local/header.jpg")
-
       # Main Lights Card
-      - type: custom:card-modder
+      - type: glance
         # report_size: 50
-        style:
-          # background-image: url("/local/cardbackK.png")
-          # background-repeat: no-repeat
-          background-color: rgba(50,50,50,0.3)
-          background-size: 100% 68px
-          border-radius: 20px
-          border: solid 1px rgba(100,100,100,0.3)
-          box-shadow: 3px 3px rgba(0,0,0,0.4)
-        card:
-          type: glance
-          # title: Lights
-          # column_width: calc(100% / 6)
-          show_state: false
-          entities:
-            - entity: light.lounge
-              name: Lounge
-              icon: mdi:sofa
-              tap_action:
-                action: toggle
-            - entity: light.passage
-              name: Passage
-              icon: mdi:ceiling-light
-              tap_action:
-                action: toggle
-            - entity: light.kitchen
-              name: Kitchen
-              icon: mdi:fridge-outline
-              tap_action:
-                action: toggle
-            - entity: light.entrance
-              name: Entrance
-              icon: mdi:door
-              tap_action:
-                action: toggle
-            - entity: light.back
-              name: Garden
-              icon: mdi:flower
-              tap_action:
-                action: toggle
-            - entity: light.front
-              name: Outside
-              icon: mdi:flower
-              tap_action:
-                action: toggle
+        style: |
+          ha-card 
+          {
+            background-color: rgba(50,50,50,0.3);
+            background-size: 100% 68px;
+            border-radius: 20px;
+            border: solid 1px rgba(100,100,100,0.3);
+            box-shadow: 3px 3px rgba(0,0,0,0.4);
+          }
+        show_state: false
+        entities:
+          - entity: light.lounge
+            name: Lounge
+            icon: mdi:sofa
+            tap_action:
+              action: toggle
+          - entity: light.passage
+            name: Passage
+            icon: mdi:ceiling-light
+            tap_action:
+              action: toggle
+          - entity: light.sonoff_kitchen
+            name: Kitchen
+            icon: mdi:fridge-outline
+            tap_action:
+              action: toggle
+          - entity: light.entrance
+            name: Entrance
+            icon: mdi:door
+            tap_action:
+              action: toggle
+          - entity: light.back
+            name: Garden
+            icon: mdi:flower
+            tap_action:
+              action: toggle
+          - entity: light.front
+            name: Outside
+            icon: mdi:flower
+            tap_action:
+              action: toggle              
 
       # Secondary Lights
-      - type: custom:card-modder
-        style:
-          # background-image: url("/local/cardbackK.png")
-          # background-repeat: no-repeat
-          background-color: rgba(50,50,50,0.3)
-          background-size: 100% 68px
-          border-radius: 20px
-          border: solid 1px rgba(100,100,100,0.3)
-          box-shadow: 3px 3px rgba(0,0,0,0.4)
-        card:
-          type: glance
-          show_state: false
-          entities:
-            - entity: light.bathroom
-              name: Bathroom
-              icon: mdi:toilet
-              tap_action:
-                action: toggle
-            - entity: light.mes
-              name: En-Suite
-              icon: mdi:toilet
-              tap_action:
-                action: toggle
-            - entity: light.bedroom
-              name: Bedroom
-              icon: mdi:hotel
-              tap_action:
-                action: toggle
-            - entity: light.office
-              name: Office
-              icon: mdi:desktop-classic
-              tap_action:
-                action: toggle
-            - entity: light.lab
-              name: Lab
-              icon: mdi:beaker-outline
-              tap_action:
-                action: toggle
-            
+      - type: glance
+        style: |
+          ha-card
+          {
+            background-color: rgba(50,50,50,0.3);
+            background-size: 100% 68px;
+            border-radius: 20px;
+            border: solid 1px rgba(100,100,100,0.3);
+            box-shadow: 3px 3px rgba(0,0,0,0.4);
+          }
+        show_state: false
+        entities:
+          - entity: light.bathroom
+            name: Bathroom
+            icon: mdi:toilet
+            tap_action:
+              action: toggle
+          - entity: light.mes
+            name: En-Suite
+            icon: mdi:toilet
+            tap_action:
+              action: toggle
+          - entity: light.bedroom
+            name: Bedroom
+            icon: mdi:hotel
+            tap_action:
+              action: toggle
+          - entity: light.office
+            name: Office
+            icon: mdi:desktop-classic
+            tap_action:
+              action: toggle
+          - entity: light.lab
+            name: Lab
+            icon: mdi:beaker-outline
+            tap_action:
+              action: toggle
+          
       # Thermostat
-      - type: custom:card-modder
-        style:
-          # background-image: url("/local/cardbackK.png")
-          # background-repeat: no-repeat
-          # background-color: rgba(50,50,50,0.3)
-          background-size: 100% 68px
-          border-radius: 20px
-          border: solid 1px rgba(100,100,100,0.3)
-          box-shadow: 3px 3px rgba(0,0,0,0.4)
-        card:
-          type: thermostat
-          entity: climate.lounge_ac
+      - type: thermostat
+        style: |
+          ha-card
+          {
+            # background-image: url("/local/cardbackK.png")
+            # background-repeat: no-repeat
+            # background-color: rgba(50,50,50,0.3)
+            background-size: 100% 68px;
+            border-radius: 20px;
+            border: solid 1px rgba(100,100,100,0.3);
+            box-shadow: 3px 3px rgba(0,0,0,0.4);
+          }
+        entity: climate.lounge_ac
 
       # Oyster Box
-      - type: custom:card-modder
-        style:
-          background-image: url("/local/cardbackK.png")
-          background-repeat: no-repeat
-          background-color: rgba(50,50,50,0.3)
-          background-size: 100% 68px
-          border-radius: 20px
-          border: solid 1px rgba(100,100,100,0.3)
-          box-shadow: 3px 3px rgba(0,0,0,0.4)
-        card:
-          type: picture-glance
-          title: The Oyster Box
-          entities: []
-          camera_image: camera.the_oyster_box
+      # - type: custom:card-modder
+      #   style:
+      #     background-image: url("/local/cardbackK.png")
+      #     background-repeat: no-repeat
+      #     background-color: rgba(50,50,50,0.3)
+      #     background-size: 100% 68px
+      #     border-radius: 20px
+      #     border: solid 1px rgba(100,100,100,0.3)
+      #     box-shadow: 3px 3px rgba(0,0,0,0.4)
+      #   card:
+      #     type: picture-glance
+      #     title: The Oyster Box
+      #     entities: []
+      #     camera_image: camera.the_oyster_box
 
       # Shopping List
-      - type: custom:card-modder
-        style:
-          background-image: url("/local/cardbackK.png")
-          background-repeat: no-repeat
-          background-color: rgba(50,50,50,0.3)
-          background-size: 100% 68px
-          border-radius: 20px
-          border: solid 1px rgba(100,100,100,0.3)
-          box-shadow: 3px 3px rgba(0,0,0,0.4)
-        card:
-          type: shopping-list
-          title: Shopping List
+      - type: shopping-list
+        style: |
+          ha-card
+          {
+            background-image: url("/local/cardbackK.png");
+            background-repeat: no-repeat;
+            background-color: rgba(50,50,50,0.3);
+            background-size: 100% 68px;
+            border-radius: 20px;
+            border: solid 1px rgba(100,100,100,0.3);
+            box-shadow: 3px 3px rgba(0,0,0,0.4);
+          }
+        title: Shopping List
 
       # Weather
-      - type: custom:card-modder
-        style:
-          # background-image: url("/local/cardbackK.png")
-          # background-repeat: no-repeat
-          background-color: rgba(50,50,50,0.3)
-          background-size: 100% 68px
-          border-radius: 20px
-          border: solid 1px rgba(100,100,100,0.3)
-          box-shadow: 3px 3px rgba(0,0,0,0.4)
-        card:
-          type: 'custom:weather-card'
-          entity: weather.dark_sky
+      - type: 'custom:weather-card'
+        style: |
+          ha-card
+          {
+            # background-image: url("/local/cardbackK.png");
+            # background-repeat: no-repeat;
+            background-color: rgba(50,50,50,0.3);
+            background-size: 100% 68px;
+            border-radius: 20px;
+            border: solid 1px rgba(100,100,100,0.3);
+            box-shadow: 3px 3px rgba(0,0,0,0.4);
+          }
+        entity: weather.dark_sky
           # name: DBN
 
       # Alarm
       - type: vertical-stack
         cards:
-
           #config
         - type: conditional
           conditions:
             - entity: input_boolean.alarm_config
               state: "on"
           card:
-            type: custom:card-modder
-            style:
-              # background-image: url("/local/cardbackK.png")
-              # background-repeat: no-repeat
-              background-color: rgba(50,50,50,0.3)
-              background-size: 100% 68px
-              border-radius: 20px
-              border: solid 1px rgba(100,100,100,0.3)
-              box-shadow: 3px 3px rgba(0,0,0,0.4)
-            card:
-              type: entities
-              title: "Alarm Clock"
-              icon: mdi:alarm
-              entities:
-                - entity: input_datetime.alarmclock_time
-                  name: Time
-                - entity: switch.alarm_clock_switch
-                  name: "On/Off"
-                  icon: mdi:alarm
-                - entity: switch.sunrise_enable
-                  name: "Simulated Sunrise"
-                  icon: mdi:weather-sunny
-                - entity: input_boolean.alarm_config
-                  name: Close
-                  icon: mdi:close-outline
+            type: entities
+            style: |
+              ha-card
+              {
+                background-color: rgba(50,50,50,0.3);
+                background-size: 100% 68px;
+                border-radius: 20px;
+                border: solid 1px rgba(100,100,100,0.3);
+                box-shadow: 3px 3px rgba(0,0,0,0.4);
+              }
+            title: "Alarm Clock"
+            icon: mdi:alarm
+            entities:
+              - entity: input_datetime.alarmclock_time
+                name: Time
+              - entity: switch.alarm_clock_switch
+                name: "On/Off"
+                icon: mdi:alarm
+              - entity: switch.sunrise_enable
+                name: "Simulated Sunrise"
+                icon: mdi:weather-sunny
+              - entity: input_boolean.alarm_clock_music
+                name: "Music"
+                icon: mdi:music
+              - entity: input_boolean.alarm_config
+                name: Close
+                icon: mdi:close-outline
 
           #button
         - type: conditional
@@ -215,29 +220,28 @@ views:
             - entity: input_boolean.alarm_config
               state: "off"
           card:
-            type: custom:card-modder
-            style:
-              # background-image: url("/local/cardbackK.png")
-              # background-repeat: no-repeat
-              background-color: rgba(50,50,50,0.3)
-              background-size: 100% 68px
-              border-radius: 20px
-              border: solid 1px rgba(100,100,100,0.3)
-              box-shadow: 3px 3px rgba(0,0,0,0.4)
-            card:
-              type: entity-button
-              entity: switch.alarm_clock_switch
-              name: Alarm
-              icon: mdi:alarm
-              show_name: false
-              show_state: true
-              tap_action:
-                action: toggle
-              hold_action:
-                action: call-service
-                service: input_boolean.toggle
-                service_data:
-                  entity_id: input_boolean.alarm_config
+            type: entity-button
+            style: |
+              ha-card
+              {
+                background-color: rgba(50,50,50,0.3);
+                background-size: 100% 68px;
+                border-radius: 20px;
+                border: solid 1px rgba(100,100,100,0.3);
+                box-shadow: 3px 3px rgba(0,0,0,0.4);
+              }
+            entity: switch.alarm_clock_switch
+            name: Alarm
+            icon: mdi:alarm
+            show_name: false
+            show_state: true
+            tap_action:
+              action: toggle
+            hold_action:
+              action: call-service
+              service: input_boolean.toggle
+              service_data:
+                entity_id: input_boolean.alarm_config
 #     __
 #    / /   ____  __  ______  ____ ____
 #   / /   / __ \/ / / / __ \/ __ `/ _ \
@@ -249,61 +253,53 @@ views:
     icon: mdi:sofa
     background: center / cover no-repeat url("/local/back.png") fixed
     cards:
-      - type: custom:compact-custom-header
-
         # Light
-      - type: custom:card-modder
-        style:
-          background-repeat: no-repeat
-          background-color: rgba(50,50,50,0.3)
-          background-size: 100% 68px
-          border-radius: 20px
-          border: solid 1px rgba(100,100,100,0.3)
-          box-shadow: 3px 3px rgba(0,0,0,0.4)
-        card:
-          type: light
-          entity: light.lounge
+      - type: light
+        style: |
+          ha-card
+          {
+            # background-repeat: no-repeat;
+            # background-color: rgba(50,50,50,0.3);
+            # background-size: 100% 68px;
+            border-radius: 20px;
+            border: solid 1px rgba(100,100,100,0.3);
+            box-shadow: 3px 3px rgba(0,0,0,0.4);
+          }
+        entity: light.lounge
 
       # Thermostat
-      - type: custom:card-modder
-        style:
-          # background-image: url("/local/cardbackK.png")
-          # background-repeat: no-repeat
-          # background-color: rgba(50,50,50,0.3)
-          background-size: 100% 68px
-          border-radius: 20px
-          border: solid 1px rgba(100,100,100,0.3)
-          box-shadow: 3px 3px rgba(0,0,0,0.4)
-        card:
-          type: thermostat
-          entity: climate.lounge_ac
+      - type: thermostat
+        style: |
+          ha-card
+          {
+            # background-image: url("/local/cardbackK.png")
+            # background-repeat: no-repeat
+            # background-color: rgba(50,50,50,0.3)
+            background-size: 100% 68px;
+            border-radius: 20px;
+            border: solid 1px rgba(100,100,100,0.3);
+            box-shadow: 3px 3px rgba(0,0,0,0.4);
+          }
+        entity: climate.lounge_ac
 
       # TV
-      - type: custom:card-modder
-        style:
-          background-repeat: no-repeat
-          background-color: rgba(50,50,50,0.3)
-          background-size: 100% 68px
-          border-radius: 20px
-          border: solid 1px rgba(100,100,100,0.3)
-          box-shadow: 3px 3px rgba(0,0,0,0.4)          
-        card:
-          type: entity-button
-          entity: switch.tv_power
-          show_name: false
+      - type: entity-button
+        style: |
+          ha-card
+          {
+            background-repeat: no-repeat;
+            background-color: rgba(50,50,50,0.3);
+            background-size: 100% 68px;
+            border-radius: 20px;
+            border: solid 1px rgba(100,100,100,0.3);
+            box-shadow: 3px 3px rgba(0,0,0,0.4);
+          }
+        entity: switch.tv_power
+        show_name: false
 
       # Spotify
-      - type: custom:card-modder
-        style:
-          background-repeat: no-repeat
-          background-color: rgba(50,50,50,0.3)
-          background-size: 100% 68px
-          border-radius: 20px
-          border: solid 1px rgba(100,100,100,0.3)
-          box-shadow: 3px 3px rgba(0,0,0,0.4)          
-        card:
-          type: media-control
-          entity: media_player.spotify
+      - type: media-control
+        entity: media_player.spotify
 
 #     ____           __
 #    / __ )___  ____/ /________  ____  ____ ___
@@ -315,47 +311,38 @@ views:
     icon: mdi:hotel
     background: center / cover no-repeat url("/local/back.png") fixed
     cards:
-      - type: custom:compact-custom-header
-
         # Light
-      - type: custom:card-modder
-        style:
-          background-repeat: no-repeat
-          background-color: rgba(50,50,50,0.3)
-          background-size: 100% 68px
-          border-radius: 20px
-          border: solid 1px rgba(100,100,100,0.3)
-          box-shadow: 3px 3px rgba(0,0,0,0.4)
-        card:
-          type: light
-          entity: light.bedroom
+      - type: light
+        style: |
+          ha-card
+          {
+            background-repeat: no-repeat;
+            background-color: rgba(50,50,50,0.3);
+            background-size: 100% 68px;
+            border-radius: 20px;
+            border: solid 1px rgba(100,100,100,0.3);
+            box-shadow: 3px 3px rgba(0,0,0,0.4);
+          }
+        entity: light.bedroom
 
       # Thermostat
-      - type: custom:card-modder
-        style:
-          # background-image: url("/local/cardbackK.png")
-          # background-repeat: no-repeat
-          # background-color: rgba(50,50,50,0.3)
-          background-size: 100% 68px
-          border-radius: 20px
-          border: solid 1px rgba(100,100,100,0.3)
-          box-shadow: 3px 3px rgba(0,0,0,0.4)
-        card:
-          type: thermostat
-          entity: climate.bedroom_ac
+      - type: thermostat
+        style: |
+          ha-card
+          {
+            # background-image: url("/local/cardbackK.png")
+            # background-repeat: no-repeat
+            # background-color: rgba(50,50,50,0.3)
+            background-size: 100% 68px;
+            border-radius: 20px;
+            border: solid 1px rgba(100,100,100,0.3);
+            box-shadow: 3px 3px rgba(0,0,0,0.4);
+          }
+        entity: climate.bedroom_ac
 
       # Spotify
-      - type: custom:card-modder
-        style:
-          background-repeat: no-repeat
-          background-color: rgba(50,50,50,0.3)
-          background-size: 100% 68px
-          border-radius: 20px
-          border: solid 1px rgba(100,100,100,0.3)
-          box-shadow: 3px 3px rgba(0,0,0,0.4)          
-        card:
-          type: media-control
-          entity: media_player.spotify
+      - type: media-control
+        entity: media_player.spotify
 
 #    ____  _________
 #   / __ \/ __/ __(_)_______
@@ -367,126 +354,136 @@ views:
     icon: mdi:desktop-classic
     background: center / cover no-repeat url("/local/back.png") fixed
     cards:
-      - type: custom:compact-custom-header
-
         # Light
-      - type: custom:card-modder
-        style:
-          background-repeat: no-repeat
-          background-color: rgba(50,50,50,0.3)
-          background-size: 100% 68px
-          border-radius: 20px
-          border: solid 1px rgba(100,100,100,0.3)
-          box-shadow: 3px 3px rgba(0,0,0,0.4)
-        card:
-          type: light
-          entity: light.office
+      - type: light
+        style: |
+          ha-card
+          {
+            background-repeat: no-repeat;
+            background-color: rgba(50,50,50,0.3);
+            background-size: 100% 68px;
+            border-radius: 20px;
+            border: solid 1px rgba(100,100,100,0.3);
+            box-shadow: 3px 3px rgba(0,0,0,0.4);
+          }
+        entity: light.office
 
       # Thermostat
-      - type: custom:card-modder
-        style:
-          # background-image: url("/local/cardbackK.png")
-          # background-repeat: no-repeat
-          # background-color: rgba(50,50,50,0.3)
-          background-size: 100% 68px
-          border-radius: 20px
-          border: solid 1px rgba(100,100,100,0.3)
-          box-shadow: 3px 3px rgba(0,0,0,0.4)
-        card:
-          type: thermostat
-          entity: climate.study_ac
-
-      # Spotify
-      - type: custom:card-modder
-        style:
-          background-repeat: no-repeat
-          background-color: rgba(50,50,50,0.3)
-          background-size: 100% 68px
-          border-radius: 20px
-          border: solid 1px rgba(100,100,100,0.3)
-          box-shadow: 3px 3px rgba(0,0,0,0.4)          
-        card:
-          type: media-control
-          entity: media_player.spotify
+      - type: thermostat
+        style: |
+          ha-card
+          {
+            # background-image: url("/local/cardbackK.png")
+            # background-repeat: no-repeat
+            # background-color: rgba(50,50,50,0.3)
+            background-size: 100% 68px;
+            border-radius: 20px;
+            border: solid 1px rgba(100,100,100,0.3);
+            box-shadow: 3px 3px rgba(0,0,0,0.4);
+          }
+        entity: climate.study_ac
 
       # Internet
-      - type: custom:card-modder
-        style:
-          background-repeat: no-repeat
-          background-color: rgba(50,50,50,0.3)
-          background-size: 100% 68px
-          border-radius: 20px
-          border: solid 1px rgba(100,100,100,0.3)
-          box-shadow: 3px 3px rgba(0,0,0,0.4)          
-        card:
-          type: vertical-stack 
-          cards:
-          - type: gauge
-            name: Download
-            unit: 'Mbit/s'
-            entity: sensor.speedtest_download 
-            severity:
-              red: 0
-              yellow: 4
-              green: 8
-            min: 0
-            max: 10
-          - type: gauge
-            name: Upload
-            unit: 'Mbit/s'
-            entity: sensor.speedtest_upload
-            min: 0
-            max: 5
-            severity:
-              red: 0
-              yellow: 2
-              green: 4
-          - type: gauge
-            name: Ping
-            unit: 'ms'
-            entity: sensor.speedtest_ping
-            min: 0
-            max: 1000
-            severity:
-              green: 0
-              yellow: 300
-              red: 600
-          - type: history-graph
-            title: Internet
-            hours_to_show: 120
-            entities:
-              - sensor.speedtest_download
-              - sensor.speedtest_upload
-
+      - type: history-graph
+        style: |
+          ha-card
+          {
+            background-repeat: no-repeat;
+            background-color: rgba(50,50,50,0.3);
+            background-size: 100% 68px;
+            border-radius: 20px;
+            border: solid 1px rgba(100,100,100,0.3);
+            box-shadow: 3px 3px rgba(0,0,0,0.4);
+          }
+        title: Internet
+        hours_to_show: 120
+        entities:
+          - sensor.speedtest_download
+          - sensor.speedtest_upload
+            
       # System
-      - type: custom:card-modder
-        style:
-          background-repeat: no-repeat
-          background-color: rgba(50,50,50,0.3)
-          background-size: 100% 68px
-          border-radius: 20px
-          border: solid 1px rgba(100,100,100,0.3)
-          box-shadow: 3px 3px rgba(0,0,0,0.4)          
-        card:
-          type: vertical-stack 
-          cards:
-          - type: gauge
-            name: Disk
-            unit: '%'
-            entity: sensor.disk_use_percent_home
-            severity:
-              green: 0
-              yellow: 33
-              red: 66
-          - type: gauge
-            name: CPU
-            unit: '%'
-            entity: sensor.processor_use
-            severity:
-              green: 0
-              yellow: 33
-              red: 66          
+      - type: vertical-stack
+        cards:
+        - type: gauge
+          style: |
+            ha-card
+            {
+              background-color: rgba(50,50,50,0.3)
+              background-size: 100% 68px;
+              border-radius: 20px;
+              border: solid 1px rgba(100,100,100,0.3);
+              box-shadow: 3px 3px rgba(0,0,0,0.4);
+            }
+          name: Disk
+          unit: '%'
+          entity: sensor.disk_use_percent_home
+          severity:
+            green: 0
+            yellow: 33
+            red: 66
+        - type: gauge
+          style: |
+            ha-card
+            {
+              background-color: rgba(50,50,50,0.3)
+              background-size: 100% 68px;
+              border-radius: 20px;
+              border: solid 1px rgba(100,100,100,0.3);
+              box-shadow: 3px 3px rgba(0,0,0,0.4);
+            }
+          name: CPU
+          unit: '%'
+          entity: sensor.processor_use
+          severity:
+            green: 0
+            yellow: 33
+            red: 66          
 
+      #Grafana Internet
+      - type: vertical-stack
+        cards:
+        - type: iframe
+          style: |
+            ha-card
+            {
+              background-color: rgba(50,50,50,0.3)
+              background-size: 100% 68px;
+              border-radius: 20px;
+              border: solid 1px rgba(100,100,100,0.3);
+              box-shadow: 3px 3px rgba(0,0,0,0.4);
+            }
+          id: graf_mbs
+          url: https://thenook.casa/api/hassio_ingress/8EPhKYZDJ6P3ISgQaqjnQ3mu_rFEjoVutSLP2Cq3sp0/d-solo/1P8dOmHWz/internet?orgId=1&panelId=8&refresh=60m&from=now-48h&to=now
+          aspect_ratio: 65%
+        - type: iframe
+          style: |
+            ha-card
+            {
+              background-color: rgba(50,50,50,0.3)
+              background-size: 100% 68px;
+              border-radius: 20px;
+              border: solid 1px rgba(100,100,100,0.3);
+              box-shadow: 3px 3px rgba(0,0,0,0.4);
+            }
+          id: graf_ping
+          url: https://thenook.casa/api/hassio_ingress/8EPhKYZDJ6P3ISgQaqjnQ3mu_rFEjoVutSLP2Cq3sp0/d-solo/1P8dOmHWz/internet?orgId=1&panelId=6&refresh=60m&from=now-48h&to=now
+          # url: https://thenook.casa:3000/d-solo/1P8dOmHWz/internet?orgId=1&panelId=6&refresh=60m&from=now-48h&to=now
+          aspect_ratio: 65%
+          
+      # Batteries
+      - type: iframe
+        style: |
+          ha-card
+          {
+            background-color: rgba(50,50,50,0.3)
+            background-size: 100% 68px;
+            border-radius: 20px;
+            border: solid 1px rgba(100,100,100,0.3);
+            box-shadow: 3px 3px rgba(0,0,0,0.4);
+          }
+        id: graf_batteries
+        url: https://thenook.casa/api/hassio_ingress/8EPhKYZDJ6P3ISgQaqjnQ3mu_rFEjoVutSLP2Cq3sp0/d-solo/iZmPfiHWk/sensors?orgId=1&panelId=2
+        aspect_ratio: 100%
 
 #    _____      __  __  _
 #   / ___/___  / /_/ /_(_)___  ____ ______
@@ -499,31 +496,47 @@ views:
     background: center / cover no-repeat url("/local/back.png") fixed
     icon: mdi:settings
     cards:
-      - type: custom:compact-custom-header
-      - type: custom:card-modder
-        style:
-          background-image: url("/local/cardbackK.png")
-          background-repeat: no-repeat
-          background-color: rgba(50,50,50,0.3)
-          background-size: 100% 68px
-          border-radius: 20px
-          border: solid 1px rgba(100,100,100,0.3)
-          box-shadow: 3px 3px rgba(0,0,0,0.4)
-        card:
-          type: glance
-          entities: 
-            - input_select.hass_theme
-
-      - type: entity-button
+      - type: entities
         name: Test
         icon: mdi:test-tube
-        tap_action:
-          action: call-service
-          service: script.turn_on
-          service_data:
-            entity_id: script.test
-        entity: script.test
-             
+        entities:
+          - entity : input_boolean.garden_test
+        style: |
+          ha-card
+          {
+            background-image: url("/local/cardbackK.png");
+            background-repeat: no-repeat;
+            background-color: rgba(50,50,50,0.3);
+            background-size: 100% 68px;
+            border-radius: 20px;
+            border: solid 1px rgba(100,100,100,0.3);
+            box-shadow: 3px 3px rgba(0,0,0,0.4);
+          }
+        # tap_action:
+        #   action: call-service
+        #   service: input_boolean.turn_on
+        #   service_data:
+        #     entity_id: input_boolean.garden_test
+
+      - type: entities
+        style: |
+          ha-card
+          {
+            background-image: url("/local/cardbackK.png");
+            background-repeat: no-repeat;
+            background-color: rgba(50,50,50,0.3);
+            background-size: 100% 68px;
+            border-radius: 20px;
+            border: solid 1px rgba(100,100,100,0.3);
+            box-shadow: 3px 3px rgba(0,0,0,0.4);
+          }
+        entities:
+          - entity: input_boolean.zigbee_permit_join
+          - entity: timer.zigbee_permit_join
+          - entity: sensor.bridge_state
+        show_header_toggle: false
+        title: Zigbee
+
 #     ________                       __
 #    / ____/ /___  ____  _________  / /___ _____
 #   / /_  / / __ \/ __ \/ ___/ __ \/ / __ `/ __ \
@@ -538,7 +551,6 @@ views:
     icon: mdi:floor-plan
     cards:
       - type: picture-elements
-        background-color: rgba(255,0,0,100)
         image: /local/floorplan/floorplan.png
         elements: 
           # Office
@@ -555,11 +567,17 @@ views:
               left: 48.05%
               width: 5%
           - type: image
-            entity: binary_sensor.office_aircon
+            entity: switch.office_ac_power
             image: /local/floorplan/light.png
             state_filter:
               "off": opacity(0%)
               "on": opacity(100%)
+            tap_action:
+                action: call-service
+                service:
+                  switch.toggle
+                service_data:
+                  entity_id: switch.office_ac_power
             style:
               top: 10%
               left: 40.7%
@@ -638,7 +656,7 @@ views:
               left: 26.9%
               width: 5%
           - type: image
-            entity: binary_sensor.back_door
+            entity: binary_sensor.contact_back_door
             image: /local/floorplan/light.png
             state_filter:
               "off": opacity(0%)
@@ -724,7 +742,7 @@ views:
           - type: image
             tap_action: 
               action: toggle
-            entity: binary_sensor.front_door
+            entity: binary_sensor.contact_front_door
             image: /local/floorplan/light.png
             state_filter:
               "off": opacity(0%)
@@ -749,7 +767,7 @@ views:
           - type: image
             tap_action: 
               action: toggle
-            entity: light.kitchen
+            entity: light.sonoff_kitchen
             image: /local/floorplan/light.png
             state_filter:
               "off": opacity(0%)
@@ -759,7 +777,7 @@ views:
               left: 31.2%
               width: 5%
           - type: image
-            entity: binary_sensor.freezer_door
+            entity: binary_sensor.contact_freezer
             image: /local/floorplan/light.png
             state_filter:
               "off": opacity(0%)
@@ -794,6 +812,112 @@ views:
               top: 51%
               left: 45.4%
               width: 5%              
-          
 
-      - type: custom:compact-custom-header
+#     ____       _       __           
+#    / __ \_____(_)___  / /____  _____
+#   / /_/ / ___/ / __ \/ __/ _ \/ ___/
+#  / ____/ /  / / / / / /_/  __/ /    
+# /_/   /_/  /_/_/ /_/\__/\___/_/     
+                                    
+  - title: Printer
+    icon: mdi:printer-3d-nozzle-outline
+    background: center / cover no-repeat url("/local/back.png") fixed
+    cards:
+        # Light
+      - type: light
+        style: |
+          ha-card
+          {
+            background-repeat: no-repeat;
+            background-color: rgba(50,50,50,0.3);
+            background-size: 100% 68px;
+            border-radius: 20px;
+            border: solid 1px rgba(100,100,100,0.3);
+            box-shadow: 3px 3px rgba(0,0,0,0.4);
+          }
+        entity: light.lab
+
+      - type: picture-glance
+        title: Octoprint
+        style: |
+          ha-card
+          {
+            background-repeat: no-repeat;
+            background-color: rgba(50,50,50,0.3);
+            background-size: 100% 68px;
+            border-radius: 20px;
+            border: solid 1px rgba(100,100,100,0.3);
+            box-shadow: 3px 3px rgba(0,0,0,0.4);
+          }
+        entities: []
+        camera_image: camera.printer_camera
+
+      - type: entity-button
+        style: |
+          ha-card
+          {
+            background-repeat: no-repeat;
+            background-color: rgba(50,50,50,0.3);
+            background-size: 100% 68px;
+            border-radius: 20px;
+            border: solid 1px rgba(100,100,100,0.3);
+            box-shadow: 3px 3px rgba(0,0,0,0.4);
+          }
+        entity: switch.sonoff_printer
+        tap_action:
+          action: call-service
+          service: switch.turn_on
+          service_data:
+            entity_id: switch.sonoff_printer
+        hold_action:
+          action: call-service
+          service: switch.turn_off
+          service_data:
+            entity_id: switch.sonoff_printer
+        icon: mdi:printer-3d-nozzle
+        show_name: false
+
+      # Cost
+      - type: iframe
+        style: |
+          ha-card
+          {
+            background-color: rgba(50,50,50,0.3)
+            background-size: 100% 68px;
+            border-radius: 20px;
+            border: solid 1px rgba(100,100,100,0.3);
+            box-shadow: 3px 3px rgba(0,0,0,0.4);
+          }
+        id: graf_kwh
+        url: https://thenook.casa/api/hassio_ingress/8EPhKYZDJ6P3ISgQaqjnQ3mu_rFEjoVutSLP2Cq3sp0/d-solo/mjTChjvZk/printer?orgId=1&panelId=4
+        aspect_ratio: 100%
+
+      - type: entities
+        style: |
+          ha-card
+          {
+            background-image: url("/local/cardbackK.png");
+            background-repeat: no-repeat;
+            background-color: rgba(50,50,50,0.3);
+            background-size: 100% 68px;
+            border-radius: 20px;
+            border: solid 1px rgba(100,100,100,0.3);
+            box-shadow: 3px 3px rgba(0,0,0,0.4);
+          }
+        entities:
+          - entity: input_boolean.off_after_printing
+        show_header_toggle: false
+        title: Settings
+
+# Spotify
+
+  - title: Spotify
+    icon: mdi:music-accidental-double-flat
+    panel: true
+    background: center / cover no-repeat url("/local/back.png") fixed
+    cards:
+      # Spotify
+      - type: media-control
+        entity: media_player.spotify
+
+

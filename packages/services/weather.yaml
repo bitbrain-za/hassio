@@ -14,3 +14,58 @@ sun:
 
 sensor:
   - platform: season
+
+ #===================================================
+  #=== Dark Sky sensor for current weather conditions
+  #===================================================
+  - platform: darksky
+    api_key: !secret dark_sky_key
+    name: dark_sky
+    units: auto
+    scan_interval:
+      hours: 1
+    monitored_conditions:
+      - icon
+      - summary
+      - minutely_summary 
+      - hourly_summary
+      - daily_summary
+      - temperature
+      - apparent_temperature
+      - precip_intensity
+      - precip_type            # If precip_intensity is zero, then this property will be unknown
+      - precip_accumulation    # If no snowfall is expected, this property will be undefined
+      - dew_point
+      - wind_speed
+      - wind_gust
+      - wind_bearing
+      - cloud_cover
+      - humidity
+      - pressure
+      - visibility
+      - ozone
+      - uv_index
+      - moon_phase
+      - nearest_storm_distance
+      - nearest_storm_bearing
+
+  - platform: darksky
+    api_key: !secret dark_sky_key
+    name: dark_sky_forecast
+    units: auto
+    scan_interval:
+      minutes: 120
+    forecast:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+    monitored_conditions:
+      - icon
+      - summary
+      - temperature_high           
+      - temperature_low 
+      - precip_intensity_max
+      - precip_probability

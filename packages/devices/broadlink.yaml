@@ -1,0 +1,86 @@
+
+smartir:
+  update_branch: rc
+
+switch:
+#Bedroom
+  - platform: broadlink
+    host: 192.168.1.71
+    mac: !secret mac_bedroom_rm_mini
+#Study    
+  - platform: broadlink
+    host: 192.168.1.72
+    mac: !secret mac_office_rm_mini
+#Lounge    
+  - platform: broadlink
+    host: 192.168.1.70
+    mac: !secret braodlink_rm_mini_mac          
+
+#Template switches are used to mask all !off states as "on"
+  - platform: template
+    switches: 
+      living_room_aircon_power:
+        value_template: "{{ not(is_state('climate.lounge_ac', 'off')) }}"
+        turn_on:
+          service: climate.turn_on
+          data:
+            entity_id: climate.lounge_ac
+        turn_off:
+          service: climate.turn_off
+          data:
+            entity_id: climate.lounge_ac
+
+  - platform: template
+    switches:
+      office_ac_power:
+        value_template: "{{ not(is_state('climate.study_ac', 'off')) }}"
+        turn_on:
+          service: climate.turn_on
+          data:
+            entity_id: climate.study_ac
+        turn_off:
+          service: climate.turn_off
+          data:
+            entity_id: climate.study_ac
+
+climate:
+  - platform: smartir
+    name: Bedroom AC
+    unique_id: bedroom_ac
+    device_code: 9001
+    controller_data: 192.168.1.71
+    temperature_sensor: sensor.temperature_bedroom
+    humidity_sensor: sensor.humidity_bedroom
+
+  - platform: smartir
+    name: Lounge AC
+    unique_id: lounge_ac
+    device_code: 1160
+    controller_data: 192.168.1.70
+    temperature_sensor: sensor.temperature_lounge
+    humidity_sensor: sensor.humidity_lounge
+
+  - platform: smartir
+    name: Study AC
+    unique_id: study_ac
+    device_code: 9002
+    controller_data: 192.168.1.72
+    temperature_sensor: sensor.temperature_study
+    humidity_sensor: sensor.humidity_study
+
+script:
+  all_ac_off:
+    sequence:
+      - service: climate.set_operation_mode
+        data:
+          entity_id: climate.bedroom_ac
+          operation_mode: 'off'
+      - service: climate.set_operation_mode
+        data:
+          entity_id: climate.loung_ac
+          operation_mode: 'off'
+      - service: climate.set_operation_mode
+        data:
+          entity_id: climate.study_ac
+          operation_mode: 'off'
+ 

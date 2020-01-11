@@ -15,13 +15,7 @@
 #     climate.carrier:
 #       expose: true
 #       room: living room
-#     media_player.jukebox_mpd:
-#       expose: true
-#       room: living room
 #     media_player.spotify:
-#       expose: true
-#       room: living room
-#     switch.jukebox_power:
 #       expose: true
 #       room: living room
 #     switch.tv_power:

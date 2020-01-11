@@ -1,0 +1,16 @@
+
+input_boolean:
+  bedtime:
+    name: In Bed
+    initial: 'off'
+
+automation:
+  - id: 243A96FD-97EA-496C-9DEF-846B83F7FB50
+    alias: wake up time
+    initial_state: 'on'
+    trigger:
+    - platform: sun
+      event: sunrise
+    action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.bedtime

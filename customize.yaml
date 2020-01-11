@@ -1,6 +1,6 @@
 device_tracker.bc5ff42036a8:
   friendly_name: Philip Desktop
-device_tracker.huawei_p9_lite:
+device_tracker.mi9tpro_miphone:
   friendly_name: Philip
   entity_picture: /local/turtle.jpg
 device_tracker.p_phone:
@@ -72,7 +72,4 @@ light.lab:
 group.philip:
   friendly_name: Philip
   entity_picture: /local/turtle.jpg
-switch.jukebox_power:
-  friendly_name: Jukebox Power
-  entity_picture: /local/icons/jukebox.png
 device_tracker.002314451368: {}
