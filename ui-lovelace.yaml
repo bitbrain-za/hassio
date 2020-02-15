@@ -299,7 +299,7 @@ views:
 
       # Spotify
       - type: media-control
-        entity: media_player.spotify
+        entity: media_player.spotify_phil
 
 #     ____           __
 #    / __ )___  ____/ /________  ____  ____ ___
@@ -342,7 +342,7 @@ views:
 
       # Spotify
       - type: media-control
-        entity: media_player.spotify
+        entity: media_player.spotify_phil
 
 #    ____  _________
 #   / __ \/ __/ __(_)_______
@@ -367,6 +367,22 @@ views:
             box-shadow: 3px 3px rgba(0,0,0,0.4);
           }
         entity: light.office
+
+      # - type: picture-glance
+      #   title: Study
+      #   style: |
+      #     ha-card
+      #     {
+      #       # background-image: url("/local/cardbackK.png")
+      #       # background-repeat: no-repeat
+      #       # background-color: rgba(50,50,50,0.3)
+      #       background-size: 100% 68px;
+      #       border-radius: 20px;
+      #       border: solid 1px rgba(100,100,100,0.3);
+      #       box-shadow: 3px 3px rgba(0,0,0,0.4);
+      #     }
+      #   entities: []
+      #   camera_image: camera.study_mjpeg
 
       # Thermostat
       - type: thermostat
@@ -918,6 +934,6 @@ views:
     cards:
       # Spotify
       - type: media-control
-        entity: media_player.spotify
+        entity: media_player.spotify_phil
 
 

@@ -735,3 +735,75 @@ irrigation2:
   name: irrigation2
   picture:
   track: true
+
+nano:
+  hide_if_away: false
+  icon:
+  mac: 00:E0:4C:68:04:83
+  name: nano
+  picture:
+  track: true
+
+ipcam:
+  hide_if_away: false
+  icon:
+  mac: 7C:A7:B0:1A:88:73
+  name: IPCAM
+  picture:
+  track: true
+
+tegra_ubuntu:
+  hide_if_away: false
+  icon:
+  mac: 00:04:4B:F6:CE:1C
+  name: tegra-ubuntu
+  picture:
+  track: true
+
+markiv:
+  hide_if_away: false
+  icon:
+  mac: 00:04:4B:F6:CE:1A
+  name: markiv
+  picture:
+  track: true
+
+hass:
+  hide_if_away: false
+  icon:
+  mac: 8C:89:A5:2B:7A:A3
+  name: hass
+  picture:
+  track: true
+
+hass_2:
+  hide_if_away: false
+  icon:
+  mac: 54:42:49:05:75:75
+  name: hass
+  picture:
+  track: true
+
+hass_3:
+  hide_if_away: false
+  icon:
+  mac: BC:5F:F4:67:1F:4C
+  name: hass
+  picture:
+  track: true
+
+chromecast:
+  hide_if_away: false
+  icon:
+  mac: F0:5C:77:27:06:54
+  name: Chromecast
+  picture:
+  track: true
+
+google_home_2:
+  hide_if_away: false
+  icon:
+  mac: 00:F6:20:B9:2B:00
+  name: Google-Home
+  picture:
+  track: true
