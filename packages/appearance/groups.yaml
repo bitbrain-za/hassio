@@ -6,7 +6,6 @@ group:
   
   inside_lights:
     name: inside lights
-    view: no
     icon: mdi:lightbulb
     entities:
       - light.spare_room
@@ -21,25 +20,8 @@ group:
       - light.office
       - light.lab
       
-  goodbye_lights:
-    name: goodbye lights
-    view: no
-    icon: mdi:lightbulb
-    entities:
-      - light.spare_room
-      - light.passage
-      - light.sonoff_kitchen
-      - light.store
-      - light.lounge
-      - light.bedroom
-      - light.mes
-      - light.bathroom
-      - light.lab
-      - light.office
-
   lights_bedtime:
     name: Bedtime Lights
-    view: no
     icon: mdi:lightbulb
     entities:
       - light.spare_room
@@ -51,33 +33,9 @@ group:
       - light.lounge
       - light.bathroom
       - light.lab
-
-  lights_control:
-    name: Lights
-    view: no
-    entities:
-      - light.sonoff_kitchen
-      - light.lounge
-      - light.entrance
-      - light.bathroom
-      - light.bedroom
-      - light.mes
-      - light.back
-      - light.front
-      - light.passage
-      - light.office
-      - light.lab
-
-  philip:
-    name: Philip
-    view: no
-    entities:
-      - group.phil_home
-      - group.phil_not_home
 
   tarantula:
     name: Tarantula
-    view: no
     entities: 
     - sensor.octoprint_actual_bed_temp
     - sensor.octoprint_actual_tool0_temp

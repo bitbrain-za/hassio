@@ -807,3 +807,11 @@ google_home_2:
   name: Google-Home
   picture:
   track: true
+
+onkyo_tx_nr575e_f3f71f:
+  hide_if_away: false
+  icon:
+  mac: 00:09:B0:77:9D:9B
+  name: Onkyo-TX-NR575E-F3F71F
+  picture:
+  track: true

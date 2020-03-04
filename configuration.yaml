@@ -20,11 +20,6 @@ frontend: !include frontend.yaml
 
 config:
 
-# sensor:
-#   - platform: seventeentrack
-#     username: !secret email
-#     password: !secret track_pass
-
 http:
   base_url: !secret ha_url
   ssl_certificate: "/ssl/fullchain.pem"
@@ -60,7 +55,8 @@ tts:
     base_url: http://192.168.1.32:8123
     service_name: google_say
 
-cloud:
+
+
 
 shopping_list:
 

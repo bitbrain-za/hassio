@@ -2,9 +2,18 @@
 spotify:
   client_id: !secret spotify_client_id_ha
   client_secret: !secret spotify_client_secret_ha
-# media_player:
-  # - platform: smartir
-  #   name: tv_ir
-  #   unique_id: tv_ir
-  #   device_code: 1060
-  #   controller_data: 192.168.1.70
+
+media_player:
+  - platform: smartir
+    name: tv_ir
+    unique_id: tv_ir
+    device_code: 1060
+    controller_data: 192.168.1.70
+
+  - platform: onkyo
+    host: 192.168.1.31
+    name: receiver
+    sources:
+      tv-cd: 'tv'
+      cd: 'jukebox'
+      network_net: 'net'

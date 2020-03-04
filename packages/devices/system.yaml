@@ -54,12 +54,6 @@ speedtestdotnet:
   server_id: 14204 # Palo Alto speedtest server
   manual: true
 
-# xiaomi_aqara:
-#   gateways:
-#     - host: 192.168.1.51
-#       mac: !secret xiaomi_gateway_mac
-#       key: !secret xiaomi_gateway_password
-
 group:
   sys_status:
     name: System Status

@@ -10,18 +10,6 @@
   radius: 250
   icon: mdi:briefcase
 
-- name: christie home
-  latitude: !secret chris_home_latitude
-  longitude: !secret chris_home_longitude
-  radius: 100
-  icon: mdi:home-circle
-
-- name: christie work
-  latitude: !secret chris_work_latitude
-  longitude: !secret chris_work_longitude
-  radius: 250
-  icon: mdi:briefcase
-
 - name: mum home
   latitude: !secret mum_home_latitude
   longitude: !secret mum_home_longitude

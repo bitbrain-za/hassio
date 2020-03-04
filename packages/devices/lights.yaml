@@ -67,22 +67,7 @@ light:
     entities:
       - light.bedroom_ceiling
       - light.bedside
-
-  - platform: group
-    name: inside
-    entities:
-      - light.spare_room
-      - light.passage
-      - light.kitchen
-      - light.entrance
-      - light.store
-      - light.lounge
-      - light.bedroom
-      - light.mes
-      - light.bathroom
-      - light.office
-      - light.lab
-
+      
 yeelight:
   devices:
   #Bedroom

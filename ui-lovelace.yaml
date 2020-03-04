@@ -282,21 +282,6 @@ views:
           }
         entity: climate.lounge_ac
 
-      # TV
-      - type: entity-button
-        style: |
-          ha-card
-          {
-            background-repeat: no-repeat;
-            background-color: rgba(50,50,50,0.3);
-            background-size: 100% 68px;
-            border-radius: 20px;
-            border: solid 1px rgba(100,100,100,0.3);
-            box-shadow: 3px 3px rgba(0,0,0,0.4);
-          }
-        entity: switch.tv_power
-        show_name: false
-
       # Spotify
       - type: media-control
         entity: media_player.spotify_phil
@@ -454,52 +439,6 @@ views:
             green: 0
             yellow: 33
             red: 66          
-
-      #Grafana Internet
-      - type: vertical-stack
-        cards:
-        - type: iframe
-          style: |
-            ha-card
-            {
-              background-color: rgba(50,50,50,0.3)
-              background-size: 100% 68px;
-              border-radius: 20px;
-              border: solid 1px rgba(100,100,100,0.3);
-              box-shadow: 3px 3px rgba(0,0,0,0.4);
-            }
-          id: graf_mbs
-          url: https://thenook.casa/api/hassio_ingress/8EPhKYZDJ6P3ISgQaqjnQ3mu_rFEjoVutSLP2Cq3sp0/d-solo/1P8dOmHWz/internet?orgId=1&panelId=8&refresh=60m&from=now-48h&to=now
-          aspect_ratio: 65%
-        - type: iframe
-          style: |
-            ha-card
-            {
-              background-color: rgba(50,50,50,0.3)
-              background-size: 100% 68px;
-              border-radius: 20px;
-              border: solid 1px rgba(100,100,100,0.3);
-              box-shadow: 3px 3px rgba(0,0,0,0.4);
-            }
-          id: graf_ping
-          url: https://thenook.casa/api/hassio_ingress/8EPhKYZDJ6P3ISgQaqjnQ3mu_rFEjoVutSLP2Cq3sp0/d-solo/1P8dOmHWz/internet?orgId=1&panelId=6&refresh=60m&from=now-48h&to=now
-          # url: https://thenook.casa:3000/d-solo/1P8dOmHWz/internet?orgId=1&panelId=6&refresh=60m&from=now-48h&to=now
-          aspect_ratio: 65%
-          
-      # Batteries
-      - type: iframe
-        style: |
-          ha-card
-          {
-            background-color: rgba(50,50,50,0.3)
-            background-size: 100% 68px;
-            border-radius: 20px;
-            border: solid 1px rgba(100,100,100,0.3);
-            box-shadow: 3px 3px rgba(0,0,0,0.4);
-          }
-        id: graf_batteries
-        url: https://thenook.casa/api/hassio_ingress/8EPhKYZDJ6P3ISgQaqjnQ3mu_rFEjoVutSLP2Cq3sp0/d-solo/iZmPfiHWk/sensors?orgId=1&panelId=2
-        aspect_ratio: 100%
 
 #    _____      __  __  _
 #   / ___/___  / /_/ /_(_)___  ____ ______

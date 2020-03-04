@@ -1,0 +1,27 @@
+cloud: 
+  google_actions:
+    filter:
+      exclude_entities:
+        - light.lounge1
+        - light.lounge2
+        - light.bedroom_ceiling
+        - light.bedside
+      exclude_domains:
+        - automation
+        - scene
+        - binary_sensor
+        - camera
+
+automation:
+- id: IFTT_consumer
+  alias: IFTT webhook event consumer
+  trigger:
+  - event_data:
+      action: call_service
+    event_type: ifttt_webhook_received
+    platform: event
+  condition: []
+  action:
+  - data_template:
+      entity_id: '{{ trigger.event.data.entity_id }}'
+    service_template: '{{ trigger.event.data.service }}'

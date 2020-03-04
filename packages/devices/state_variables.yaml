@@ -4,6 +4,10 @@ input_boolean:
     name: In Bed
     initial: 'off'
 
+  chill_time:
+    name: chill_time
+    initial: false
+
 automation:
   - id: 243A96FD-97EA-496C-9DEF-846B83F7FB50
     alias: wake up time
