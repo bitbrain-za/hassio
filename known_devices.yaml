@@ -1,6 +1,6 @@
 
 huawei_p9_lite:
-  hide_if_away: false
+  hide_if_away: true
   icon:
   mac: B0:89:00:25:3B:BD
   name: HUAWEI P9 lite
@@ -95,22 +95,6 @@ philipslightbulb_miio61670824:
   picture:
   track: true
 
-p_phone:
-  hide_if_away: false
-  icon:
-  mac:
-  name: p phone
-  picture:
-  track: true
-
-mum_zanz:
-  hide_if_away: false
-  icon:
-  mac:
-  name: mum zanz
-  picture:
-  track: true
-
 philipslightbulb_miio60611009:
   hide_if_away: false
   icon:
@@ -128,7 +112,7 @@ yeelinklightcolor1_miio80403249:
   track: true
 
 samsung:
-  hide_if_away: false
+  hide_if_away: true
   icon:
   mac: 84:C0:EF:D3:11:62
   name: Samsung
@@ -164,30 +148,6 @@ samsung:
   icon:
   mac: 68:C6:3A:A3:28:61
   name: 68c63aa32861
-  picture:
-  track: true
-
-android37337b5b251b8919:
-  hide_if_away: false
-  icon:
-  mac: C0:BD:D1:92:D0:DD
-  name: android-37337b5b251b8919
-  picture:
-  track: true
-
-galaxya72017:
-  hide_if_away: false
-  icon:
-  mac: FC:42:03:1D:71:D9
-  name: Galaxy-A7-2017
-  picture:
-  track: true
-
-android5193037bdc6b05c7:
-  hide_if_away: false
-  icon:
-  mac: 30:A8:DB:95:55:D4
-  name: android-5193037bdc6b05c7
   picture:
   track: true
 
@@ -256,14 +216,6 @@ ipad:
   picture:
   track: true
 
-nicksgalaxys9:
-  hide_if_away: false
-  icon:
-  mac: 24:18:1D:AE:5E:A5
-  name: Nicks-Galaxy-S9
-  picture:
-  track: true
-
 esp_0df678:
   hide_if_away: false
   icon:
@@ -277,14 +229,6 @@ yeelinklightcolor1_miio86765265:
   icon:
   mac: 7C:49:EB:0F:8F:E4
   name: yeelink-light-color1 miio86765265
-  picture:
-  track: true
-
-philips_ipad:
-  hide_if_away: false
-  icon:
-  mac:
-  name: philips ipad
   picture:
   track: true
 
@@ -336,43 +280,11 @@ smj320w8:
   picture:
   track: true
 
-android56a4e73f4953b4c7:
-  hide_if_away: false
-  icon:
-  mac: BC:76:5E:80:76:DF
-  name: android-56a4e73f4953b4c7
-  picture:
-  track: true
-
-charlie:
-  hide_if_away: false
-  icon:
-  mac: 40:F0:2F:A7:0C:E3
-  name: Charlie
-  picture:
-  track: true
-
-chanelsiphone:
-  hide_if_away: false
-  icon:
-  mac: 00:F7:6F:B7:2F:FA
-  name: Chanels-iPhone
-  picture:
-  track: true
-
 a02c36b79e74:
   hide_if_away: false
   icon:
   mac: A0:2C:36:B7:9E:74
   name: a02c36b79e74
-  picture:
-  track: true
-
-galaxys8:
-  hide_if_away: false
-  icon:
-  mac: 30:07:4D:CE:C9:F3
-  name: Galaxy-S8
   picture:
   track: true
 
@@ -384,35 +296,11 @@ galaxys8:
   picture:
   track: true
 
-galaxys8_2:
-  hide_if_away: false
-  icon:
-  mac: 30:07:4D:DF:4B:FA
-  name: Galaxy-S8
-  picture:
-  track: true
-
 akirasmbp:
   hide_if_away: false
   icon:
   mac: 38:F9:D3:41:23:0C
   name: Akiras-MBP
-  picture:
-  track: true
-
-android1783acecfabdfde7:
-  hide_if_away: false
-  icon:
-  mac: BC:E5:9F:C4:81:77
-  name: android-1783acecfabdfde7
-  picture:
-  track: true
-
-androidb4094c9b312efa38:
-  hide_if_away: false
-  icon:
-  mac: 40:B8:37:D5:B1:8D
-  name: android-b4094c9b312efa38
   picture:
   track: true
 
@@ -440,43 +328,11 @@ b8c1111879e2:
   picture:
   track: true
 
-cameronsiphone:
-  hide_if_away: false
-  icon:
-  mac: CC:25:EF:72:A4:13
-  name: Camerons-iPhone
-  picture:
-  track: true
-
 4098adbfd90c:
   hide_if_away: false
   icon:
   mac: 40:98:AD:BF:D9:0C
   name: 4098adbfd90c
-  picture:
-  track: true
-
-carol:
-  hide_if_away: false
-  icon:
-  mac: 80:86:F2:3E:3C:FD
-  name: Carol
-  picture:
-  track: true
-
-carolbaowiphone:
-  hide_if_away: false
-  icon:
-  mac: E0:66:78:CC:E0:76
-  name: CarolBaowiPhone
-  picture:
-  track: true
-
-carol_2:
-  hide_if_away: false
-  icon:
-  mac: 78:24:AF:B1:D3:BE
-  name: Carol
   picture:
   track: true
 
@@ -501,22 +357,6 @@ redmis2_redmichan:
   icon:
   mac: 18:01:F1:53:DB:DB
   name: RedmiS2-RedmiChan
-  picture:
-  track: true
-
-chanel:
-  hide_if_away: false
-  icon:
-  mac: 34:17:EB:51:C3:FB
-  name: Chanel
-  picture:
-  track: true
-
-galaxy_s6:
-  hide_if_away: false
-  icon:
-  mac: 2C:0E:3D:89:06:90
-  name: Galaxy-S6
   picture:
   track: true
 
@@ -680,14 +520,6 @@ iphone:
   picture:
   track: true
 
-huawei_p_smart_aaa966610e:
-  hide_if_away: false
-  icon:
-  mac: 30:A1:FA:F5:44:61
-  name: HUAWEI P smart-aaa966610e
-  picture:
-  track: true
-
 3c_2e_ff_c3_93_0f:
   hide_if_away: false
   icon:
@@ -717,14 +549,6 @@ raspberrypi_6:
   icon:
   mac: DC:A6:32:33:50:16
   name: raspberrypi
-  picture:
-  track: true
-
-macbookpro:
-  hide_if_away: false
-  icon:
-  mac: A8:BB:CF:01:E8:36
-  name: MacbookPro
   picture:
   track: true
 
@@ -813,5 +637,188 @@ onkyo_tx_nr575e_f3f71f:
   icon:
   mac: 00:09:B0:77:9D:9B
   name: Onkyo-TX-NR575E-F3F71F
+  picture:
+  track: true
+
+galaxy_note10:
+  hide_if_away: false
+  icon:
+  mac: E6:7C:56:30:91:67
+  name: Galaxy-Note10
+  picture:
+  track: true
+
+desktop_g9fgn74_2:
+  hide_if_away: false
+  icon:
+  mac: 30:85:A9:AD:6C:20
+  name: DESKTOP-G9FGN74
+  picture:
+  track: true
+
+25b_00068e101945:
+  hide_if_away: false
+  icon:
+  mac: 00:06:8E:10:19:45
+  name: 25B-00068E101945
+  picture:
+  track: true
+
+rb25f_00068e100754:
+  hide_if_away: false
+  icon:
+  mac: 00:06:8E:10:07:54
+  name: RB25F-00068E100754
+  picture:
+  track: true
+
+gwipc_18039698:
+  hide_if_away: false
+  icon:
+  mac: 4C:B0:08:4A:50:E6
+  name: GWIPC-18039698
+  picture:
+  track: true
+
+octopi_3:
+  hide_if_away: false
+  icon:
+  mac: B8:27:EB:23:D6:7B
+  name: octopi
+  picture:
+  track: true
+
+gwipc_18039698_2:
+  hide_if_away: false
+  icon:
+  mac: 30:4A:26:F6:00:0F
+  name: GWIPC-18039698
+  picture:
+  track: true
+
+4e_ed_fb_08_36_b8:
+  hide_if_away: false
+  icon:
+  mac: 4E:ED:FB:08:36:B8
+  name: 4e_ed_fb_08_36_b8
+  picture:
+  track: true
+
+ipcam_2:
+  icon:
+  mac: 7C:A7:B0:19:E9:10
+  name: IPCAM
+  picture:
+  track: true
+
+ipcam_3:
+  icon:
+  mac: 7C:A7:B0:19:7B:E7
+  name: IPCAM
+  picture:
+  track: true
+
+rb25f_00068e101942:
+  icon:
+  mac: 00:06:8E:10:19:42
+  name: RB25F-00068E101942
+  picture:
+  track: true
+
+rb25f_00068e101937:
+  icon:
+  mac: 00:06:8E:10:19:37
+  name: RB25F-00068E101937
+  picture:
+  track: true
+
+raspberrypi_7:
+  icon:
+  mac: B8:27:EB:59:B9:9C
+  name: raspberrypi
+  picture:
+  track: true
+
+raspberrypi_8:
+  icon:
+  mac: B8:27:EB:1C:FD:FF
+  name: raspberrypi
+  picture:
+  track: true
+
+esp_502445:
+  icon:
+  mac: 78:11:DC:50:24:45
+  name: ESP_502445
+  picture:
+  track: true
+
+30_a8_db_95_55_d4:
+  icon:
+  mac: 30:A8:DB:95:55:D4
+  name: 30_a8_db_95_55_d4
+  picture:
+  track: true
+
+galaxy_note10_lite:
+  icon:
+  mac: CA:CA:3F:F4:8F:27
+  name: Galaxy-Note10-Lite
+  picture:
+  track: true
+
+sm_a260f:
+  icon:
+  mac: 48:9D:D1:10:15:19
+  name: SM-A260F
+  picture:
+  track: true
+
+cc_50_e3_cc_83_56:
+  icon:
+  mac: CC:50:E3:CC:83:56
+  name: cc_50_e3_cc_83_56
+  picture:
+  track: true
+
+barrys_iphone:
+  icon:
+  mac: 88:A4:79:03:FE:CE
+  name: Barrys-iPhone
+  picture:
+  track: true
+
+raspberrypi_9:
+  icon:
+  mac: B8:27:EB:22:EB:0F
+  name: raspberrypi
+  picture:
+  track: true
+
+raspberrypi_10:
+  icon:
+  mac: B8:27:EB:0D:6F:4D
+  name: raspberrypi
+  picture:
+  track: true
+
+00_04_4b_e6_4c_95:
+  icon:
+  mac: 00:04:4B:E6:4C:95
+  name: 00_04_4b_e6_4c_95
+  picture:
+  track: true
+
+janus:
+  icon:
+  mac: 00:04:4B:E6:46:CB
+  name: janus
+  picture:
+  track: true
+
+vernonlaptop:
+  icon:
+  mac: A8:6D:AA:5E:01:87
+  name: VernonLaptop
   picture:
   track: true

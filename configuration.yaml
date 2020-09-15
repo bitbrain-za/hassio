@@ -21,7 +21,7 @@ frontend: !include frontend.yaml
 config:
 
 http:
-  base_url: !secret ha_url
+  # base_url: !secret ha_url
   ssl_certificate: "/ssl/fullchain.pem"
   ssl_key: "/ssl/privkey.pem"
 
@@ -47,22 +47,33 @@ influxdb:
   max_retries: 3
   default_measurement: state
 
-tts:
-  - platform: google_translate
-    cache: true
-    cache_dir: /tmp/tts
-    time_memory: 300
-    base_url: http://192.168.1.32:8123
-    service_name: google_say
-
-
-
+# tts:
+#   - platform: google_translate
+#     cache: true
+#     cache_dir: /tmp/tts
+#     time_memory: 300
+#     base_url: http://192.168.1.32:8123
+#     service_name: google_say
 
 shopping_list:
 
 lovelace:
   mode: yaml
+  resources:
+    - url: https://cdn.jsdelivr.net/gh/bramkragten/custom-ui@master/weather-card/weather-card.min.js
+      type: module
+    - url: /local/plugins/card-tools.js?v=1
+      type: js
+    - url: /local/plugins/card-mod.js?v=1
+      type: module
+    - url: /local/plugins/time-input-row.js?v=0.0.1
+      type: js
+    - url: /hacsfiles/custom-header/custom-header.js
+      type: module
+      
 
 recorder:
   purge_keep_days: 5
-  purge_interval: 1
+  auto_purge: true
+
+mobile_app:

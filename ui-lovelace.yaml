@@ -1,18 +1,7 @@
-resources:
-  - url: https://cdn.jsdelivr.net/gh/bramkragten/custom-ui@master/weather-card/weather-card.min.js
-    type: module
-  - url: /local/plugins/card-tools.js?v=1
-    type: js
-  - url: /local/plugins/card-mod.js?v=1
-    type: module
-  - url: /local/plugins/time-input-row.js?v=0.0.1
-    type: js
-  - url: /community_plugin/custom-header/custom-header.js
-    type: module
 
 custom_header:
   compact_mode: true
-  background: transparent url("/local/header.jpg")
+  background: repeat url("/local/header.jpg")
   exceptions:
     - conditions:
         query_string: kiosk
@@ -55,7 +44,7 @@ views:
             icon: mdi:ceiling-light
             tap_action:
               action: toggle
-          - entity: light.sonoff_kitchen
+          - entity: light.kitchen
             name: Kitchen
             icon: mdi:fridge-outline
             tap_action:
@@ -440,6 +429,76 @@ views:
             yellow: 33
             red: 66          
 
+#Zone Minder
+
+  - title: Surveilance
+    icon: mdi:camera-iris
+    background: center / cover no-repeat url("/local/back.png") fixed
+    cards:
+      - type: picture-glance
+        style: |
+          ha-card
+          {
+            background-repeat: no-repeat;
+            background-color: rgba(50,50,50,0.3);
+            background-size: 100% 68px;
+            border-radius: 20px;
+            border: solid 1px rgba(100,100,100,0.3);
+            box-shadow: 3px 3px rgba(0,0,0,0.4);
+          }
+        title: Back garden
+        entities:
+        - light.back
+        camera_image: camera.garden
+
+      - type: picture-glance
+        style: |
+          ha-card
+          {
+            background-repeat: no-repeat;
+            background-color: rgba(50,50,50,0.3);
+            background-size: 100% 68px;
+            border-radius: 20px;
+            border: solid 1px rgba(100,100,100,0.3);
+            box-shadow: 3px 3px rgba(0,0,0,0.4);
+          }
+        title: Lounge
+        entities:
+        - light.lounge
+        camera_image: camera.lounge
+
+      - type: picture-glance
+        style: |
+          ha-card
+          {
+            background-repeat: no-repeat;
+            background-color: rgba(50,50,50,0.3);
+            background-size: 100% 68px;
+            border-radius: 20px;
+            border: solid 1px rgba(100,100,100,0.3);
+            box-shadow: 3px 3px rgba(0,0,0,0.4);
+          }
+        title: Lounge
+        entities:
+        - light.lounge
+        camera_image: camera.lounge_2
+
+      # - type: picture-glance
+      #   style: |
+      #     ha-card
+      #     {
+      #       background-repeat: no-repeat;
+      #       background-color: rgba(50,50,50,0.3);
+      #       background-size: 100% 68px;
+      #       border-radius: 20px;
+      #       border: solid 1px rgba(100,100,100,0.3);
+      #       box-shadow: 3px 3px rgba(0,0,0,0.4);
+      #     }
+      #   title: Test
+      #   entities:
+      #   - light.office
+      #   camera_image: camera.test
+
 #    _____      __  __  _
 #   / ___/___  / /_/ /_(_)___  ____ ______
 #   \__ \/ _ \/ __/ __/ / __ \/ __ `/ ___/
@@ -656,18 +715,18 @@ views:
               top: 37.6%
               left: 28.6%
               width: 5%
-          - type: image
-            tap_action: 
-              action: toggle
-            entity: switch.tv_power
-            image: /local/floorplan/light.png
-            state_filter:
-              "off": opacity(0%)
-              "on": opacity(100%)
-            style:
-              top: 40.75%
-              left: 20.75%
-              width: 5%
+          # - type: image
+          #   tap_action: 
+          #     action: toggle
+          #   entity: switch.tv_power
+          #   image: /local/floorplan/light.png
+          #   state_filter:
+          #     "off": opacity(0%)
+          #     "on": opacity(100%)
+          #   style:
+          #     top: 40.75%
+          #     left: 20.75%
+          #     width: 5%
           # Lab
           - type: image
             tap_action: 
@@ -722,7 +781,7 @@ views:
           - type: image
             tap_action: 
               action: toggle
-            entity: light.sonoff_kitchen
+            entity: light.kitchen
             image: /local/floorplan/light.png
             state_filter:
               "off": opacity(0%)
@@ -847,6 +906,26 @@ views:
         url: https://thenook.casa/api/hassio_ingress/8EPhKYZDJ6P3ISgQaqjnQ3mu_rFEjoVutSLP2Cq3sp0/d-solo/mjTChjvZk/printer?orgId=1&panelId=4
         aspect_ratio: 100%
 
+
+      - type: gauge
+        style: |
+          ha-card
+          {
+            background-color: rgba(50,50,50,0.3)
+            background-size: 100% 68px;
+            border-radius: 20px;
+            border: solid 1px rgba(100,100,100,0.3);
+            box-shadow: 3px 3px rgba(0,0,0,0.4);
+          }
+        name: Enclosure Temp
+        unit: '°C'
+        entity: sensor.printer_enclosure_temp
+        severity:
+          green: 0
+          yellow: 40
+          red: 60
+
+
       - type: entities
         style: |
           ha-card
@@ -875,4 +954,23 @@ views:
       - type: media-control
         entity: media_player.spotify_phil
 
+# # Tests
 
+#   - title: Facial Wall
+#     icon: mdi:camera-iris
+#     background: center / cover no-repeat url("/local/back.png") fixed
+#     cards:
+#       - type: picture-glance
+#         style: |
+#           ha-card
+#           {
+#             background-repeat: no-repeat;
+#             background-color: rgba(50,50,50,0.3);
+#             background-size: 100% 68px;
+#             border-radius: 20px;
+#             border: solid 1px rgba(100,100,100,0.3);
+#             box-shadow: 3px 3px rgba(0,0,0,0.4);
+#           }
+#         title: Facial Wall
+#         entities: []
+#         camera_image: camera.facial_wall
