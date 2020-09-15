@@ -1,0 +1,6 @@
+sensor:
+  - platform: integration
+    source: sensor.geyser_energy_power
+    name: Geyser Power
+    method: left
+

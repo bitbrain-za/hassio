@@ -1,0 +1,20 @@
+
+# camera:
+  
+#   - platform: mjpeg
+#     mjpeg_url: http://localhost:8081/
+#     name: study_mjpeg
+
+zoneminder:
+  - host: !secret zm_host
+    ssl: true
+    verify_ssl: true
+    username: !secret zm_user
+    password: !secret zm_pass
+
+camera:
+  - platform: zoneminder
+
+sensor:
+  - platform: zoneminder
+    include_archived: false

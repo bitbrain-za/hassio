@@ -12,8 +12,8 @@
 system_health:
 
 spotcast:
-  username: !secret spotify_username
-  password: !secret spotify_password
+  sp_dc: !secret spotify_dc
+  sp_key: !secret spotify_key
 
 asuswrt:
   host: 192.168.1.1
@@ -36,23 +36,23 @@ sensor:
       - type: processor_use
       - type: last_boot
 
-  - platform: nut
-    alias: server_ups
-    resources:
-      - battery.charge
-      - battery.voltage
-      - input.frequency
-      - input.voltage
-      - output.voltage
-      - ups.load
+  # - platform: nut
+  #   alias: server_ups
+  #   resources:
+  #     - battery.charge
+  #     - battery.voltage
+  #     - input.frequency
+  #     - input.voltage
+  #     - output.voltage
+  #     - ups.load
 
 speedtestdotnet:
   monitored_conditions:
     - ping
     - download
     - upload
-  server_id: 14204 # Palo Alto speedtest server
-  manual: true
+  # server_id: 14204 # Palo Alto speedtest server
+  manual: false
 
 group:
   sys_status:
@@ -97,23 +97,23 @@ automation:
       data:
         addon: core_nginx_proxy
         
-  - id: 6BFB2009-CE8C-452F-9984-128342F8FD56
-    alias: Run Speedtest when PC and tv are both off
-    initial_state: 'on'
-    trigger:
-      platform: time_pattern
-      minutes: '/60'
-      seconds: 0
-    condition:
-      - condition: template
-        value_template: >-
-          {%if states('sensor.rt_ac53_kbyte_sec_received') | float > 12 %}
-            False
-          {% else %} 
-            True
-          {% endif %} 
-    action:
-      - service: speedtestdotnet.speedtest
+  # - id: 6BFB2009-CE8C-452F-9984-128342F8FD56
+  #   alias: Run Speedtest when PC and tv are both off
+  #   initial_state: 'on'
+  #   trigger:
+  #     platform: time_pattern
+  #     minutes: '/60'
+  #     seconds: 0
+  #   condition:
+  #     - condition: template
+  #       value_template: >-
+  #         {%if states('sensor.rt_ac53_kbyte_sec_received') | float > 12 %}
+  #           False
+  #         {% else %} 
+  #           True
+  #         {% endif %} 
+  #   action:
+  #     - service: speedtestdotnet.speedtest
 
   - id: F49BB5E9-0F39-4585-9D47-011A76A6AFAE
     alias: 'booted'
@@ -130,3 +130,5 @@ automation:
     - service: input_boolean.turn_on 
       data:
         entity_id: input_boolean.booted
+
+

@@ -10,7 +10,7 @@ group:
     entities:
       - light.spare_room
       - light.passage
-      - light.sonoff_kitchen
+      - light.kitchen
       - light.entrance
       - light.store
       - light.lounge
@@ -26,7 +26,7 @@ group:
     entities:
       - light.spare_room
       - light.passage
-      - light.sonoff_kitchen
+      - light.kitchen
       - light.office
       - light.entrance
       - light.store
