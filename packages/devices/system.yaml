@@ -15,14 +15,6 @@ spotcast:
   sp_dc: !secret spotify_dc
   sp_key: !secret spotify_key
 
-asuswrt:
-  host: 192.168.1.1
-  username: !secret router_username
-  password: !secret router_password
-
-device_tracker:
-  - platform: asuswrt
-
 namecheapdns:
   domain: !secret namecheap_tld
   password: !secret namecheap_password

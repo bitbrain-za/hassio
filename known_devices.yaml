@@ -472,14 +472,6 @@ a0_28_ed_a1_6d_2b:
   picture:
   track: true
 
-mi9tpro_miphone:
-  hide_if_away: false
-  icon:
-  mac: E0:DC:FF:F2:A9:11
-  name: Mi9TPro-MiPhone
-  picture:
-  track: true
-
 60_30_d4_31_85_a8:
   hide_if_away: false
   icon:

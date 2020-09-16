@@ -1,6 +1,6 @@
 
 smartir:
-  update_branch: rc
+  # update_branch: rc
 
 switch:
 #Bedroom

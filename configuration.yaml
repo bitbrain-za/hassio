@@ -76,4 +76,4 @@ recorder:
   purge_keep_days: 5
   auto_purge: true
 
-mobile_app:
+default_config:

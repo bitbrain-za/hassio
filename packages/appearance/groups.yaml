@@ -1,9 +1,4 @@
 group:
-  everyone:
-    name: Everyone
-    entities:
-      - device_tracker.mi9tpro_miphone
-  
   inside_lights:
     name: inside lights
     icon: mdi:lightbulb

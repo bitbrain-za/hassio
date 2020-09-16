@@ -1,11 +1,3 @@
-device_tracker.bc5ff42036a8:
-  friendly_name: Philip Desktop
-device_tracker.mi9tpro_miphone:
-  friendly_name: Philip
-  entity_picture: /local/turtle.jpg
-device_tracker.p_phone:
-  friendly_name: Philip
-  entity_picture: /local/turtle.jpg
 device_tracker.mum_zanz:
   friendly_name: Mum
   entity_picture: /local/people/mum.png
