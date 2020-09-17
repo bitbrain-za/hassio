@@ -49,24 +49,24 @@ climate:
     unique_id: bedroom_ac
     device_code: 9001
     controller_data: 192.168.1.71
-    temperature_sensor: sensor.temperature_bedroom
-    humidity_sensor: sensor.humidity_bedroom
+    temperature_sensor: sensor.bedroom_climate_temperature
+    humidity_sensor: sensor.bedroom_climate_humidity
 
   - platform: smartir
     name: Lounge AC
     unique_id: lounge_ac
     device_code: 1160
     controller_data: 192.168.1.70
-    temperature_sensor: sensor.temperature_lounge
-    humidity_sensor: sensor.humidity_lounge
+    temperature_sensor: sensor.lounge_temperature
+    humidity_sensor: sensor.lounge_humidity
 
   - platform: smartir
     name: Study AC
     unique_id: study_ac
     device_code: 9002
     controller_data: 192.168.1.72
-    temperature_sensor: sensor.temperature_study
-    humidity_sensor: sensor.humidity_study
+    temperature_sensor: sensor.study_climate_temperature
+    humidity_sensor: sensor.study_climate_humidity
 
 script:
   all_ac_off:

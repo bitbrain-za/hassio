@@ -14,28 +14,6 @@ sensor.owm_rain:
   icon: mdi:weather-rainy
 sensor.owm_temperature:
   friendly_name: Temperature
-sensor.temperature_living_room:
-  friendly_name: Lounge Temperature
-sensor.humidity_158d00022cc5d7:
-  friendly_name: Lounge Humidity
-sensor.pressure_158d00022cc5d7:
-  friendly_name: Lounge Pressure
-binary_sensor.mes_button:
-  friendly_name: switch mes
-binary_sensor.bedroom_wall:
-  friendly_name: wall switch 1
-binary_sensor.bathroom_wall:
-  friendly_name: wall switch 2
-binary_sensor.living_room_wall_both:
-  friendly_name: double switch both
-binary_sensor.living_room_wall_left:
-  friendly_name: double switch left
-binary_sensor.living_room_wall_right:
-  friendly_name: double switch right
-binary_sensor.front_door:
-  friendly_name: front_door
-binary_sensor.back_door:
-  friendly_name: back_door
 light.kitchen:
   friendly_name: Kitchen
 light.lounge:

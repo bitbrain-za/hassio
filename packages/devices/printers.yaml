@@ -1,24 +1,22 @@
 
 octoprint:
-  - name: Pulsatrix
-    host: 192.168.1.16
-    api_key: !secret octoprint_api_key
-    bed: true
-    number_of_tools: 1
-
-  # - name: CR10s Pro V2
-  #   host: 192.168.1.208
-  #   api_key: !secret octoprint_api_key_cr10s
+  # - name: Pulsatrix
+  #   host: 192.168.1.16
+  #   api_key: !secret octoprint_api_key
   #   bed: true
   #   number_of_tools: 1
 
-camera:
-  - platform: mjpeg
-    name: Printer Camera
-    mjpeg_url: http://192.168.1.16/webcam/?action=stream
-    still_image_url: http://192.168.1.16/webcam/?action=snapshot
+  - name: CR10s Pro V2
+    host: !secret cr10s_ip
+    api_key: !secret octoprint_api_key_cr10s
+    bed: true
+    number_of_tools: 1
 
-
+# camera:
+#   - platform: mjpeg
+#     name: Printer Camera
+#     mjpeg_url: http://192.168.1.16/webcam/?action=stream
+#     still_image_url: http://192.168.1.16/webcam/?action=snapshot
 
 sensor:
   - platform: octoprint
@@ -32,10 +30,17 @@ sensor:
     name: printer_enclosure_temp
     device_class: temperature
     unit_of_measurement: "°C"
-    resource: !secret octoprint_api_key_cr10s_enclosure_api
+    resource: !secret octoprint_api_cr10s_temperature
     value_template: '{{ value_json.temp_sensor_temp }}'
 
 input_boolean:
   off_after_printing:
     name: Off After Print
     initial: on
+
+# binary_sensor:
+#   - platform: rest
+#     name: cr10s
+#     device_class: light
+#     resource: !secret octoprint_api_cr10s_get_ouput
+#     value_template: '{{ value_json[1].status }}'
