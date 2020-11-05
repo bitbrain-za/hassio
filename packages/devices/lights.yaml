@@ -96,6 +96,18 @@ yeelight:
       save_on_change: false
       use_music_mode: false
   custom_effects:
+    - name: 'Sunset'
+      flow_params:
+        count: 1
+        action: stay
+        transitions:
+          - TemperatureTransition: [1700, 180000, 100]
+          - TemperatureTransition: [1800, 180000, 60]
+          - TemperatureTransition: [2000, 180000, 30]
+          - TemperatureTransition: [2200, 180000, 15]
+          - TemperatureTransition: [2500, 180000, 10]
+          - TemperatureTransition: [2500, 180000, 1]
+
     - name: 'Sunrise'
       flow_params:
         count: 1
